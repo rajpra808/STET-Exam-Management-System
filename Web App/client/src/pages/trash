@@ -1,0 +1,61 @@
+$(document).ready(function () {
+      let imagesPreview = function (input, placeToInsertImagePreview) {
+        if (input.files) {
+          let filesAmount = input.files.length;
+          for (i = 0; i < filesAmount; i++) {
+            let reader = new FileReader();
+            reader.onload = function (event) {
+              $($.parseHTML("<img>"))
+                .attr("src", event.target.result)
+                .appendTo(placeToInsertImagePreview);
+            };
+            reader.readAsDataURL(input.files[i]);
+          }
+        }
+      };
+      $("#input-files").on("change", function () {
+        imagesPreview(this, "div.preview-images");
+      });
+    });
+
+
+
+     passport_photo: {},
+  birth_certificate: {},
+  community_certificate: {},
+  scanned_signature: {},
+  sikkim_sub_certificate: {},
+  aadhar_card: {},
+  eleven_marksheet: {},
+  twelve_marksheet: {},
+  graduation_marksheet: {},
+  graduation_certificate: {},
+
+
+
+  <h1>File Upload</h1>
+          <input
+            type="file"
+            className="custom-file-input"
+            name="myfile1"
+            onChange={this.onChange1}
+          />
+          {console.log(this.state.file1)}
+          <br />
+          <br />
+          <br />
+          <br />
+          <input
+            type="file"
+            className="custom-file-input"
+            name="myfile2"
+            onChange={this.onChange2}
+          />
+          {console.log(this.state.file2)}
+          <button className="upload-button" type="submit">
+            Upload to DB
+          </button>
+          <br />
+          <br />
+          <br />
+          <br />

@@ -1,0 +1,173 @@
+p {
+  font-weight: bold;
+  list-style-type: circle;
+}
+body {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 60px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* progress bar*/
+.meter {
+  height: 20px; /* Can be anything */
+  position: relative;
+  background: #555;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+/* Style the submit button with a specific background color etc */
+input[type="submit"],
+input[type="button"] {
+  text-align: center;
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 3px;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type="submit"],
+input[type="button"]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container1 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.container2 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+
+  width: 16in;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.border-right {
+  border-right: 5px solid green;
+}
+
+.col-md-6 {
+  padding-top: 50px;
+}
+
+img {
+  width: 200x;
+  height: 200px;
+}
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  .vl {
+    display: none;
+  }
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
+ul li {
+  display: inline-block;
+}
+
+ul li:not(:last-child):after {
+  content: "|";
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.myheader {
+  text-align: center;
+}
+
+.mylist {
+  text-align: right;
+}
+
+#myspan {
+  width: 90%;
+}
+
+#myspan1 {
+  width: 50%;
+}
+
+#myspan2 {
+  width: 25%;
+}
+
+#myspan3 {
+  width: 5%;
+}
+
+#myhr {
+  width: 100%;
+}
