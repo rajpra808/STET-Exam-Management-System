@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/next1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/page_1_signup_image"
+        android:layout_width="170dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/stet_logo">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/page_1_signup_text_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:text="@string/sikkim_teacher_eligibility_test_2020"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/page_1_signup_name"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/page_1_signup_name_et"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:background="@drawable/box"
+                android:paddingLeft="10dp"
+                android:hint="@string/name_page_1_signup"
+                android:inputType="textPersonName"
+                android:textSize="12dp">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="13dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/page_1_signup_email"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/email_id_page_1_signup"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/page_1_signup_email_et"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/box"
+                android:hint=" xyz@gmail.com"
+                android:inputType="textEmailAddress"
+                android:textSize="12dp">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="13dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/page_1_signup_phone"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_no_page_1_signup"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/page_1_signup_phn_et"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/box"
+                android:hint=" 926427XXXX"
+                android:inputType="phone"
+                android:textSize="12dp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="13dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/page_1_signup_aadhar"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/aadhar_no_page_1_signup"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/page_1_signup_Edtaadhar"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/box"
+                android:hint=" 1234-5678-XXXX"
+                android:inputType="phone"
+                android:textSize="12dp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/page_1_signup_pass"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/password_page_1_signup"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/page_1_signup_Edtpass"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/box"
+                android:hint="@string/password_page_1_signup_hint"
+                android:inputType="textPassword"
+                android:textSize="12dp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/page_1_signup_back"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+
+                android:background="@drawable/button_shape"
+                android:text="@string/back_page_1_signup" />
+
+            <Button
+                android:id="@+id/page_1_signup_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="93dp"
+                android:background="@drawable/button_shape"
+                android:text="@string/verify_page_1_signup">
+
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

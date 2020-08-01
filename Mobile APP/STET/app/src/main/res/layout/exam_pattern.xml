@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/examPattern_logo"
+        android:layout_width="170dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/stet_logo" />
+
+    <TextView
+        android:id="@+id/examPattern_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homepage_textview1"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="_______________________________________________________________"/>
+
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/examPattern_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/homepage_examPattern"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/examPattern_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/examPattern"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exam Mode:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_online"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Online"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exam Type:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_obj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Objective type (MCQs)"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_ques"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total no. of questions:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_150"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="150"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_scheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Marking Scheme:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="1 mark for each correct answer"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_negative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Negative Marking:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="There will be no negative marking"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exam Duration:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_hrs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.30 hours"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@android:drawable/alert_dark_frame" />
+
+                <TextView
+                    android:id="@+id/examPattern_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exam Time:"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/examPattern_time_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="10:00 am to 03:30 pm"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

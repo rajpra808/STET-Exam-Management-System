@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="0dp">
+
+        <ImageView
+            android:id="@+id/page_5_image"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/stet_logo">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/page_5_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/homepage_textview1"
+            android:textSize="30sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/page_5_progress_bar"
+                android:layout_marginTop="10dp"
+                android:progress="@android:integer/config_mediumAnimTime"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/page_5_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="@string/page_5_aca_info"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:id="@+id/page_5_app_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:text="@string/page_5_app_category"
+                    android:textSize="17sp" />
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/box"
+                    android:theme="@style/Animation.AppCompat.DropDownUp"
+                    android:layout_marginBottom="15dp"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:id="@+id/page_5_spin_category"
+                    android:prompt="@string/select"
+                    android:entries="@array/application_category"
+                    >
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_5_language_choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:text="@string/page_5_language_choice" />
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/box"
+                    android:id="@+id/page_5_spin_language"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:entries="@array/language_choice"
+                    android:prompt="@string/select">
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_5_min_qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/page_5_min_qualification"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:id="@+id/page_5_spin_min_qualification"
+                    android:background="@drawable/box"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:entries="@array/min_qualification">
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_5_percentage_min_qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:text="@string/page_5_percentage_min_qualification" />
+
+                <EditText
+                    android:id="@+id/page_5_enter_percentage"
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/box"
+                    android:textSize="14dp"
+                    android:hint="Percentage"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:id="@+id/page_5_prof_qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:inputType="numberDecimal"
+                    android:text="@string/page_5_prof_qualification"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/box"
+                    android:id="@+id/page_5_spin_prof_qualification"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:entries="@array/prof_qualification">
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_5_university"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/page_5_university"
+                    android:textStyle="bold"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/page_5_enter_university"
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="14sp"
+                    android:hint="@string/page_5_uni_h"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/box"
+                    android:inputType="textLongMessage" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/page_5_chechbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/page_5_checkbox"
+                android:textSize="9dp"
+                >
+
+            </CheckBox>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/page_5_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginLeft="0dp"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_5_back"
+                    />
+
+                <Button
+                    android:id="@+id/page_5_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginLeft="110dp"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_5_next"
+
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

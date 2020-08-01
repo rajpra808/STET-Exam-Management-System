@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="@string/home_menu"
+        app:showAsAction="always"
+        android:icon="@drawable/home"
+
+
+        />
+    <item
+        android:id="@+id/status"
+        android:title="@string/status_menu"
+
+
+        />
+    <item
+        android:id="@+id/admit"
+        android:title="@string/admit_card"
+
+
+        />
+    <item
+        android:id="@+id/Help"
+        android:title="@string/help_menu"
+
+        />
+    <item
+        android:id="@+id/FAQs"
+        android:title="@string/faqs_menu"
+
+
+        />
+
+    <item
+        android:id="@+id/bot"
+        android:title="@string/chat_bot_menu"
+        />
+
+    <item
+        android:id="@+id/timeline"
+        android:title="@string/timeline_menu"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/timeline"/>
+    <item
+        android:id="@+id/language"
+        android:title="@string/change_language"
+        />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout_menu" />
+
+
+</menu>

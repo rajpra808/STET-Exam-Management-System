@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/page_4_image"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/stet_logo">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/page_4_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:text="@string/sikkim_teacher_eligibility_test_2020"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/background"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/page_4_progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/page_4_personal_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="@string/personal_info_page_4"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/page_4_candi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/candidate_s_name_page_4"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:id="@+id/page_4_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/first_name_page_4"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_fname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/your_first_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_mname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/middle_name_page_4"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_mname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/your_middle_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/last_name_page_4" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_lname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/your_last_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/select_your_gender_page_4"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/page_4_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/male_page_4"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/page_4_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/female_page_4"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/page_4_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other_page_4"
+                        android:textSize="14sp" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/page_4_f_h"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/father_husband_page_4"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/page_4_father"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/father_page_4"
+                        android:textSize="14dp" />
+
+                    <RadioButton
+                        android:id="@+id/page_4_husband"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/husband_page_4"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/page_4_father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/candidate_father_s_husband_s_name_page_4"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/page_4_father_fname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/first_name_page_4"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_father_fname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/first_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_father_mname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/middle_name_page_4"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_father_mname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/middle_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/page_4_father_lname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/last_name_page_4"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_father_lname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/last_name_page_4"
+                    android:inputType="text"
+                    android:paddingStart="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_mother_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/candidate_s_mother_s_name_page_4"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/page_4_mother_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/first_name_page_4"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_mother_fname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/first_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/middle_name_page_4"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_mother_mname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/middle_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_mother_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/last_name_page_4"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_mother_lname"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/last_name_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/page_4_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_of_birth_page_4"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/page_4_enter_dob"
+                        android:layout_width="160dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/box"
+                        android:hint="dd-mm-yyyy"
+                        android:inputType="date"
+                        android:paddingLeft="5dp"
+                        android:textSize="12sp" />
+
+                    <ImageButton
+                        android:id="@+id/page_4_calender"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"
+                        android:src="@drawable/ic_date_range_black_24dp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/page_4_comminity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/community_page_4"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/page_4_spin_community"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:entries="@array/community"
+                    android:theme="@style/Animation.AppCompat.DropDownUp" />
+
+                <TextView
+                    android:id="@+id/page_4_aadhar_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/aadhar_number_page_4"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/page_4_enter_aadhar_no"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:gravity="center"
+                    android:hint="@string/aadhar_number_page_4_hint"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_postal_address_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/postal_address_page_4"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/page_4_address1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/address_1_page_4" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_address_1"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/address_page_4"
+                    android:inputType="textImeMultiLine"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/page_4_district_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/district_1_page_4"
+
+                    />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_address_district_1"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/district_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_postal_zip_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/postal_zip_1_page_4" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_zip_1"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="9dp"
+                    android:paddingLeft="3dp"
+                    android:background="@drawable/box"
+                    android:inputType="numberSigned">
+
+                </EditText>
+                <TextView
+                    android:id="@+id/page_4_state_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/state_1_page_4"
+
+                    />
+
+                <Spinner
+                    android:id="@+id/page_4_spin_states_1"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:entries="@array/states"
+                    android:theme="@style/Animation.AppCompat.DropDownUp">
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_4_address2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/address_2_page_4" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_address_2"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/address_page_4"
+                    android:inputType="textImeMultiLine"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_district_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/district_2_page_4"
+
+                    />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_address_district_2"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/district_page_4"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/page_4_postal_zip_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/postal_zip_2_page_4" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_postal_zip_2"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="9dp"
+                    android:paddingLeft="3dp"
+                    android:background="@drawable/box"
+                    android:inputType="numberSigned">
+
+                </EditText>
+
+                <TextView
+                    android:id="@+id/page_4_state_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/state_2_page_4"
+
+                    />
+
+                <Spinner
+                    android:id="@+id/page_4_spin_states_2"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/box"
+                    android:entries="@array/states"
+                    android:theme="@style/Animation.AppCompat.DropDownUp">
+
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/page_4_phn_no_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/phone_number_1_page_4"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+91 - " />
+
+                    <TextView
+                        android:id="@+id/page_4_enter_phn_no_1"
+                        android:layout_width="202dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/box"
+                        android:gravity="center"
+                        android:hint="@string/phone_number_page_4"
+                        android:paddingLeft="5dp"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/page_4_phn_no_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/phone_number_2_page_4"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+91 - " />
+
+                    <EditText
+                        android:id="@+id/page_4_enter_phn_no_2"
+                        android:layout_width="202dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/box"
+
+                        android:hint="@string/phone_number_page_4"
+                        android:inputType="phone"
+                        android:paddingLeft="5dp"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/page_4_email_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/email_address_1_page_4"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/page_4_enter_email_1"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="05dp"
+                    android:background="@drawable/box"
+                    android:gravity="center"
+                    android:hint="abc@gmail.com"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/page_4_email_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/email_address_2_page_4"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/page_4_enter_email_2"
+                    android:layout_width="234dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/box"
+                    android:hint="abc@gmail.com"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5dp"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/page_4_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/i_have_downloaded_information_bulletin_read_and_understood_all_the_instructions"
+                    android:textSize="9dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/page_4_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="0dp"
+                        android:background="@drawable/button_shape"
+                        android:text="@string/back_register" />
+
+                    <Button
+                        android:id="@+id/page_4_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="110dp"
+                        android:background="@drawable/button_shape"
+                        android:text="@string/page_1_next"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

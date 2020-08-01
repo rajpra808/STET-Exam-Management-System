@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_2"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+            android:id="@+id/page_reset_image"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/stet_logo"/>
+
+            <TextView
+            android:id="@+id/page_reset_text_view1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+                android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="@string/sikkim_teacher_eligibility_test_2020"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background"
+            android:orientation="vertical"
+            >
+
+            <Button
+                android:id="@+id/show_password"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_shape"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/show_password" />
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/password_reset"
+                android:textSize="17sp"
+                android:visibility="invisible"
+                />
+            <Button
+                android:id="@+id/edit_password"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_shape"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/edit_password"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/page_reset_pass"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/new_password"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/page_reset_Edtpass"
+                    android:layout_width="175dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="13dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/password_reset_edt"
+                    android:inputType="textPassword"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp"
+                    android:visibility="invisible">
+
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/page_reset_confirm_pass"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/confirm_password"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/page_reset_Edtconfirmpass"
+                    android:layout_width="175dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="13dp"
+                    android:background="@drawable/box"
+                    android:hint="@string/password_reset_confirm"
+                    android:inputType="textPassword"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp"
+                    android:visibility="invisible">
+
+                </EditText>
+            </LinearLayout>
+            <Button
+                android:id="@+id/reset_password"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_shape"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/reset_password"
+                />
+            <Button
+                android:id="@+id/reset_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_shape"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/reset_back"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

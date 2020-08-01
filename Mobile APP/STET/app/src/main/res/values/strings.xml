@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="textView_id">
+
+        <item> Hindi_text</item>
+        <item> English_text</item>
+
+    </string-array>
+    <string name="my_app_id">my_app-cfjpb</string>
+    <string-array name="community">
+        <item>Select</item>
+        <item>General</item>
+        <item>OBC</item>
+        <item>SC</item>
+        <item>ST</item>
+    </string-array>
+    <string-array name="application_category">
+        <item>Select</item>
+        <item>Primary Teacher</item>
+        <item>GT Art</item>
+        <item>GT Science</item>
+    </string-array>
+    <string-array name="language_choice">
+        <item>Select</item>
+        <item>Nepali</item>
+        <item>Bhutia</item>
+        <item>Lepcha</item>
+        <item>Limboo</item>
+        <item>Hindi</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="language">
+        <item>ENGLISH</item>
+        <item>हिन्दी</item>
+    </string-array>
+    <string-array name="min_qualification">
+        <item>Select</item>
+        <item>XII</item>
+        <item>Graduation</item>
+    </string-array>
+    <string-array name="prof_qualification">
+        <item>Select</item>
+        <item>D.EI.Ed</item>
+        <item>B.Ed</item>
+        <item>BA B.Ed</item>
+        <item>BSc B.Ed</item>
+    </string-array>
+    <string-array name="states">
+        <item>Select</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhattisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu And Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerela</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string name="app_name" translatable="false">STET</string>
+    <string name="select">Select</string>
+    <string name="application_no">Application Number</string>
+    <string name="enter_application_no">Enter Application Number</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="todo">Todo</string>
+    <string name="enter_text_shown_in_image">Enter the text shown in the image</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forget_password">Forgot Password</string>
+    <string name="forget_application_no">Forgot Application Number</string>
+    <string name="homepage_textview1">Sikkim Teacher Eligibility Test-2020</string>
+    <string name="homepage_about">About Sikkim TET:</string>
+    <string name="homepage_content">Contents:</string>
+    <string name="homepage_about_content">Sikkim Teacher Eligibility Test is one of the prestigious teaching examination of the state Sikkim. Each year, several candidates appear for this exam, and only a few candidates are able to qualify the exam.</string>
+    <string name="homepage_overview">Overview of Sikkim TET</string>
+    <string name="homepage_admitCard">Sikkim TET-2020 Admit Card</string>
+    <string name="homepage_admitCard_content">After the process of the application process is over, candidates can download their Sikkim TET admit card 2020. Those candidates who submitted application form in the year 2019 can also download their admit card this time. As per the official notification, candidates are sent an email related to the release of admit card. Candidates get their admit card through the registered email address. Once the official notification of admit card is released, candidates are advised to visit their respective email address.</string>
+    <string name="homepage_examPattern">Sikkim TET-2020 Exam Pattern</string>
+    <string name="homepage_syllabus">Sikkim TET-2020 Syllabus</string>
+    <string name="homepage_prepare">How to prepare for Sikkim TET-2020?</string>
+    <string name="homepage_applicationForm">Sikkim TET-2020 Application Form</string>
+    <string name="homepage_eligibilityCriteria">Sikkim TET-2020 Eligibility Criteria</string>
+    <string name="homepage_timeline">Sikkim TET-2020 Timeline</string>
+    <string name="homepage_clickhere">CLICK HERE</string>
+    <string name="homepage_apply">To Check Your Profile</string>
+    <string name="examPattern">An applicant who intends to participate in both the categories (Primary and Graduate) will have to apply and sit in both the papers separately and pay the fee for both the tests. Both Level I and Level II (i.e. for Primary and Graduate teacher) are conducted on the same day. </string>
+    <string name="examPattern_1">Exam Mode:</string>
+    <string name="examPattern_2">Online</string>
+    <string name="examPattern_3">Exam Type:</string>
+    <string name="examPattern_4">Objective type (MCQs)</string>
+    <string name="examPattern_5">Total no. of questions:</string>
+    <string name="examPattern_6">150</string>
+    <string name="examPattern_7">Marking Scheme:</string>
+    <string name="examPattern_8">1 mark for each correct answer</string>
+    <string name="examPattern_9">Negative Marking:</string>
+    <string name="examPattern_10">There will be no negative marking</string>
+    <string name="examPattern_11">Exam Duration:</string>
+    <string name="examPattern_12">2.30 hours</string>
+    <string name="examPattern_13">Exam Time:</string>
+    <string name="examPattern_14">10:00 am to 03:30 pm</string>
+    <string name="prepare_content1">Sikkim Teacher Eligibility Test is one of the prestigious teaching examination of the state Sikkim. Each year, several candidates appear for this exam, and only a few candidates are able to qualify the exam. It will be helpful for those candidates who are appearing for the exam to refer to the preparation strategies of TET qualified candidates. Customize their strategies as per the requirement and start the preparation of the exam.</string>
+    <string name="prepare_content2">Time management during the preparation of STET exam is crucial. It is necessary to manage time between studying and revision. Each section of syllabus must get enough time to practise. Also, it becomes vital to revise topics with previous year papers to keep them fresh in mind.</string>
+    <string name="prepare_content3">Along with hard work, smart work is also crucial for the STET preparation. It becomes necessary to identify the important topics for the exam. Practise STET previous year question papers and note down the important topics and frequently asked questions of the exam. Candidates can also start their preparation with these important section and questions.</string>
+    <string name="application_form_content1">Before filling the application form, candidates must keep the following things ready:</string>
+    <string name="application_form_content2">Receipt of payment</string>
+    <string name="application_form_content3">Scanned or digital photograph</string>
+    <string name="application_form_content4">Scanned signature of the candidate</string>
+    <string name="application_form_content5">Working e-mail and mobile number</string>
+    <string name="application_form_content6">Application Fee</string>
+    <string name="application_form_content7">Candidates have to pay Rs.400/- as application fee.</string>
+    <string name="application_form_content8">Application fee can only be submitted online.</string>
+    <string name="eligibility_criteria_content1">Candidates who are fulfilling the Eligibility Criteria set by officials will be able to sit for the Exam, others will be rejected at the time of scrutiny of documents. Here we have mentioned the eligibility criteria for STET Sikkim Exam 2020.</string>
+    <string name="eligibility_criteria_content2">12th or its equivalent with a minimum of 50% marks in aggregate for unreserved candidates and 45 % in case of SC, ST, OBC (Central), OBC (State) and passed the final year of 2 years of D. El. Ed . OR</string>
+    <string name="eligibility_criteria_content3">12th or its equivalent with a minimum of 50% marks in aggregate for unreserved candidates and 45 % in case of SC, ST, OBC(Central), OBC(State) and passed in the final year of 4 years B. Ed. OR</string>
+    <string name="eligibility_criteria_content4">12th or its equivalent with a minimum of 50% marks in aggregate and 45 % in case of SC, ST, OBC (Central), OBC(State) and passed in final year of 2 years Diploma in Education ( Special Education).</string>
+    <string name="eligibility_criteria_content5">B.A./B.Sc. with 50% in aggregate marks for unreserved candidates and 45 % in case of SC, ST, OBC(Central), OBC (State). With this, candidates must have passed the final year of 2 years Diploma in Elementary Education (D. El. Ed.). OR</string>
+    <string name="eligibility_criteria_content6">B.A./B.Sc. with 50 % marks in aggregate for unreserved candidates and 45 % in case of SC, ST, OBC(Central),OBC(State) and passed in final year of 1/ 2 year Bachelor in Education (B. Ed.). OR</string>
+    <string name="eligibility_criteria_content7">12th or its equivalent with a minimum of 50% marks in aggregate for unreserved candidates and 45 % for SC, ST, OBC (Central), OBC (State) and have passed in the final year of 2 years in Diploma in Elementary Education ( D. El. Ed), OR</string>
+    <string name="eligibility_criteria_content8">12th or its equivalent with a minimum 0f 50% marks for unreserved category and 45% marks in case of Sc, ST, OBC (Central), OBc (State) and passed or appearing in final year of 04 years B. A.Ed/B.Sc.Ed or B.A/B.Sc.Ed</string>
+    <string name="eligibility_criteria_content9">Minimum Educational Qualification for Primary Teacher (Classes I- V: Primary Stage)</string>
+    <string name="eligibility_criteria_content10">Minimum Educational qualification for Graduate Teacher for (Classes VI-VIII: Elementary Stage)</string>
+    <string name="syllabus_content1">Sikkim TET syllabus 2020 is provided below, the candidates should prepare according to the syllabus to qualify for Sikkim TET exam. Detailed knowledge of Syllabus is mandatory for each candidate to prepare for STET Sikkim 2020 Exam.</string>
+    <string name="syllabus_content2">Concept of development and its relationship with learning, Principles of the development of children, Socialization processes: Social world and children (Teachers, parents, peers.)Piaget, Kohlberg and Vygotsky: constructs and critical perspectives, Gross and fine motor development skills in infancy and preschool children. Development of speech and language.Gender as a social construct; gender roles, gender- bias and educational practice, Individual differences among learners, understanding differences based on diversity of language, caste, gender, community, religion etc.</string>
+    <string name="syllabus_content3">Reading unseen passages- two passages one prose (maybe from literary, scientific, narrative or discursive ) or drama and poem with questions on comprehension, inference, grammar and verbal ability</string>
+    <string name="syllabus_content4">Learning and Acquisition, Teaching Role of listening and speaking; function of language and how children use it as a tool critical perspective on the role of grammar in learning a language for communicating ideas verbally and in written form; Principles of language, Remedial Teaching, Challenges of teaching language in a diverse classroom; language difficulties, errors and disorders language, Skills Evaluating language comprehension and proficiency: speaking, listening, reading and writing teaching-learning materials: Textbook, multimedia materials, multilingual resource of the classroom</string>
+    <string name="syllabus_content5">Decimals and Fractions, Algebraic Expressions and Identities, Factorizations, Rational Numbers, Exponents and Powers, Addition and Subtraction, Operation on Numbers, Ratio and proportion, Measurement, Comparing Quantities, Direct and Inverse Variations, Geometry</string>
+    <string name="syllabus_content6">Refer NCERT Textbooks of class I to V</string>
+    <string name="syllabus_content7">Algebra.Compound Interest Discount.Ratio and Proportion.Introduction to Algebra; Algebraic identities, polynomials. Basic geometrical ideas, Knowing our Numbers, Negative Numbers and Integers, Geometry. Number System, Playing with Numbers, Whole Numbers. Cube root Profit and Loss, Fractions Exponents; surds, squares, cube, square root, Symmetry: (reflection), Understanding Elementary Shapes, Quadrilateral, Constructions (using Straight edge Scale, protractor, compasses).Data handling, statistics, Mensurations; circle, sphere, cone, cylinder, triangles</string>
+    <string name="syllabus_content8">Food: Sources and ComponentsNutrition in Plants and AnimalsLight, Shadows and ReflectionElectric Current and its effectsSoundMicroorganism : Friend and FoePollution of Air and WaterPhysical and Chemical changesFibre to Fabric</string>
+    <string name="syllabus_content9">From Gathering to Growing Food, Rulers, Buildings, Monuments, India after Independence</string>
+    <string name="syllabus_content10">Motions of the Earth, Life in the Temperate Grassland, Mineral and Power Resources.</string>
+    <string name="syllabus_content11">Diversity and Discrimination, Understanding Media, Understanding Marginalisation</string>
+    <string name="page_1_textView1">Sikkim Teacher Eligibility Test-2020</string>
+    <string name="page_1_register">Register</string>
+    <string name="page_1_phone_no">Phone No. :</string>
+    <string name="page_1_phn_hint">Phone No.</string>
+    <string name="page_1_password">Password :</string>
+    <string name="page_1_password_hint">Password</string>
+    <string name="page_1_login">Login</string>
+    <string name="page_1_signup">Sign up</string>
+    <string name="page_1_name">Name</string>
+    <string name="page_1_email">Email</string>
+    <string name="page_1_phn">Phone No.</string>
+    <string name="page_1_next">Next</string>
+    <string name="page_2_phn">Verify Phone No. :</string>
+    <string name="page_2_send_phn_otp">Send OTP</string>
+    <string name="page_2_enter_otp_phn">Enter OTP :</string>
+    <string name="page_2_phn_verify">Verify</string>
+    <string name="page_2_email">Verify Email Id :</string>
+    <string name="page_2_send_email_otp">Send OTP</string>
+    <string name="page_2_enter_otp_email">Enter OTP :</string>
+    <string name="page_2_verify">Verify</string>
+    <string name="page_2_skip">Skip</string>
+    <string name="page_3_text_view1">SIKKIM TEACHER ELIGIBILITY TEST 2020</string>
+    <string name="page_3_text_view_new_candidate">NEW CANDIDATE REGISTRTION</string>
+    <string name="page_3_register">REGISTER NOW</string>
+    <string name="page_3_registered_candidate">REGISTERED CANDIDATE LOGIN</string>
+    <string name="page_3_sign_in">SIGN IN</string>
+    <string name="page_4_text_view">STET 2020 APPLICATION FORM</string>
+    <string name="page_4_fname">Candidate\'s First Name :</string>
+    <string name="page_4_mname">Candidate\'s Middle Name :</string>
+    <string name="page_4_lname">Candidate\'s Last Name :</string>
+    <string name="page_4_gender">Gender :</string>
+    <string name="page_4_mother_name">Mother\'s Name :</string>
+    <string name="page_4_father_name">Father\'s Name :</string>
+    <string name="page_4_comminity">Community :</string>
+    <string name="page_4_spin_community">select</string>
+    <string name="page_4_aadhar_no">Aadhar Number :</string>
+    <string name="page_4_postal_address">Postal Address :</string>
+    <string name="page_4_spin_states">states</string>
+    <string name="page_5_details">QUALIFICATION DETAILS</string>
+    <string name="page_5_app_category">Application Category :</string>
+    <string name="page_5_spin_category">select</string>
+    <string name="page_5_language_choice">Language Paper Choice :</string>
+    <string name="page_5_spin_language">select</string>
+    <string name="page_5_min_qualification">Minimum Qualification :</string>
+    <string name="page_5_percentage_min_qualification">Percentage of Minimum Qualification :</string>
+    <string name="page_5_prof_qualification">Professional Qualification :</string>
+    <string name="page_5_university">University :</string>
+    <string name="page_5_back">BACK</string>
+    <string name="page_5_next">NEXT</string>
+    <string name="page_6_pay">Pay</string>
+    <string name="page_6_back">Back</string>
+    <string name="page_6_next">Next</string>
+    <string name="page_7_aadhar">Aadhar Card Number:</string>
+    <string name="page_7_choose">Choose</string>
+    <string name="page_7_take">Take</string>
+    <string name="page_7_digi">Digilocker</string>
+    <string name="page_7_10th_marksheet">10th Marksheet</string>
+    <string name="page_7_upl">Upload</string>
+    <string name="page_7_12th_marksheet">12th Marksheet</string>
+    <string name="page_7_graduationC">Graduation Certificate (BA/BSc)</string>
+    <string name="page_7_graduationD">Graduation Degree(BA/BSc)</string>
+    <string name="page_7_marksheet">B.Ed/D.El.Ed Marksheet</string>
+    <string name="page_7_birth">Birth Certificate</string>
+    <string name="page_7_communuty">Community Certificate</string>
+    <string name="page_7_subject">Sikkim Subject Certificate</string>
+    <string name="page_7_signature">Signature</string>
+    <string name="page_7_photo">Passport Size Photo</string>
+    <string name="page_7_checkbox">I have read all terms and conditions.................</string>
+    <string name="page_7_back">Back</string>
+    <string name="page_7_next">Next</string>
+    <string name="page_8_submit">Submit</string>
+    <string name="page_8_otp">Enter OTP :</string>
+    <string name="page_8_verify">Verify</string>
+    <string name="page_9_textView_1">ONLY REGISTERED CANDIDATE SIGN-IN</string>
+    <string name="page_9_security_pin">Security Pin</string>
+    <string name="page_1_signup_tv1">Sikkim Teacher Eligibility Test-2020</string>
+    <string name="page_1_signup_name">Name :</string>
+    <string name="page_1_signup_name_hint">Name</string>
+    <string name="page_1_signup_email">Email ID :</string>
+    <string name="page_1_signup_email_hint">xyz@gmail.com</string>
+    <string name="page_1_signup_phn">Phone No. :</string>
+    <string name="page_1_signup_phn_hint">9264272826</string>
+    <string name="page_1_signup_aadhar">Aadhar No. :</string>
+    <string name="page_1_signup_aadhar_hint">1234-5678-XXXX-XXXXX</string>
+    <string name="page_1_signup_password">Password :</string>
+    <string name="page_1_signup_password_hint">Password</string>
+    <string name="page_1_signup_back">Back</string>
+    <string name="page_2_phn_no">Phone Number:</string>
+    <string name="page_2_sendOTP">Send OTP</string>
+    <string name="page_2_phnVerification">Phone Number Verification</string>
+    <string name="page_2_enterPhnOTP">Enter OTP :</string>
+    <string name="page_2_sendPhnOTP">Send OTP</string>
+    <string name="page_2_phnVerify">Verify</string>
+    <string name="page_2_emailID">Email ID:</string>
+    <string name="page_2_emailSendLink">Send Link</string>
+    <string name="page_2_verifyEmail">Email ID Verification</string>
+    <string name="page_2_emailVerify">Verify</string>
+    <string name="page_2_aadhar">Aadhar No:</string>
+    <string name="page_2_sendAadharOTP">Send OTP</string>
+    <string name="page_2_aadharVerification">Aadhar Verification</string>
+    <string name="page_2_enter_aadharOTP">Enter OTP :</string>
+    <string name="page_2_aadharVerify">Verify</string>
+    <string name="page_2_back">Back</string>
+    <string name="page_2_next">Next</string>
+    <string name="page_3_newCandidateReg">New Candidate Registration</string>
+    <string name="page_3_regNow">REGISTER NOW</string>
+    <string name="page_4_pi">Personal Info</string>
+    <string name="page_4_canName">Candidate\'s Name:</string>
+    <string name="page_4_canFName">First Name</string>
+    <string name="page_4_canFName_h">Your First Name</string>
+    <string name="page_4_canMName">Middle Name</string>
+    <string name="page_4_canMName_h">Your Middle Name</string>
+    <string name="page_4_canLName">Last Name</string>
+    <string name="page_4_canLName_h">Your Last Name</string>
+    <string name="page_4_selectG">Select your gender:</string>
+    <string name="page_4_male">Male</string>
+    <string name="page_4_female">Female</string>
+    <string name="page_4_others">Other</string>
+    <string name="page_4_fatN">Candidate\'s Father\'s Name:</string>
+    <string name="page_4_f_h">Father/Husband:</string>
+    <string name="page_4_father">Father</string>
+    <string name="page_4_hus">Husband</string>
+    <string name="page_4_fFName">First Name</string>
+    <string name="page_4_fFName_h">First Name</string>
+    <string name="page_4_fLName">Middle Name</string>
+    <string name="page_4_fLName_h">Middle Name</string>
+    <string name="page_4_fLaName">Last Name</string>
+    <string name="page_4_fLaName_h">Last Name</string>
+    <string name="page_4_mName">Candidate\'s Mother\'s Name:</string>
+    <string name="page_4_mFName">First Name</string>
+    <string name="page_4_mName_h">First Name</string>
+    <string name="page_4_mMName">Middle Name</string>
+    <string name="page_4_mMName_h">Middle Name</string>
+    <string name="page_4_mLName">Last Name</string>
+    <string name="page_4_mLName_h">Last Name</string>
+    <string name="page_4_dob">Date Of Birth :</string>
+    <string name="page_4_ddmmyy">dd-mm-yyyy</string>
+    <string name="page_4_community">Community :</string>
+    <string name="page_4_aadhar">Aadhar Number:</string>
+    <string name="page_4_aadhar_h">Aadhar Number</string>
+    <string name="page_4_postal">Postal Address</string>
+    <string name="page_4_add">Address :</string>
+    <string name="page_4_add2">Address</string>
+    <string name="page_4_add_h">Address</string>
+    <string name="page_4_dist">District</string>
+    <string name="page_4_dist_h">District</string>
+    <string name="page_4_states">States</string>
+    <string name="page_4_phn_no">Phone Number :</string>
+    <string name="page_4_phn_h">Phone Number</string>
+    <string name="page_4_email">Email Address :</string>
+    <string name="page_4_email_h">abc@gmail.com</string>
+    <string name="page_4_checkbox">I have downloaded Information Bulletin, read and understood all the instructions.</string>
+    <string name="page_4_next">Next</string>
+    <string name="page_5_aca_info">Academic Information</string>
+    <string name="page_5_uni_h">University</string>
+    <string name="page_5_checkbox">I have downloaded Information Bulletin, read and understood all the instructions.</string>
+    <string name="page_6_payment">Payment</string>
+    <string name="page_7_upload">Upload Your File</string>
+    <string name="page_7_or">OR</string>
+    <string name="page_7_checkbox2">The certificates i have uploaded is correct according to my knowledge.</string>
+    <string name="page_8_finalReg">Final Registration</string>
+    <string name="status_print">Print this page</string>
+    <string name="status_reg_number">Registration No.</string>
+    <string name="status_status">Status</string>
+    <string name="status_personal_info">Personal Info</string>
+    <string name="status_aadhar">Aadhar Card No.</string>
+    <string name="status_can">Candidate\'s Name</string>
+    <string name="status_G">Candidate\'s Gender</string>
+    <string name="status_fh">Father/Husband</string>
+    <string name="status_fh_name">Father/Hudband\'s Name</string>
+    <string name="status_mname">Mother\'s Name</string>
+    <string name="status_dob">Date of Birth</string>
+    <string name="status_community">Community</string>
+    <string name="status_mob">Mobile No.</string>
+    <string name="status_sec_mob">Secondary Mobile No.</string>
+    <string name="status_per_add">Permanent Address</string>
+    <string name="status_sec_add">Secondary Address</string>
+    <string name="status_dist">District</string>
+    <string name="status_state">State</string>
+    <string name="status_pinCode">Pin/Zip Code</string>
+    <string name="status_email">Your E-mail ID</string>
+    <string name="status_sec_email">Secondary E-mail ID</string>
+    <string name="status_aca_info">Academic Info</string>
+    <string name="status_appCategory">Application Category</string>
+    <string name="status_langPaper">Language Paper Choice</string>
+    <string name="status_minQualification">Minimum Qualification</string>
+    <string name="status_per">Percentage Obtained</string>
+    <string name="status_prof">Professional Qualification</string>
+    <string name="status_uni">University</string>
+    <string name="status_scanned_pht">Scanned Photos</string>
+    <string name="status_pht">Photo</string>
+    <string name="status_sig">Signature</string>
+    <string name="status_fee_detail">Fee Payment Details</string>
+    <string name="status_pay_mode">Payment Mode</string>
+    <string name="status_transection">Transaction ID</string>
+    <string name="status_exam_date">Exam Date</string>
+    <string name="status_date_tran">Date of Transaction</string>
+    <string name="status_pay_detail">Fee Payment Detail</string>
+    <string name="status_para">I hereby solemnly affirm that all the particulars stated by me in this Application are true and correct. I have not concealed any information. However, if any information furnished herein is fraudulent, incorrect or untrue, I understand that I am liable to criminal prosecution and I also agree to forego my admission. Further that the selection and admission to the course is liable to be cancelled at any time during the entire degree program. I agree to abide by the rules and regulations governing the examination as contained in the Information Bulletin, which I have duly studied and understood thoroughly.</string>
+    <string name="status_uploaded_docs">List Of Documents Uploaded</string>
+    <string name="status_docs">Documents</string>
+    <string name="status_up_or_not">Uploaded or not</string>
+    <string name="status_na">NA</string>
+
+   <string name="status_cer1">Birth Certificate</string>
+<string name="status_cer2">Community Certificate</string>
+<string name="status_cer3">Sikkim Subject Certificate</string>
+<string name="status_cer4">Aadhar Card</string>
+<string name="status_cer5">10th Marksheet</string>
+    <string name="timeline_title">Full Program Timeline</string>
+    <string name="timeline_app_announced">Application Announced</string>
+    <string name="timeline_date1"></string>
+    <string name="timeline_data1">Announcement of the STET Examination for the year 2020</string>
+    <string name="timeline_regStarts">Registration starts</string>
+    <string name="timeline_date_2"></string>
+    <string name="timeline_data2">Starting date of the registration of STET exam year 2020</string>
+    <string name="timeline_lastSubmission">Last date of submission</string>
+    <string name="timeline_date3"></string>
+    <string name="timeline_data3">Last date to fill the form of STET examination year 2020</string>
+    <string name="timeline_dateOfAdmitC">Date of admit card</string>
+    <string name="timeline_date4"></string>
+    <string name="timeline_data4">Date of generation of Admit Card for the year 2020</string>
+    <string name="timeline_examdate">Exam Date</string>
+    <string name="timeline_date5"></string>
+    <string name="timeline_data5">Date of examination for the year 2020</string>
+    <string name="timeline_result_date">Result Date</string>
+    <string name="timeline_date6"></string>
+    <string name="timeline_data6">Result date of examination for the year 2020</string>
+
+    <string name="sikkim_teacher_eligibility_test_2020">Sikkim Teacher Eligibility Test-2020</string>
+    <string name="password_reset">Password:</string>
+    <string name="show_password">SHOW PASSWORD</string>
+    <string name="edit_password">EDIT PASSWORD</string>
+    <string name="new_password">New Password :</string>
+    <string name="password_reset_edt">Password</string>
+    <string name="confirm_password">Confirm Password :</string>
+    <string name="password_reset_confirm">Password</string>
+    <string name="reset_password">RESET PASSWORD</string>
+    <string name="reset_back">BACK</string>
+    <string name="update_personal_detail">Update Personal Detail</string>
+    <string name="update_professional_detail">Update Professional Detail</string>
+    <string name="update_payment_detail">Update Payment Detail</string>
+    <string name="back_register">BACK</string>
+    <string name="submit_register">Submit</string>
+    <string name="final_registration">Final Registration</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="enter_otp">Enter OTP :</string>
+    <string name="verify">Verify</string>
+    <string name="submit">Submit</string>
+    <string name="register_now">REGISTER NOW</string>
+    <string name="phone_number">Phone Number:</string>
+    <string name="name">Name :</string>
+    <string name="name_page_1_signup">Name</string>
+    <string name="email_id_page_1_signup">Email ID :</string>
+    <string name="phone_no_page_1_signup">Phone No. :</string>
+    <string name="aadhar_no_page_1_signup">Aadhar No. :</string>
+    <string name="password_page_1_signup">Password :</string>
+    <string name="password_page_1_signup_hint">Password</string>
+    <string name="back_page_1_signup">Back</string>
+    <string name="verify_page_1_signup">Verify</string>
+    <string name="phone_no_page_1">Phone No. :</string>
+    <string name="phone_no_page_1_hint">Phone No.</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password_bt">Forget Password</string>
+    <string name="enter_phone_no_to_retreive_and_reset_paassword">Enter Phone No. to Retreive and Reset Paassword</string>
+    <string name="personal_info_page_4">Personal Info</string>
+    <string name="candidate_s_name_page_4">Candidate\'s Name:</string>
+    <string name="first_name_page_4">First Name</string>
+    <string name="your_first_name_page_4">Your First Name</string>
+    <string name="middle_name_page_4">Middle Name</string>
+    <string name="your_middle_name_page_4">Your Middle Name</string>
+    <string name="last_name_page_4">Last Name</string>
+    <string name="your_last_name_page_4">Your Last Name</string>
+    <string name="select_your_gender_page_4">Select your gender:</string>
+    <string name="male_page_4">Male</string>
+    <string name="female_page_4">Female</string>
+    <string name="other_page_4">Other</string>
+    <string name="father_husband_page_4">Father/Husband:</string>
+    <string name="father_page_4">Father</string>
+    <string name="husband_page_4">Husband</string>
+    <string name="candidate_father_s_husband_s_name_page_4">Candidate Father\'s/Husband\'s Name:</string>
+    <string name="candidate_s_mother_s_name_page_4">Candidate\'s Mother\'s Name:</string>
+    <string name="date_of_birth_page_4">Date Of Birth :</string>
+    <string name="community_page_4">Community :</string>
+    <string name="aadhar_number_page_4">Aadhar Number:</string>
+    <string name="aadhar_number_page_4_hint">Aadhar Number</string>
+    <string name="postal_address_page_4">Postal Address</string>
+    <string name="address_1_page_4">Address 1 :</string>
+    <string name="address_page_4">Address</string>
+    <string name="district_1_page_4">District 1</string>
+    <string name="district_page_4">District</string>
+    <string name="postal_zip_1_page_4">Postal Zip 1:</string>
+    <string name="state_1_page_4">State 1</string>
+    <string name="address_2_page_4">Address 2 :</string>
+    <string name="district_2_page_4">District 2</string>
+    <string name="postal_zip_2_page_4">Postal Zip 2:</string>
+    <string name="state_2_page_4">State 2</string>
+    <string name="phone_number_1_page_4">Phone Number 1:</string>
+    <string name="phone_number_page_4">Phone Number</string>
+    <string name="phone_number_2_page_4">Phone Number 2:</string>
+    <string name="email_address_1_page_4">Email Address 1:</string>
+    <string name="email_address_2_page_4">Email Address 2:</string>
+    <string name="i_have_downloaded_information_bulletin_read_and_understood_all_the_instructions">I have downloaded Information Bulletin, read and understood all the instructions.</string>
+    <string name="stet_official_site">STET OFFICIAL SITE</string>
+    <string name="help">HELP</string>
+    <string name="contact_number_987654321">Contact Number : 987654321</string>
+    <string name="email_id_stet_gmail_com">Email-id : stet@gmail.com</string>
+    <string name="website_stet_co_in">Website : stet.co.in</string>
+    <string name="faqs_about_stet">FAQS About STET</string>
+    <string name="question_1">Question 1 ?</string>
+    <string name="answer_1">Answer 1</string>
+    <string name="question_2">Question 2 ?</string>
+    <string name="answer_2">Answer 2</string>
+    <string name="question_3">Question 3 ?</string>
+    <string name="answer_3">Answer 3</string>
+    <string name="question_4">Question 4 ?</string>
+    <string name="answer_4">Answer 4</string>
+    <string name="home_menu">HOME</string>
+    <string name="status_menu">STATUS</string>
+    <string name="help_menu">HELP</string>
+    <string name="faqs_menu">FAQs</string>
+    <string name="chat_bot_menu">CHAT BOT</string>
+    <string name="timeline_menu">TIMELINE</string>
+    <string name="logout_menu">LOGOUT</string>
+    <string name="homepage_faq">Sikkim TET 2020 FAQs</string>
+    <string name="faqs">FAQs</string>
+    <string name="q1">Is there any Negative Marking in STET Sikkim 2020 Exam?</string>
+    <string name="a1">There will be no penalty for wrong answers in STET.</string>
+    <string name="q2">Does STET Sikkim 2020 Exam will be conducted Online or Offline?</string>
+    <string name="a2">STET Sikkim 2020 Exam will be conducted online</string>
+    <string name="q3">Will I be able to take any breaks during the STET Sikkim 2020 exam?</string>
+    <string name="a3">No, you will not be given any break during the STET Sikkim 2020 exam.</string>
+    <string name="q4">How can I pay the Application Fee for STET Sikkim Exam 2020?</string>
+    <string name="a4">Candidates have to pay Rs.400/-on account of Exam fee and it should be deposited in favour of Joint Director/ Examinations, HRDD from any bank or branches of IDBI Bank (IDBI Account Number:0108102000006767 branch: Gangtok).</string>
+    <string name="q5">Is there any Sectional Cut-off in STET Sikkim 2020 Examination?</string>
+    <string name="a5">No, there is not any Sectional Cut-off in STET Sikkim 2020 Examination.</string>
+    <string name="download">DOWNLOAD ADMITCARD</string>
+    <string name="status_cer6">12th Marksheet</string>
+    <string name="status_cer7">Graduation Degree(BA/BSc)</string>
+    <string name="status_cer8">Graduation Certificate(BA/BSc)</string>
+    <string name="online">Online</string>
+    <string name="Uploaded">UPLOADED</string>
+    <string name="admit_card">ADMIT CARD</string>
+    <string name="change_language">CHANGE LANGUAGE</string>
+    <string name="verifyingcredentials">\"Verifying Credentials :) \"</string>
+    <string name="loginsuccessfully">Login Successfully</string>
+    <string name="toastwrong">Wrong Credentials</string>
+    <string name="toastslowinternet">Slow Internet</string>
+    <string name="poorinternet">Poor Internet Try again</string>
+    <string name="checkerror">Check Error</string>
+    <string name="registrationsuccessfull">Registration Successfull</string>
+    <string name="currentyear">Current Year Not Found</string>
+    <string name="verificationsuccessfull">Verification Successful</string>
+    <string name="Verified">VERIFIED</string>
+    <string name="incorrectcode">\"Incorrect Verification Code \"</string>
+    <string name="resendotp">RESEND OTP</string>
+    <string name="loadingprof">\"Loading Professional Details  :) \"</string>
+    <string name="update">UPDATE</string>
+    <string name="storingprof">\"Storing Professional Details  :) \"</string>
+    <string name="datastored">Data stored successfully</string>
+    <string name="accepttc"><![CDATA[Accept T&C]]></string>
+    <string name="validuniversity">Enter valid University format</string>
+    <string name="selectone">Select Atleast one</string>
+    <string name="verifying">Verifying</string>
+    <string name="otpsent">OTP sent</string>
+    <string name="loadingpers">\"Loading Personal Details  :) \"</string>
+    <string name="storingpers">\"Storing Personal Details  :) \"</string>
+    <string name="enterdob">Enter field in DOB Format</string>
+    <string name="validaddress">Enter valid address format</string>
+    <string name="selectgender">Please Select Gender</string>
+    <string name="validemail">Enter valid email-id</string>
+    <string name="chooselang">Choose Language</string>
+    <string name="loading">\"Loading  :) \"</string>
+    <string name="allthree">Please upload all three details</string>
+    <string name="empty">Empty Object</string>
+    <string name="phonenotfound">Phone Number Not Found</string>
+    <string name="passwordreset">Password reset is Successfull</string>
+    <string name="mustbesame">New Password and Confirm Password must be same</string>
+    <string name="phoneverify">\"Please Verify Phone \"</string>
+    <string name="emailverify">Please Verify Email</string>
+    <string name="registering">\"Registering :) \"</string>
+    <string name="signupsuccess">Signed up successfully</string>
+    <string name="alreadyregist">Already registered</string>
+    <string name="emailsent">Email sent</string>
+    <string name="emailnot">Email sent failed</string>
+    <string name="alreadyexist">Already exists</string>
+    <string name="emailverified">Email Verified</string>
+    <string name="verified">Verified</string>
+    <string name="emailnotverified">Email Not Verified</string>
+    <string name="authfailed">Authentication failed.</string>
+    <string name="phonesuccess">Phone Verifciation Success</string>
+
+
+</resources>

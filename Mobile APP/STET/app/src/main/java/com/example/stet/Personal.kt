@@ -1,0 +1,30 @@
+package com.example.stet
+class Personal(
+    val Fname: String? = null,
+    val Mname: String? = null,
+    val Lname: String? = null,
+    val FH: String? = null,
+    val FHFname: String? = null,
+    val FHMname: String? = null,
+    val FHLname: String? = null,
+    val MFname: String? = null,
+    val MMname: String? = null,
+    val MLname: String? = null,
+    val DOB: String? = null,
+    val gender: String? = null,
+    val Category: String? = null,
+    val Aadhar: String? = null,
+    val AddressOne: String? = null,
+    val DistrictOne: String? = null,
+    val StateOne: String? = null,
+    val PinCodeOne: String? = null,
+    val AddressTwo: String? = null,
+    val DistrictTwo: String? = null,
+    val StateTwo: String? = null,
+    val PinCodeTwo: String? = null,
+    val Phone1: String? = null,
+    val Phone2: String? = null,
+    val Email1: String? = null,
+    val Email2: String? = null
+
+)

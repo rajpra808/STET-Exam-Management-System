@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/page_2_image"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/stet_logo"/>
+
+        <TextView
+            android:id="@+id/homepage_textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/homepage_textview1"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:textSize="30sp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"
+            />
+
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/page_2_phn_no"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/page_2_get_phn"
+                    android:textStyle="normal|bold"
+                    android:textSize="18dp"
+                    android:layout_marginBottom="15dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/page_2_send_phn_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_sendPhnOTP">
+
+                </Button>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/page_2_phnVerification"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/page_2_phn"
+                    android:textColor="@android:color/holo_blue_bright" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp">
+
+
+                <TextView
+                    android:id="@+id/page_2_enter_otp_phn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/page_2_enterPhnOTP" />
+
+                <EditText
+                    android:id="@+id/page_2_otp_phn"
+                    android:layout_width="90dp"
+                    android:background="@drawable/box"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="numberPassword">
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/page_2_phn_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/button_shape"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/page_2_phnVerify" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="___________________________________________________"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/page_2_emailID"
+                    android:textSize="18dp"
+                    android:textStyle="normal|bold"
+                    android:id="@+id/page_2_email"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/page_2_send_email_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_emailSendLink">
+
+                </Button>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/page_2_verifyEmail"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/page_2_email_check"
+                    android:textColor="@android:color/holo_blue_bright" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:layout_marginLeft="170dp">
+
+
+                <Button
+                    android:id="@+id/page_2_email_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginLeft="60dp"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_emailVerify" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="___________________________________________________"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/page_2_aadhar"
+                    android:textStyle="normal|bold"
+                    android:textSize="18dp"
+                    android:id="@+id/page_2_aadhar"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/page_2_send_aadhar_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_sendAadharOTP">
+
+                </Button>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/page_2_aadharVerification"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/page_2_aadhar_check"
+                    android:textColor="@android:color/holo_blue_bright" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp">
+
+
+                <TextView
+                    android:id="@+id/page_2_enter_otp_aadhar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/page_2_enter_aadharOTP" />
+
+                <EditText
+                    android:id="@+id/page_2_aadhar_otp"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/box"
+                    android:inputType="numberPassword">
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/page_2_aadhar_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="47dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_aadharVerify" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="___________________________________________________"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/page_2_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp"
+                    android:background="@drawable/button_shape"
+                    android:textSize="16dp"
+                    android:text="@string/page_2_back" />
+
+                <Button
+                    android:id="@+id/page_2_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/page_2_next"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
