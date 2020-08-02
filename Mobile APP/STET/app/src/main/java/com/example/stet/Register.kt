@@ -102,7 +102,7 @@ class Register : AppCompatActivity() {
             }
 
         })
-        if(ses==1) {
+        
             val call1: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it, map) }
             call1!!.enqueue(object : Callback<Personal?> {
                 override fun onResponse(
@@ -250,7 +250,7 @@ class Register : AppCompatActivity() {
                 i.putExtra("phone", phone)
                 startActivity(i)
             }
-        }
+        
     }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
