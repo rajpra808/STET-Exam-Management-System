@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.nexmo:verify:4.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/e92708316ce6cf8bb25be202d04af3bf/jetified-verify-4.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/e92708316ce6cf8bb25be202d04af3bf/jetified-verify-4.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/e92708316ce6cf8bb25be202d04af3bf/jetified-verify-4.0.0/jars/libs/org.apache.http.legacy.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/com.nexmo/verify/4.0.0/6c7b47a4bdd949a97e4e45e1489e43cfa564481f/verify-4.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/com.nexmo/verify/4.0.0/cc053409292bf00b91d97b2fa2cd9297a47d15bd/verify-4.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

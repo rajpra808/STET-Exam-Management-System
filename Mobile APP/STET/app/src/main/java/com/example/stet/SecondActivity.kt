@@ -6,13 +6,11 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.admitcard_info.*
-import org.bson.Document
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,21 +25,76 @@ import java.util.*
 
 
 class SecondActivity : AppCompatActivity() {
+    var ses=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
         setContentView(R.layout.admitcard_info)
         val phone=intent.getStringExtra("phone")
-        download.setOnClickListener {
-            if(phone!="0") {
-                image(phone, "admit", "fs")
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
+            override fun onResponse(
+                call: Call<Void?>?,
+                response: Response<Void?>
+            ) {
+                if (response.code() == 201) {
+
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@SecondActivity, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@SecondActivity, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
+
+                    ses=1
+                } else {
+                    Toast.makeText(
+                        this@SecondActivity, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
             }
-            else
-            {
-                Toast.makeText(this,"LOGIN IN AGAIN TO DOWNLOAD ADMIT CARD",Toast.LENGTH_SHORT).show()
+
+            override fun onFailure(
+                call: Call<Void?>?,
+                t: Throwable
+            ) {
+                Toast.makeText(
+                    this@SecondActivity, getString(R.string.poorinternet),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
+        })
+        if(ses==1) {
+            download.setOnClickListener {
+                if (phone != "0") {
+                    image(phone, "admit", "fs")
+                } else {
+                    Toast.makeText(this, getString(R.string.logininagain), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
-
     }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
@@ -67,7 +120,7 @@ class SecondActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val progress2 = ProgressDialog(this)
-        progress2.setMessage("Downloading Admitcard......")
+        progress2.setMessage(getString(R.string.downloadadmit))
         progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress2.isIndeterminate = true
         progress2.show()
@@ -99,7 +152,7 @@ class SecondActivity : AppCompatActivity() {
                             val fileOutPutStream = FileOutputStream(filename)
                             fileOutPutStream.write(decodedString)
                             fileOutPutStream.close()
-                            Toast.makeText(this@SecondActivity,"File Saved in Downloads/AdmitCard", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SecondActivity,getString(R.string.admitsaved), Toast.LENGTH_LONG).show()
                             download.background=getDrawable(R.drawable.button_shape2)
                         } catch (e: IOException) {
                             e.printStackTrace()
@@ -110,7 +163,7 @@ class SecondActivity : AppCompatActivity() {
                 else
                 {
                     progress2.dismiss()
-                    Toast.makeText(this@SecondActivity,"Admit card not generated", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SecondActivity,getString(R.string.notgenerated), Toast.LENGTH_SHORT).show()
 
                 }
                 progress2.dismiss()

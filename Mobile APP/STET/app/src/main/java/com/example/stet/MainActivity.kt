@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.stet.R
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.page_1.*
 import retrofit2.Call
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
         val sharedPreferences = getSharedPreferences(
-            "MySharedPref",
+            "Settings",
             Context.MODE_PRIVATE
         )
         if (sharedPreferences.getBoolean("login", false)) {
@@ -72,11 +71,18 @@ class MainActivity : AppCompatActivity() {
                         response: Response<Void?>
                     ) {
                         if (response.code() == 200) {
-
+                            val cookie = response.headers()["Set-Cookie"]
+                            if (cookie != null) {
+                                myEdit.putString("user_cookie", cookie.split(";")[0]).apply()
+                            }
                             Toast.makeText(
-                                this@MainActivity, getString(R.string.loginsuccessfully),
+                                this@MainActivity, cookie,
                                 Toast.LENGTH_LONG
                             ).show()
+                            /*Toast.makeText(
+                                this@MainActivity, getString(R.string.loginsuccessfully),
+                                Toast.LENGTH_LONG
+                            ).show()*/
                             progress.dismiss()
                             val i = Intent(this@MainActivity, third::class.java)
                             if (remember.isChecked) {

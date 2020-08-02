@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.mongodb:stitch-core-services-mongodb-remote:4.0.5@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/org.mongodb/stitch-core-services-mongodb-remote/4.0.5/a4168349ed3b4fb79e31772bb71ad89aca50600f/stitch-core-services-mongodb-remote-4.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/org.mongodb/stitch-core-services-mongodb-remote/4.0.5/9ecdabaf8696d101852450219eb497761976f788/stitch-core-services-mongodb-remote-4.0.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/org.mongodb/stitch-core-services-mongodb-remote/4.0.5/b2ea00fd0adecfe18ac67d3fe247d9f5c970f631/stitch-core-services-mongodb-remote-4.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

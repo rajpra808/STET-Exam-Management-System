@@ -39,6 +39,7 @@ class second : AppCompatActivity() {
     var E: Int = 0
     var P: Int = 0
     var check = 0
+    var ses=0
     // private val BASE_URL = "http://192.168.43.114:3000"
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var auth2: FirebaseAuth = FirebaseAuth.getInstance()
@@ -169,34 +170,7 @@ class second : AppCompatActivity() {
 
 
             emailVal(email, pass)
-            /*page_2_email_verify.setOnClickListener {
-                // progress5.show()
-                val user = auth2.currentUser
-                if (user != null) {
-                    if (user.isEmailVerified) {
-                        Toast.makeText(this, "Email Verified", Toast.LENGTH_LONG).show()
-                        Log.d("TAG", "Verify:success")
-                        page_2_email_check.text = "Email Verified"
-                        page_2_email_verify.text = "Verified"
-                        page_2_send_email_link.visibility = View.INVISIBLE
-                        //  progress5.dismiss()
-                        E = 1
 
-                    } else {
-                        Toast.makeText(this, "Email Not Verified", Toast.LENGTH_LONG)
-                            .show()
-                        Log.d("TAG", "Verify:failed")
-                        //progress5.dismiss()
-                    }
-                } else {
-                    Toast.makeText(this, "Empty User", Toast.LENGTH_LONG)
-                        .show()
-                    Log.d("TAG", "Empty user")
-                    //progress5.dismiss()
-
-
-                }
-            }*/
         }
 
     }
@@ -293,61 +267,7 @@ class second : AppCompatActivity() {
     }
 
 
-    /* private fun emailValidate() {
 
-         val dynamicLink = Firebase.dynamicLinks.dynamicLink {
-             link = Uri.parse("https://stet.page.link/stet")
-             domainUriPrefix = "https://myappstet.page.link"
-             androidParameters("com.example.android") {
-
-             }
-             iosParameters("com.example.ios") {
-
-             }
-         }
-
-         val dynamicLinkUri = dynamicLink.uri
-         val auth1 = FirebaseAuth.getInstance()
-         val user = auth1.currentUser
-
-         val url = "http://myappstet.page.link/verify?uid=" + user?.uid
-         val actionCodeSettings = ActionCodeSettings.newBuilder()
-             .setUrl(dynamicLinkUri.toString())
-             .setHandleCodeInApp(true)
-             .setIOSBundleId("com.example.s1.ios")
-             .setAndroidPackageName(
-                 "com.example.s1.android",
-                 true,
-                 "12"
-             )
-             .build()
-         val auth = FirebaseAuth.getInstance()
-         auth.sendSignInLinkToEmail(page_2_get_email_id.text.toString(), actionCodeSettings)
-             .addOnCompleteListener { task ->
-                 if (task.isSuccessful) {
-                     Toast.makeText(
-                         this,
-                         "Email Sent to " + page_2_get_email_id.text.toString(),
-                         Toast.LENGTH_LONG
-                     ).show()
-                     page_2_email_verify.text="Email Sent"
-                 } else {
-                     Toast.makeText(this, task.exception.toString(), Toast.LENGTH_LONG).show()
-                 }
-             }
-
-
-         var flag: Boolean = auth.isSignInWithEmailLink(page_2_get_email_id.text.toString())
-         if (flag) {
-             page_2_email_verify.text = "Verified"
-
-         }
-         else
-         {
-             page_2_email_verify.text = " NOT Verified"
-         }
-     }
- */
 
     private fun verifySignInCode() {
         val code: String = page_2_otp_phn.text.toString()
@@ -379,11 +299,11 @@ class second : AppCompatActivity() {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         Toast.makeText(
                             applicationContext,
-                            "Incorrect Verification Code ", Toast.LENGTH_LONG
+                            getString(R.string.incorrectcode), Toast.LENGTH_LONG
                         ).show()
                         page_2_send_phn_otp.visibility = View.VISIBLE
                         page_2_phn_verify.visibility = View.INVISIBLE
-                        page_2_send_phn_otp.text = "Resend OTP"
+                        page_2_send_phn_otp.text = getString(R.string.resendotp)
                         // progress3.dismiss()
                     }
                 }
@@ -395,12 +315,12 @@ class second : AppCompatActivity() {
         val phone: String = "+91$phn"
         if (phone.isEmpty()) {
             page_2_get_phn.requestFocus()
-            page_2_get_phn.error = "Field can't be empty"
+            page_2_get_phn.error = getString(R.string.cantbeempty)
             return
         }
         if (phone.length < 10) {
             page_2_get_phn.requestFocus()
-            page_2_get_phn.error = "Enter complete phone number"
+            page_2_get_phn.error = getString(R.string.completephonenumber)
             return
         }
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -427,7 +347,7 @@ class second : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                page_2_phn.text = "Failed"
+                page_2_phn.text = getString(R.string.failed)
                 Log.d("error", e.toString())
                 page_2_phn_verify.visibility = View.INVISIBLE
                 page_2_send_phn_otp.visibility = View.VISIBLE
@@ -439,7 +359,7 @@ class second : AppCompatActivity() {
                 forceResendingToken: ForceResendingToken
             ) {
                 super.onCodeSent(s, forceResendingToken)
-                page_2_phn.text = "OTP sent"
+                page_2_phn.text = getString(R.string.otpsent)
                 page_2_phn_verify.visibility = View.VISIBLE
                 page_2_send_phn_otp.visibility = View.INVISIBLE
                 codeSent = s
@@ -471,7 +391,7 @@ class second : AppCompatActivity() {
                 if (response.code() == 200) {
                     Toast.makeText(
                         this@second,
-                        "Aadhar validation Complete", Toast.LENGTH_LONG
+                        getString(R.string.aadharvalidate), Toast.LENGTH_LONG
                     ).show()
                     val call1: Call<Body1?>? =
                         retrofitInterface2?.getPhn(aadhar) //idhar doubt hai ki ye phone number return karega ki nhi
@@ -495,10 +415,10 @@ class second : AppCompatActivity() {
 
                                         Toast.makeText(
                                             this@second,
-                                            "OTP Generated ", Toast.LENGTH_LONG
+                                            getString(R.string.otpgenerated), Toast.LENGTH_LONG
                                         ).show()
                                         page_2_aadhar_verify.visibility=View.VISIBLE
-                                        page_2_aadhar_check.text="OTP Sent"
+                                        page_2_aadhar_check.text=getString(R.string.otpsent)
 
 
                                     }
@@ -508,7 +428,7 @@ class second : AppCompatActivity() {
                                             this@second, t3.message,
                                             Toast.LENGTH_LONG
                                         ).show()
-                                        page_2_aadhar_check.text="Failed to Send OTP"
+                                        page_2_aadhar_check.text=getString(R.string.otpsentfailed)
                                     }
                                 })
 
@@ -516,7 +436,7 @@ class second : AppCompatActivity() {
                             }
                             else
                             {
-                                page_2_aadhar_check.text="Failed to Fetch Phone Number"
+                                page_2_aadhar_check.text=getString(R.string.fetchmob)
                             }
                         }
 
@@ -528,14 +448,14 @@ class second : AppCompatActivity() {
                                 this@second, t2.message,
                                 Toast.LENGTH_LONG
                             ).show()
-                            page_2_aadhar_check.text="Failed to Fetch Phone Number"
+                            page_2_aadhar_check.text=getString(R.string.fetchmob)
                         }
                     })
 
                 }
                 else
                 {
-                    page_2_aadhar_check.text="Failed to Validate Aadhar"
+                    page_2_aadhar_check.text=getString(R.string.failedaadharvalid)
                 }
             }
 
@@ -547,7 +467,7 @@ class second : AppCompatActivity() {
                     this@second, t1.message,
                     Toast.LENGTH_LONG
                 ).show()
-                page_2_aadhar_check.text="Failed to Validate Aadhar"
+                page_2_aadhar_check.text=getString(R.string.failedaadharvalid)
             }
         })
 
@@ -571,8 +491,8 @@ class second : AppCompatActivity() {
                         this@second,
                         "Aadhar Verified ", Toast.LENGTH_LONG
                     ).show()
-                    page_2_aadhar_check.text = "Phone Verifciation Success"
-                    page_2_aadhar_verify.text = "Verified"
+                    page_2_aadhar_check.text = getString(R.string.aadharsuccess)
+                    page_2_aadhar_verify.text = getString(R.string.verified)
                     page_2_enter_otp_aadhar.visibility = View.INVISIBLE
                     page_2_send_aadhar_otp.visibility = View.INVISIBLE
                     page_2_aadhar_otp.visibility=View.INVISIBLE
@@ -580,7 +500,7 @@ class second : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this@second,
-                        "Aadhar Not Verified ",
+                        getString(R.string.aadharnotverified),
                         Toast.LENGTH_LONG
                     ).show()
                 }

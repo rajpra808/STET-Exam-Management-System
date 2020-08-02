@@ -541,6 +541,43 @@
     <string name="emailnotverified">Email Not Verified</string>
     <string name="authfailed">Authentication failed.</string>
     <string name="phonesuccess">Phone Verifciation Success</string>
+    <string name="cantbeempty">Field can\'t be empty</string>
+    <string name="completephonenumber">Enter complete phone number</string>
+    <string name="failed">Failed</string>
+    <string name="aadharvalidate">Aadhar validation Complete</string>
+    <string name="otpgenerated">\"OTP Generated \"</string>
+    <string name="otpsentfailed">Failed to Send OTP</string>
+    <string name="fetchmob">Failed to Fetch Phone Number</string>
+    <string name="failedaadharvalid">Failed to Validate Aadhar</string>
+    <string name="aadharsuccess">Aadhar Verifciation Success</string>
+    <string name="aadharnotverified">\"Aadhar Not Verified \"</string>
+    <string name="logininagain">LOGIN IN AGAIN TO DOWNLOAD ADMIT CARD</string>
+    <string name="downloadadmit">Downloading Admitcard......</string>
+    <string name="admitsaved">File Saved in Downloads/AdmitCard</string>
+    <string name="notgenerated">Admit card not generated</string>
+    <string name="uploaded">UPLOADED</string>
+    <string name="permdenied">Oops you just denied the permission</string>
+    <string name="uploading">\"Uploading \"</string>
+    <string name="filesize">File size must be less than 100 kb</string>
+    <string name="removefile">Removing last</string>
+    <string name="fileremooved">file removed</string>
+    <string name="errorpayment">\"Error in payment: \"</string>
+    <string name="paymentstored">Payment Detailed Stored</string>
+    <string name="regisfile">File Saved to Downloads/RegistrationForm</string>
+    <string name="oopsfilenot">Oops! File could not be saved.</string>
+    <string name="Imagefetched">Image fetched</string>
+    <string name="pha">Phone number  already registered</string>
+    <string name="ema">Email-id already registered</string>
+    <string name="aaa">Aadhar number  already registered</string>
+    <string name="submitaa">Already submitted registration form</string>
+    <string name="yearnot">Current Year Not Found</string>
+    <string name="digitonlu">digit Number Only</string>
+    <string name="enterupto">\"Enter upto \"</string>
+    <string name="validname">Enter only Alphabets  No Numbers  are allowed</string>
+    <string name="additional">Either Leave address two all field empty Or fill all field correctly</string>
+    <string name="validpass">Atleast one Uppercase one LowerCase one Special Character one Number</string>
+    <string name="update_documents_detail">Update Documents Detail</string>
+    <string name="logkro">Session Expired</string>
 
 
 </resources>

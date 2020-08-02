@@ -409,63 +409,127 @@
     <string name="a5">नहीं, STET सिक्किम 2020 परीक्षा में कोई भी सेक्शनल कट-ऑफ नहीं है।</string>
     <string name="download">डाउनलोड</string>
 
-    <string name="status_cer1">Birth Certificate</string>
-    <string name="status_cer2">Community Certificate</string>
-    <string name="status_cer3">Sikkim Subject Certificate</string>
-    <string name="status_cer4">Aadhar Card</string>
-    <string name="status_cer5">10th Marksheet</string>
-    <string name="status_cer6">12th Marksheet</string>
-    <string name="status_cer7">Graduation Degree(BA/BSc)</string>
-    <string name="status_cer8">Graduation Certificate(BA/BSc)</string>
-    <string name="online">Online</string>
-    <string name="Uploaded">UPLOADED</string>
-    <string name="admit_card">ADMIT CARD</string>
-    <string name="change_language">CHANGE LANGUAGE</string>
-    <string name="verifyingcredentials">\"Verifying Credentials :) \"</string>
-    <string name="loginsuccessfully">Login Successfully</string>
-    <string name="toastwrong">Wrong Credentials</string>
-    <string name="toastslowinternet">Slow Internet</string>
-    <string name="poorinternet">Poor Internet Try again</string>
-    <string name="checkerror">Check Error</string>
-    <string name="registrationsuccessfull">Registration Successfull</string>
-    <string name="currentyear">Current Year Not Found</string>
-    <string name="verificationsuccessfull">Verification Successful</string>
-    <string name="Verified">VERIFIED</string>
-    <string name="incorrectcode">\"Incorrect Verification Code \"</string>
-    <string name="resendotp">RESEND OTP</string>
-    <string name="loadingprof">\"Loading Professional Details  :) \"</string>
-    <string name="update">UPDATE</string>
-    <string name="storingprof">\"Storing Professional Details  :) \"</string>
-    <string name="datastored">Data stored successfully</string>
-    <string name="accepttc"><![CDATA[Accept T&C]]></string>
-    <string name="validuniversity">Enter valid University format</string>
-    <string name="selectone">Select Atleast one</string>
-    <string name="verifying">Verifying</string>
-    <string name="otpsent">OTP sent</string>
-    <string name="loadingpers">\"Loading Personal Details  :) \"</string>
-    <string name="storingpers">\"Storing Personal Details  :) \"</string>
-    <string name="enterdob">Enter field in DOB Format</string>
-    <string name="validaddress">Enter valid address format</string>
-    <string name="selectgender">Please Select Gender</string>
-    <string name="validemail">Enter valid email-id</string>
-    <string name="chooselang">Choose Language</string>
-    <string name="loading">\"Loading  :) \"</string>
-    <string name="allthree">Please upload all three details</string>
-    <string name="empty">Empty Object</string>
-    <string name="phonenotfound">Phone Number Not Found</string>
-    <string name="passwordreset">Password reset is Successfull</string>
-    <string name="mustbesame">New Password and Confirm Password must be same</string>
-    <string name="phoneverify">\"Please Verify Phone \"</string>
-    <string name="emailverify">Please Verify Email</string>
-    <string name="registering">\"Registering :) \"</string>
-    <string name="signupsuccess">Signed up successfully</string>
-    <string name="alreadyregist">Already registered</string>
-    <string name="emailsent">Email sent</string>
-    <string name="emailnot">Email sent failed</string>
-    <string name="alreadyexist">Already exists</string>
-    <string name="emailverified">Email Verified</string>
-    <string name="verified">Verified</string>
-    <string name="emailnotverified">Email Not Verified</string>
-    <string name="authfailed">Authentication failed.</string>
-    <string name="phonesuccess">Phone Verifciation Success</string>
+
+
+
+    <string name="status_cer1">जन्म प्रमाणपत्र</string>
+    <string name="status_cer2">समुदाय प्रमाणपत्र</string>
+    <string name="status_cer3">सिक्किम विषय प्रमाण पत्र</string>
+    <string name="status_cer4">आधार कार्ड</string>
+    <string name="status_cer5">10 वीं की मार्कशीट</string>
+    <string name="status_cer6">12 वीं की मार्कशीट</string>
+    <string name="status_cer7">स्नातक डिग्री (बीए / बीएससी)</string>
+    <string name="status_cer8">स्नातक प्रमाणपत्र (बीए / बीएससी)</string>
+    <string name="online">ऑनलाइन</string>
+    <string name="Uploaded">अपलोड किए गए</string>
+    <string name="admit_card">प्रवेश पत्र</string>
+    <string name="change_language">भाषा बदलो</string>
+    <string name="verifyingcredentials">साख का सत्यापन :) </string>
+    <string name="loginsuccessfully">सफलतापूर्वक लॉगिन करें</string>
+    <string name="toastwrong">गलत प्रत्यक्ष पत्र</string>
+    <string name="toastslowinternet">धीरे इंटरनेट</string>
+    <string name="poorinternet">खराब इंटरनेट फिर से कोशिश करें</string>
+    <string name="checkerror">त्रुटि की जाँच करें</string>
+    <string name="registrationsuccessfull">पंजीकरण उत्तराधिकारी</string>
+    <string name="currentyear">चालू वर्ष नहीं मिला</string>
+    <string name="verificationsuccessfull">सत्यापन सफल</string>
+    <string name="Verified">सत्यापित</string>
+    <string name="incorrectcode">गलत सत्यापन कोड</string>
+    <string name="resendotp">ओटीपी पुनः भेजें</string>
+    <string name="loadingprof">लोडिंग पेशेवर विवरण :)</string>
+    <string name="update">अपडेट करें</string>
+    <string name="storingprof">भंडारण पेशेवर विवरण :) </string>
+    <string name="datastored">डेटा सफलतापूर्वक संग्रहीत किया गया</string>
+    <string name="accepttc">नियम और शर्त स्वीकार करें</string>
+    <string name="validuniversity">मान्य विश्वविद्यालय प्रारूप दर्ज करें</string>
+    <string name="selectone">कम से कम एक का चयन करें</string>
+    <string name="verifying">सत्यापन</string>
+    <string name="loadingpers">व्यक्तिगत विवरण लोड हो रहा है :)</string>
+    <string name="storingpers">भंडारण व्यक्तिगत विवरण :)</string>
+    <string name="enterdob">DOB प्रारूप में फ़ील्ड दर्ज करें</string>
+    <string name="validaddress">मान्य पता प्रारूप दर्ज करें</string>
+    <string name="selectgender">कृपया लिंग चुनें</string>
+    <string name="validemail">
+मान्य ईमेल-आईडी दर्ज करें</string>
+    <string name="chooselang">भाषा चुनें</string>
+    <string name="loading">
+लोड हो रहा है  :)</string>
+    <string name="allthree">
+कृपया तीनों विवरण अपलोड करें</string>
+    <string name="empty">
+खाली वस्तु</string>
+    <string name="phonenotfound">फोन नंबर नहीं मिला</string>
+    <string name="passwordreset">पासवर्ड रीसेट उत्तराधिकारी है</string>
+    <string name="mustbesame">
+नया पासवर्ड और कन्फर्म पासवर्ड समान होना चाहिए</string>
+    <string name="phoneverify">कृपया फ़ोन सत्यापित करें</string>
+    <string name="emailverify">कृपया ईमेल सत्यापित करें</string>
+    <string name="registering">पंजीकरण :)</string>
+    <string name="signupsuccess">सफलतापूर्वक हस्ताक्षर किए गए</string>
+    <string name="alreadyregist">पहले से पंजीकृत</string>
+    <string name="emailsent">ईमेल भेजा</string>
+    <string name="emailnot">
+ईमेल भेजा गया विफल</string>
+    <string name="alreadyexist">
+पहले से ही मौजूद है</string>
+    <string name="emailverified">
+ईमेल सत्यापित हुआ</string>
+    <string name="verified">सत्यापित</string>
+    <string name="emailnotverified">
+ईमेल सत्यापित नहीं है</string>
+    <string name="authfailed">
+प्रमाणीकरण विफल हो गया।</string>
+    <string name="phonesuccess">
+फोन सत्यापन सफलता</string>
+    <string name="cantbeempty">फ़ील्ड खाली नहीं हो सकता</string>
+    <string name="completephonenumber">पूरा फ़ोन नंबर दर्ज करें</string>
+    <string name="failed">अनुत्तीर्ण होना</string>
+    <string name="otpsent">OTP भेजा गया</string>
+    <string name="aadharvalidate">
+आधार सत्यापन पूर्ण</string>
+    <string name="otpgenerated">ओटीपी जनरेट किया गया</string>
+    <string name="otpsentfailed">
+OTP भेजने में विफल</string>
+    <string name="fetchmob">फ़ोन नंबर प्राप्त करने में विफल</string>
+    <string name="failedaadharvalid">आधार को मान्य करने में विफल</string>
+    <string name="aadharsuccess">आधार सत्यापन सफलता</string>
+    <string name="aadharnotverified">आधार सत्यापित नहीं </string>
+    <string name="logininagain">एडमिट कार्ड डाउनलोड करने के लिए लॉग इन करें</string>
+    <string name="downloadadmit">डाउनलोडिंग एडमिटकार्ड ......</string>
+    <string name="admitsaved">
+फ़ाइल सहेज ली गई Downloads/AdmitCard</string>
+    <string name="notgenerated">एडमिट कार्ड जनरेट नहीं हुआ</string>
+    <string name="uploaded">
+अपलोड किए गए</string>
+    <string name="permdenied">ओह, आपने अभी अनुमति से इनकार किया है</string>
+    <string name="uploading">अपलोडिंग</string>
+    <string name="filesize">
+फ़ाइल का आकार 100 केबी से कम होना चाहिए</string>
+    <string name="removefile">अंतिम निकालना</string>
+    <string name="fileremooved">
+फ़ाइल निकाल दी गई</string>
+    <string name="errorpayment">भुगतान में त्रुटि:</string>
+    <string name="paymentstored">भुगतान विस्तृत भंडारण</string>
+    <string name="regisfile">
+फ़ाइल को सहेजा गया Downloads/RegistrationForm</string>
+    <string name="oopsfilenot">ऊप्स! फ़ाइल को सहेजा नहीं जा सका।</string>
+    <string name="Imagefetched">
+प्रतिमा मंगवाई</string>
+    <string name="pha">
+फ़ोन नंबर पहले से पंजीकृत है</string>
+    <string name="ema">
+ईमेल-आईडी पहले से पंजीकृत है</string>
+    <string name="aaa">
+आधार नंबर पहले से पंजीकृत है</string>
+    <string name="submitaa">पहले से ही पंजीकरण फॉर्म जमा किया है</string>
+    <string name="yearnot">चालू वर्ष नहीं मिला</string>
+    <string name="digitonlu">
+अंक संख्या केवल</string>
+    <string name="enterupto">दर्ज करें</string>
+    <string name="validname">
+केवल अक्षर दर्ज करें कोई संख्या की अनुमति नहीं है</string>
+    <string name="additional">या तो दो सभी फ़ील्ड को खाली छोड़ दें या सभी फ़ील्ड को सही ढंग से भरें</string>
+    <string name="validpass">कम से कम एक स्पेशल कैरेक्टर एक नंबर का कम से कम एक अपरकेस</string>
+    <string name="update_documents_detail">दस्तावेज़ को विस्तार से अपडेट करें</string>
+    <string name="logkro">Session Expired</string>
 </resources>

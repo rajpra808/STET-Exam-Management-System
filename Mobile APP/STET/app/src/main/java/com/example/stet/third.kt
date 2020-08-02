@@ -10,19 +10,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.stet.R
 import kotlinx.android.synthetic.main.page_3.*
-import kotlinx.android.synthetic.main.page_8.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class third : AppCompatActivity() {
@@ -32,6 +28,7 @@ class third : AppCompatActivity() {
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var t=0
     var x=0
+    var ses=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
@@ -42,67 +39,125 @@ class third : AppCompatActivity() {
         supportActionBar!!.title = "STET APPLICATION"
         val phone: String = intent.getStringExtra("phone")
         Phone = phone
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
-
-        val call: Call<Void> =
-            retrofitInterface.submittedphone(phone)
-        call!!.enqueue(object : Callback<Void> {
+        callx!!.enqueue(object : Callback<Void?> {
             override fun onResponse(
-                call: Call<Void>,
-                response: Response<Void>
+                call: Call<Void?>?,
+                response: Response<Void?>
             ) {
-                if (response.code() == 200) {
-                    Log.d("1", "2")
-                    page_3_register.background=getDrawable(R.drawable.button_shape2)
-                    t=1
-                    x=1
-                } else if (response.code() == 404) {
-                x=1
+                if (response.code() == 201) {
+
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@third, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@third, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
+
+                    ses=1
+                } else {
+                    Toast.makeText(
+                        this@third, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 }
             }
 
             override fun onFailure(
-                call: Call<Void>,
+                call: Call<Void?>?,
                 t: Throwable
             ) {
-                Log.d("0", t.message)
-                x=0
-                call.cancel()
+                Toast.makeText(
+                    this@third, getString(R.string.poorinternet),
+                    Toast.LENGTH_LONG
+                ).show()
 
             }
-        })
-        page_3_register.setOnClickListener {
-            if(x!=0) {
-                if (t != 1) {
-                    val i = Intent(this, Register::class.java)
-                    i.putExtra("phone", phone)
-                    startActivity(i)
-                } else {
 
+        })
+
+            val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            var retrofitInterface: RetrofitInterface =
+                retrofit.create(RetrofitInterface::class.java)
+
+            val sharedPreferences = getSharedPreferences(
+                "Settings",
+                Context.MODE_PRIVATE
+            )
+            val cookie: String? = sharedPreferences.getString("user_cookie", "")
+            val call: Call<Void>? =
+                cookie?.let { retrofitInterface.submittedphone(it, phone) }
+            call!!.enqueue(object : Callback<Void> {
+                override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+                ) {
+                    if (response.code() == 200) {
+                        Log.d("1", "2")
+                        page_3_register.background = getDrawable(R.drawable.button_shape2)
+                        t = 1
+                        x = 1
+                    } else if (response.code() == 404) {
+                        x = 1
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<Void>,
+                    t: Throwable
+                ) {
+                    Log.d("0", t.message)
+                    x = 0
+                    call.cancel()
+
+                }
+            })
+            page_3_register.setOnClickListener {
+                if (x != 0) {
+                    if (t != 1) {
+                        val i = Intent(this, Register::class.java)
+                        i.putExtra("phone", phone)
+                        startActivity(i)
+                    } else {
+
+                        Toast.makeText(
+                            this@third,
+                            getString(R.string.submitaa),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
                     Toast.makeText(
                         this@third,
-                        "Already submitted registration form",
+                        getString(R.string.poorinternet),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
-            else
-            {
-                Toast.makeText(
-                    this@third,
-                    "Please Check your internet",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
 
 
-        }
+            }
 
 
     }
@@ -165,14 +220,60 @@ class third : AppCompatActivity() {
             }
             R.id.logout -> {
                 val sharedPreferences = getSharedPreferences(
-                    "MySharedPref",
+                    "Settings",
                     Context.MODE_PRIVATE
                 )
-                val myEdit = sharedPreferences.edit()
-                myEdit.putBoolean("login", false).apply()
-                myEdit.putString("phone", "").apply()
-                val i = Intent(this@third, MainActivity::class.java)
-                startActivity(i)
+                val retrofit: Retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+
+                var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
+                val cookie:String?=sharedPreferences.getString("user_cookie","")
+                val call: Call<Void?>? = cookie?.let { retrofitInterface.executeSession(it) }
+
+                call!!.enqueue(object : Callback<Void?> {
+                    override fun onResponse(
+                        call: Call<Void?>?,
+                        response: Response<Void?>
+                    ) {
+                        if (response.code() == 200) {
+
+                            val myEdit = sharedPreferences.edit()
+                            myEdit.putBoolean("login", false).apply()
+                            myEdit.putString("phone", "").apply()
+                            myEdit.putString("user_cookie", "").apply()
+                            val i = Intent(this@third, MainActivity::class.java)
+                            startActivity(i)
+                        } else if (response.code() == 404) {
+                            Toast.makeText(
+                                this@third, getString(R.string.toastwrong),
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                        } else {
+                            Toast.makeText(
+                                this@third, getString(R.string.toastslowinternet),
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                        }
+                    }
+
+                    override fun onFailure(
+                        call: Call<Void?>?,
+                        t: Throwable
+                    ) {
+                        Toast.makeText(
+                            this@third, getString(R.string.poorinternet),
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    }
+
+                })
+
+
                 return true
             }
         }
@@ -196,7 +297,7 @@ class third : AppCompatActivity() {
             }
         }
         val mBuilder = AlertDialog.Builder(this@third)
-        mBuilder.setTitle("Choose Language")
+        mBuilder.setTitle(getString(R.string.chooselang))
         mBuilder.setSingleChoiceItems(listItems, t) { dialog, which ->
             if (which == 0) {
                 setLocate("en")

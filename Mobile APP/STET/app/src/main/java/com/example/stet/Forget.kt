@@ -145,7 +145,7 @@ class Forget : AppCompatActivity() {
             .maxLength(d)
             .minLength(d)
             .addErrorCallback {
-                editText.error = "Enter $d digit Phone Number Only"
+                editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                 x = 1
             }
             .addSuccessCallback {

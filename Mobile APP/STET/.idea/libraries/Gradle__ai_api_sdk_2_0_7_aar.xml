@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: ai.api:sdk:2.0.7@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/befd668206cb5c2c8b5c6631391dbdb3/jetified-sdk-2.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/befd668206cb5c2c8b5c6631391dbdb3/jetified-sdk-2.0.7/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/ai.api/sdk/2.0.7/b64dff093c426ac29f794e3d156e1527ef926d24/sdk-2.0.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/ai.api/sdk/2.0.7/7735d872b895fa4c8ab81d02ae35d66c9cf9dcf5/sdk-2.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

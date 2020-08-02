@@ -28,7 +28,7 @@ class five : AppCompatActivity() {
 
     // private val BASE_URL = "http://192.168.43.114:3000"
     private val BASE_URL = "https://stet2020.herokuapp.com/"
-
+    var ses=0
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,134 +36,211 @@ class five : AppCompatActivity() {
         page_5_progress_bar.progress = 100
         val phone: String = intent.getStringExtra("phone")
         loadLocate()
-        val retrofit: Retrofit = Retrofit.Builder()
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
-        val map: HashMap<String?, String?> = HashMap()
-        map["Phone"] = phone
-        val progress = ProgressDialog(this)
-        progress.setMessage(getString(R.string.loadingprof))
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progress.isIndeterminate = true
-        progress.show()
-        val call3: Call<Education?>? = retrofitInterface.getEducation(map)
-        call3!!.enqueue(object : Callback<Education?> {
+
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
             override fun onResponse(
-                call: Call<Education?>?,
-                response: Response<Education?>
+                call: Call<Void?>?,
+                response: Response<Void?>
             ) {
-                if (response.code() == 200) {
+                if (response.code() == 201) {
 
-                    val result = response.body()
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@five, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@five, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
 
-                    if (result != null) {
-                        page_5_spin_min_qualification.setSelection(getSpinMinaqual(result.MinQualification))
-                        page_5_spin_prof_qualification.setSelection(getSpinProfessQual(result.ProfessionalQualification))
-                        page_5_enter_university.setText(result.University)
-                        page_5_enter_percentage.setText(result.Percentage)
-                        page_5_spin_category.setSelection(getSpinApplicationCategory(result.ApplicationCategory))
-                        page_5_spin_language.setSelection(getSpinLanguage(result.PaperLanguage))
-                        page_5_next.text = getString(R.string.update)
-                    }
-
-
+                    ses=1
                 } else {
-
+                    Toast.makeText(
+                        this@five, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
-
             }
 
             override fun onFailure(
-                call: Call<Education?>?,
+                call: Call<Void?>?,
                 t: Throwable
             ) {
-                Log.d("Failure", t.message)
                 Toast.makeText(
                     this@five, getString(R.string.poorinternet),
                     Toast.LENGTH_LONG
                 ).show()
+
             }
+
         })
-        progress.dismiss()
-        page_5_next.setOnClickListener {
+
+            val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            val sharedPreferences = getSharedPreferences(
+                "Settings",
+                Context.MODE_PRIVATE
+            )
+            val cookie: String? = sharedPreferences.getString("user_cookie", "")
+            var retrofitInterface: RetrofitInterface =
+                retrofit.create(RetrofitInterface::class.java)
+            val map: HashMap<String?, String?> = HashMap()
+            map["Phone"] = phone
             val progress = ProgressDialog(this)
-            progress.setMessage(getString(R.string.storingprof))
+            progress.setMessage(getString(R.string.loadingprof))
             progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress.isIndeterminate = true
             progress.show()
-            if (validPercentage(page_5_enter_percentage, 4) == 0
-                && validUniversity(page_5_enter_university) == 0
-                && validSpinner(page_5_spin_category) == 0
-                && validSpinner(page_5_spin_language) == 0
-                && validSpinner(page_5_spin_min_qualification) == 0
-                && validSpinner(page_5_spin_prof_qualification) == 0
-                && page_5_chechbox.isChecked
-            ) {
-                val myFirstDocument: HashMap<String, String> = HashMap()
-                myFirstDocument["Phone"] = phone
-                myFirstDocument["Percentage"] = page_5_enter_percentage.text.toString()
-                myFirstDocument["University"] = page_5_enter_university.text.toString()
-                myFirstDocument["MinQualification"] =
-                    page_5_spin_min_qualification.selectedItem.toString()
-                myFirstDocument["ProfessionalQualification"] =
-                    page_5_spin_prof_qualification.selectedItem.toString()
-                myFirstDocument["ApplicationCategory"] =
-                    page_5_spin_category.selectedItem.toString()
-                myFirstDocument["PaperLanguage"] = page_5_spin_language.selectedItem.toString()
-                val call: Call<Void?>? = retrofitInterface.executeEducation(myFirstDocument)
-                call!!.enqueue(object : Callback<Void?> {
-                    override fun onResponse(
-                        call: Call<Void?>?,
-                        response: Response<Void?>
-                    ) {
-                        if (response.code() == 200) {
-                            Log.d("Success", "Data Stored")
-                            Toast.makeText(
-                                this@five,
-                                getString(R.string.datastored), Toast.LENGTH_LONG
-                            ).show()
-                            val i = Intent(this@five, Register::class.java)
-                            i.putExtra("phone", phone)
-                            startActivity(i)
-                            progress.dismiss()
-                        } else {
-                            Toast.makeText(
-                                this@five,
-                                getString(R.string.toastslowinternet), Toast.LENGTH_LONG
-                            ).show()
-                            progress.dismiss()
+            val call3: Call<Education?>? = cookie?.let { retrofitInterface.getEducation(it, map) }
+            call3!!.enqueue(object : Callback<Education?> {
+                override fun onResponse(
+                    call: Call<Education?>?,
+                    response: Response<Education?>
+                ) {
+                    if (response.code() == 200) {
+
+                        val result = response.body()
+
+                        if (result != null) {
+                            page_5_spin_min_qualification.setSelection(getSpinMinaqual(result.MinQualification))
+                            page_5_spin_prof_qualification.setSelection(getSpinProfessQual(result.ProfessionalQualification))
+                            page_5_enter_university.setText(result.University)
+                            page_5_enter_percentage.setText(result.Percentage)
+                            page_5_spin_category.setSelection(getSpinApplicationCategory(result.ApplicationCategory))
+                            page_5_spin_language.setSelection(getSpinLanguage(result.PaperLanguage))
+                            page_5_next.text = getString(R.string.update)
                         }
 
-                    }
 
-                    override fun onFailure(
-                        call: Call<Void?>?,
-                        t: Throwable
-                    ) {
-                        Log.d("Failure", t.message)
-                        Toast.makeText(
-                            this@five, getString(R.string.poorinternet),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        progress.dismiss()
+                    } else {
 
 
                     }
-                })
 
-            } else {
-                if (page_5_chechbox.isChecked) {
-
-                    Toast.makeText(this, getString(R.string.checkerror), Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this, getString(R.string.accepttc), Toast.LENGTH_SHORT).show()
                 }
-                progress.dismiss()
 
-            }
+                override fun onFailure(
+                    call: Call<Education?>?,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@five, getString(R.string.poorinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+            progress.dismiss()
+
+            page_5_next.setOnClickListener {
+                val progress = ProgressDialog(this)
+                progress.setMessage(getString(R.string.storingprof))
+                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+                progress.isIndeterminate = true
+                progress.show()
+                if (validPercentage(page_5_enter_percentage, 4) == 0
+                    && validUniversity(page_5_enter_university) == 0
+                    && validSpinner(page_5_spin_category) == 0
+                    && validSpinner(page_5_spin_language) == 0
+                    && validSpinner(page_5_spin_min_qualification) == 0
+                    && validSpinner(page_5_spin_prof_qualification) == 0
+                    && page_5_chechbox.isChecked
+                ) {
+                    val myFirstDocument: HashMap<String, String> = HashMap()
+                    myFirstDocument["Phone"] = phone
+                    myFirstDocument["Percentage"] = page_5_enter_percentage.text.toString()
+                    myFirstDocument["University"] = page_5_enter_university.text.toString()
+                    myFirstDocument["MinQualification"] =
+                        page_5_spin_min_qualification.selectedItem.toString()
+                    myFirstDocument["ProfessionalQualification"] =
+                        page_5_spin_prof_qualification.selectedItem.toString()
+                    myFirstDocument["ApplicationCategory"] =
+                        page_5_spin_category.selectedItem.toString()
+
+                    myFirstDocument["PaperLanguage"] = page_5_spin_language.selectedItem.toString()
+                    val sharedPreferences = getSharedPreferences(
+                        "Settings",
+                        Context.MODE_PRIVATE
+                    )
+                    val cookie: String? = sharedPreferences.getString("user_cookie", "")
+                    val call: Call<Void?>? =
+                        cookie?.let { it1 ->
+                            retrofitInterface.executeEducation(
+                                it1,
+                                myFirstDocument
+                            )
+                        }
+                    call!!.enqueue(object : Callback<Void?> {
+                        override fun onResponse(
+                            call: Call<Void?>?,
+                            response: Response<Void?>
+                        ) {
+                            if (response.code() == 200) {
+                                Log.d("Success", "Data Stored")
+                                Toast.makeText(
+                                    this@five,
+                                    getString(R.string.datastored), Toast.LENGTH_LONG
+                                ).show()
+                                val i = Intent(this@five, Register::class.java)
+                                i.putExtra("phone", phone)
+                                startActivity(i)
+                                progress.dismiss()
+                            } else {
+                                Toast.makeText(
+                                    this@five,
+                                    getString(R.string.toastslowinternet), Toast.LENGTH_LONG
+                                ).show()
+                                progress.dismiss()
+                            }
+
+                        }
+
+                        override fun onFailure(
+                            call: Call<Void?>?,
+                            t: Throwable
+                        ) {
+                            Log.d("Failure", t.message)
+                            Toast.makeText(
+                                this@five, getString(R.string.poorinternet),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            progress.dismiss()
+
+
+                        }
+                    })
+
+                } else {
+                    if (page_5_chechbox.isChecked) {
+
+                        Toast.makeText(this, getString(R.string.checkerror), Toast.LENGTH_LONG)
+                            .show()
+                    } else {
+                        Toast.makeText(this, getString(R.string.accepttc), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    progress.dismiss()
+
+                }
+
 
         }
         page_5_back.setOnClickListener {
@@ -200,7 +277,7 @@ class five : AppCompatActivity() {
             .maxLength(d + 1)
             .minLength(2)
             .addErrorCallback {
-                editText.error = "Enter upto $d digit Number Only"
+                editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                 x = 1
             }
             .addSuccessCallback {

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-dynamic-links-ktx:19.1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/ea4acfa6c349c437f571913ec9b0f6c1/jetified-firebase-dynamic-links-ktx-19.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/transforms-2/files-2.1/ea4acfa6c349c437f571913ec9b0f6c1/jetified-firebase-dynamic-links-ktx-19.1.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/com.google.firebase/firebase-dynamic-links-ktx/19.1.0/b77a6d8b241215478a1fbfac09f703c47a8ea0f6/firebase-dynamic-links-ktx-19.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.6/caches/modules-2/files-2.1/com.google.firebase/firebase-dynamic-links-ktx/19.1.0/36067469b1257e3be0ca6e7acc95e58d99edb6fc/firebase-dynamic-links-ktx-19.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

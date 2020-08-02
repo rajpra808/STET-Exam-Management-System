@@ -27,11 +27,15 @@ class Timeline : AppCompatActivity() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        val sharedPreferences = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val cookie:String?=sharedPreferences.getString("user_cookie","")
         var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
         val y:Int= Calendar.getInstance().get(Calendar.YEAR)
         val year:String=y.toString()
-        val call: Call<Schedule> = retrofitInterface.timeline(year)
+        val call: Call<Schedule>? = cookie?.let { retrofitInterface.timeline(it,year) }
 
         call!!.enqueue(object : Callback<Schedule> {
             override fun onResponse(
@@ -51,7 +55,7 @@ class Timeline : AppCompatActivity() {
 
                 } else if (response.code() == 404) {
                     Toast.makeText(
-                        this@Timeline, "Current Year Not Found",
+                        this@Timeline, getString(R.string.yearnot),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -62,7 +66,7 @@ class Timeline : AppCompatActivity() {
                 t: Throwable
             ) {
                 Toast.makeText(
-                    this@Timeline, "Poor Internet Try again",
+                    this@Timeline, getString(R.string.poorinternet),
                     Toast.LENGTH_LONG
                 ).show()
 

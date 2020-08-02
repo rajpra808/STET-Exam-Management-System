@@ -30,6 +30,7 @@ class six : Activity(), PaymentResultWithDataListener {
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var Phone:String=""
     var Fees:String=""
+    var ses=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
@@ -38,48 +39,100 @@ class six : Activity(), PaymentResultWithDataListener {
         val phone: String = intent.getStringExtra("phone")
         Phone=phone
         page_6_progress_bar.progress = 100
-        page_6_next.setOnClickListener {
-            val i = Intent(this, Register::class.java)
-            i.putExtra("phone", phone)
-            startActivity(i)
-        }
-        page_6_back.setOnClickListener {
-            val i = Intent(this, Register::class.java)
-            i.putExtra("phone", phone)
-            startActivity(i)
-        }
-        page_6_pay.setOnClickListener {
-            val fees=40000
-            Fees=fees.toString()
-            val activity: Activity = this
-            val co = Checkout()
-            try {
-                val options = JSONObject()
-                options.put("name","STET Application")
-                options.put("description","Registration Fee Charges")
-                options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-                options.put("currency","INR")
-                options.put("amount",fees)
-                val prefill = JSONObject()
-                prefill.put("email","9198239087r@gmail.com")
-                prefill.put("contact","6387012615")
-                options.put("prefill",prefill)
-                co.open(activity,options)
-            }catch (e: Exception){
-                Toast.makeText(activity,"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
-                e.printStackTrace()
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
+            override fun onResponse(
+                call: Call<Void?>?,
+                response: Response<Void?>
+            ) {
+                if (response.code() == 201) {
+
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@six, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@six, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
+
+                    ses=1
+                } else {
+                    Toast.makeText(
+                        this@six, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
             }
-        }
+
+            override fun onFailure(
+                call: Call<Void?>?,
+                t: Throwable
+            ) {
+                Toast.makeText(
+                    this@six, getString(R.string.poorinternet),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
+        })
+
+            page_6_next.setOnClickListener {
+                val i = Intent(this, Register::class.java)
+                i.putExtra("phone", phone)
+                startActivity(i)
+            }
+            page_6_back.setOnClickListener {
+                val i = Intent(this, Register::class.java)
+                i.putExtra("phone", phone)
+                startActivity(i)
+            }
+            page_6_pay.setOnClickListener {
+                val fees = 40000
+                Fees = fees.toString()
+                val activity: Activity = this
+                val co = Checkout()
+                try {
+                    val options = JSONObject()
+                    options.put("name", "STET Application")
+                    options.put("description", "Registration Fee Charges")
+                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+                    options.put("currency", "INR")
+                    options.put("amount", fees)
+                    val prefill = JSONObject()
+                    prefill.put("email", "9198239087r@gmail.com")
+                    prefill.put("contact", "6387012615")
+                    options.put("prefill", prefill)
+                    co.open(activity, options)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        activity,
+                        getString(R.string.errorpayment) + e.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    e.printStackTrace()
+                }
+            }
 
     }
 
-    /*override fun onPaymentError(p0: Int, p1: String?) {
-        Toast.makeText(this, "Payment Code $p0 Payment Error $p1",Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onPaymentSuccess(p0: String?) {
-        Toast.makeText(this, "Payment Success $p0",Toast.LENGTH_SHORT).show()
-    }*/
 
         override fun onPaymentError(errorCode: Int, errorDescription: String?, paymentData: PaymentData?) {
             Toast.makeText(this, " Payment Failed Error $errorCode : $errorDescription",Toast.LENGTH_LONG).show()
@@ -104,23 +157,28 @@ class six : Activity(), PaymentResultWithDataListener {
             map["signature"]=paymentData?.signature.toString()
             map["date"]=formatted
             map["amount"]=Fees
-            val call: Call<Void> = retrofitInterface.payment(map)
+            val sharedPreferences = getSharedPreferences(
+                "Settings",
+                Context.MODE_PRIVATE
+            )
+            val cookie:String?=sharedPreferences.getString("user_cookie","")
+            val call: Call<Void>? = cookie?.let { retrofitInterface.payment(it,map) }
             call!!.enqueue(object : Callback<Void> {
                 override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Toast.makeText(this@six,"Poor Internet",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@six,getString(R.string.poorinternet),Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
                     if(response.code()==200)
                     {
-                        Toast.makeText(this@six,"Payment Detailed Stored",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@six,getString(R.string.paymentstored),Toast.LENGTH_SHORT).show()
                     }
 
                 }
 
             })
-            Toast.makeText(this, "Payment Successful: $rzpPaymentId \n data: ${paymentData?.signature} ${paymentData?.userContact} ${paymentData?.userEmail} ${paymentData?.data} ${paymentData?.externalWallet}",Toast.LENGTH_LONG).show()
+           // Toast.makeText(this, "Payment Successful: $rzpPaymentId \n data: ${paymentData?.signature} ${paymentData?.userContact} ${paymentData?.userEmail} ${paymentData?.data} ${paymentData?.externalWallet}",Toast.LENGTH_LONG).show()
         }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
