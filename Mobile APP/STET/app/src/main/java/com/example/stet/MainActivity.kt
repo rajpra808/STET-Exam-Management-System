@@ -75,14 +75,14 @@ class MainActivity : AppCompatActivity() {
                             if (cookie != null) {
                                 myEdit.putString("user_cookie", cookie.split(";")[0]).apply()
                             }
-                            Toast.makeText(
+                           /* Toast.makeText(
                                 this@MainActivity, cookie,
                                 Toast.LENGTH_LONG
-                            ).show()
-                            /*Toast.makeText(
+                            ).show()*/
+                            Toast.makeText(
                                 this@MainActivity, getString(R.string.loginsuccessfully),
                                 Toast.LENGTH_LONG
-                            ).show()*/
+                            ).show()
                             progress.dismiss()
                             val i = Intent(this@MainActivity, third::class.java)
                             if (remember.isChecked) {
