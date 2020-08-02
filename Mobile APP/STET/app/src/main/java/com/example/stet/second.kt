@@ -68,7 +68,11 @@ class second : AppCompatActivity() {
         page_2_phn_verify.visibility = View.INVISIBLE
         page_2_email_verify.visibility = View.INVISIBLE
         page_2_aadhar_verify.visibility = View.INVISIBLE
-
+        val sharedPreferences = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val myEdit = sharedPreferences.edit()
         page_2_next.setOnClickListener {
 
             when {
@@ -99,6 +103,10 @@ class second : AppCompatActivity() {
                             response: Response<Void?>
                         ) {
                             if (response.code() == 200) {
+                                val cookie = response.headers()["Set-Cookie"]
+                                if (cookie != null) {
+                                    myEdit.putString("user_cookie", cookie.split(";")[0]).apply()
+                                }
                                 Toast.makeText(
                                     this@second,
                                     getString(R.string.signupsuccess), Toast.LENGTH_LONG
