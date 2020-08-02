@@ -152,7 +152,7 @@ class ResetPassword :AppCompatActivity(){
             .maxLength(d)
             .minLength(d)
             .addErrorCallback {
-                editText.error = "Enter $d digit Phone Number Only"
+                editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                 x = 1
             }
             .addSuccessCallback {
@@ -174,7 +174,7 @@ class ResetPassword :AppCompatActivity(){
             .atleastOneUpperCase()
             .addErrorCallback {
                 editText.error =
-                    "Atleast one Uppercase\none LowerCase\none Special Character\none Number"
+                    getString(R.string.validpass)
                 x = 1
             }
             .addSuccessCallback {

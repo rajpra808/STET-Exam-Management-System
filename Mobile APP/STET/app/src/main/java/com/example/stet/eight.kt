@@ -17,8 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import com.wajahatkarim3.easyvalidation.core.collection_ktx.containsList
-import com.wajahatkarim3.easyvalidation.core.collection_ktx.validEmailList
+
 import kotlinx.android.synthetic.main.page_8.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,6 +31,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class eight : AppCompatActivity() {
+    var ses=0
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     private var mAuth: FirebaseAuth? = null
     var codeSent: String? = null
@@ -46,41 +46,61 @@ class eight : AppCompatActivity() {
         var phone: String = intent.getStringExtra("phone")
         mAuth = FirebaseAuth.getInstance()
         val map: HashMap<String?, String?> = HashMap()
-
+        val sharedPreferences = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val cookie:String?=sharedPreferences.getString("user_cookie","")
         map["venue"]="Sikkim"
         map["eno"]="12345678"
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var retrofitInterface2: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
-        val y:Int= Calendar.getInstance().get(Calendar.YEAR)
-        val year:String=y.toString()
-        val call: Call<Schedule> = retrofitInterface2.timeline(year)
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-        call!!.enqueue(object : Callback<Schedule> {
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
             override fun onResponse(
-                call: Call<Schedule>,
-                response: Response<Schedule>
+                call: Call<Void?>?,
+                response: Response<Void?>
             ) {
-                if (response.code() == 200) {
-                    val time: Schedule? =response.body()
-                    if (time != null) {
+                if (response.code() == 201) {
 
-                        map["exam_date"]=time.date_of_examination.toString()
-
-                    }
-
-                } else if (response.code() == 404) {
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
                     Toast.makeText(
-                        this@eight, getString(R.string.currentyear),
+                        this@eight, getString(R.string.logkro),
                         Toast.LENGTH_LONG
                     ).show()
+                    val i = Intent(this@eight, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
+
+                        ses=1
+                } else {
+                    Toast.makeText(
+                        this@eight, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 }
             }
 
             override fun onFailure(
-                call: Call<Schedule>,
+                call: Call<Void?>?,
                 t: Throwable
             ) {
                 Toast.makeText(
@@ -91,97 +111,136 @@ class eight : AppCompatActivity() {
             }
 
         })
-        val map1: HashMap<String?, String?> = HashMap()
-        map1["Phone1"] = phone
 
-        val call1: Call<Personal?>? = retrofitInterface2.getPersonal(map1)
-        call1!!.enqueue(object : Callback<Personal?> {
-            override fun onResponse(
-                call: Call<Personal?>?,
-                response: Response<Personal?>
-            ) {
-                if (response.code() == 200) {
+            var retrofitInterface2: RetrofitInterface =
+                retrofit.create(RetrofitInterface::class.java)
+            val y: Int = Calendar.getInstance().get(Calendar.YEAR)
+            val year: String = y.toString()
+            val call: Call<Schedule>? = cookie?.let { retrofitInterface2.timeline(it, year) }
 
-                    val result = response.body()
+            call!!.enqueue(object : Callback<Schedule> {
+                override fun onResponse(
+                    call: Call<Schedule>,
+                    response: Response<Schedule>
+                ) {
+                    if (response.code() == 200) {
+                        val time: Schedule? = response.body()
+                        if (time != null) {
 
-                    if (result != null) {
+                            map["exam_date"] = time.date_of_examination.toString()
 
-                        map["address"]=result.AddressOne
-                        map["mname"]=result.Mname
-                        map["fname"]=result.Fname
-                        map["lname"]=result.Lname
-                        map["ffname"]=result.FHFname
-                        map["fmname"]=result.FHMname
-                        map["flname"]=result.FHLname
-                        map["mfname"]=result.MFname
-                        map["mmname"]=result.MMname
-                        map["mlname"]=result.MLname
-                        map["category"]=result.Category
-                        map["aadhar"]=result.Aadhar
-                        map["district"]=result.DistrictOne
-                        map["state"]=result.StateOne
-                        map["pincode"]=result.PinCodeOne
-                        map["email"]=result.Email1
-                        map["dob"]=result.DOB
-                        map["sex"]=result.gender
-                        map["phone"]= result.Phone1
+                        }
+
+                    } else if (response.code() == 404) {
+                        Toast.makeText(
+                            this@eight, getString(R.string.currentyear),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-
-
                 }
-            }
 
-            override fun onFailure(
-                call1: Call<Personal?>?,
-                t: Throwable
-            ) {
-                Log.d("Failure", t.message)
-                Toast.makeText(
-                    this@eight, t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
-        val map3: HashMap<String?, String?> = HashMap()
-        map3["Phone"] = phone
-        val call2: Call<Education?>? = retrofitInterface2.getEducation(map3)
-        call2!!.enqueue(object : Callback<Education?> {
-            override fun onResponse(
-                call: Call<Education?>?,
-                response: Response<Education?>
-            ) {
-                if (response.code() == 200) {
-
-                    val result = response.body()
-
-                    if (result != null) {
-                        map["exam"]=result.ApplicationCategory
-
-                    }
-
-
-                }
-                else {
-
+                override fun onFailure(
+                    call: Call<Schedule>,
+                    t: Throwable
+                ) {
                     Toast.makeText(
-                        this@eight, getString(R.string.toastslowinternet),
+                        this@eight, getString(R.string.poorinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+
+            })
+            val map1: HashMap<String?, String?> = HashMap()
+            map1["Phone1"] = phone
+
+            val call1: Call<Personal?>? = retrofitInterface2.getPersonal(cookie, map1)
+            call1!!.enqueue(object : Callback<Personal?> {
+                override fun onResponse(
+                    call: Call<Personal?>?,
+                    response: Response<Personal?>
+                ) {
+                    if (response.code() == 200) {
+
+                        val result = response.body()
+
+                        if (result != null) {
+
+                            map["address"] = result.AddressOne
+                            map["mname"] = result.Mname
+                            map["fname"] = result.Fname
+                            map["lname"] = result.Lname
+                            map["ffname"] = result.FHFname
+                            map["fmname"] = result.FHMname
+                            map["flname"] = result.FHLname
+                            map["mfname"] = result.MFname
+                            map["mmname"] = result.MMname
+                            map["mlname"] = result.MLname
+                            map["category"] = result.Category
+                            map["aadhar"] = result.Aadhar
+                            map["district"] = result.DistrictOne
+                            map["state"] = result.StateOne
+                            map["pincode"] = result.PinCodeOne
+                            map["email"] = result.Email1
+                            map["dob"] = result.DOB
+                            map["sex"] = result.gender
+                            map["phone"] = result.Phone1
+                        }
+
+
+                    }
+                }
+
+                override fun onFailure(
+                    call1: Call<Personal?>?,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@eight, t.message,
                         Toast.LENGTH_LONG
                     ).show()
                 }
+            })
+            val map3: HashMap<String?, String?> = HashMap()
+            map3["Phone"] = phone
+            val call2: Call<Education?>? = retrofitInterface2.getEducation(cookie, map3)
+            call2!!.enqueue(object : Callback<Education?> {
+                override fun onResponse(
+                    call: Call<Education?>?,
+                    response: Response<Education?>
+                ) {
+                    if (response.code() == 200) {
 
-            }
+                        val result = response.body()
 
-            override fun onFailure(
-                call: Call<Education?>?,
-                t: Throwable
-            ) {
-                Log.d("Failure", t.message)
-                Toast.makeText(
-                    this@eight, t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
+                        if (result != null) {
+                            map["exam"] = result.ApplicationCategory
+
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(
+                            this@eight, getString(R.string.toastslowinternet),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                }
+
+                override fun onFailure(
+                    call: Call<Education?>?,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@eight, t.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
 
 
         page_8_submit.setOnClickListener {
@@ -193,7 +252,7 @@ class eight : AppCompatActivity() {
                 map["Date"] = formatted
                 var retrofitInterface: RetrofitInterface =
                     retrofit.create(RetrofitInterface::class.java)
-                val call3: Call<Void?>? = retrofitInterface.timings(map)
+                val call3: Call<Void?>? = cookie?.let { it1 -> retrofitInterface.timings(it1,map) }
                 call3!!.enqueue(object : Callback<Void?> {
                     override fun onResponse(
                         call: Call<Void?>?,
@@ -229,8 +288,8 @@ class eight : AppCompatActivity() {
             if (codeSent != null) {
                 verifySignInCode()
             }
-        }
 
+        }
     }
 
     private fun verifySignInCode() {

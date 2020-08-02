@@ -61,7 +61,12 @@ class ten : AppCompatActivity() {
                 map["phone"] = page_1_signup_phn_et.text.toString()
                 map["email"] = page_1_signup_email_et.text.toString()
                 map["aadhar"] = page_1_signup_Edtaadhar.text.toString()
-                val call1: Call<Void?>? = retrofitInterface.check(map)
+                val sharedPreferences = getSharedPreferences(
+                    "Settings",
+                    Context.MODE_PRIVATE
+                )
+                val cookie:String?=sharedPreferences.getString("user_cookie","")
+                val call1: Call<Void?>? = cookie?.let { it1 -> retrofitInterface.check(it1,map) }
                 call1!!.enqueue(object : Callback<Void?> {
                     override fun onResponse(
                         call: Call<Void?>?,
@@ -70,14 +75,14 @@ class ten : AppCompatActivity() {
                         if (response.code() == 201) {
                             Toast.makeText(
                                 this@ten,
-                                "Phone number  already registered",
+                                getString(R.string.pha),
                                 Toast.LENGTH_SHORT
                             ).show()
                             progress.dismiss()
                         } else if (response.code() == 202) {
                             Toast.makeText(
                                 this@ten,
-                                "Email-id already registered",
+                                getString(R.string.ema),
                                 Toast.LENGTH_SHORT
                             ).show()
                             progress.dismiss()
@@ -85,7 +90,7 @@ class ten : AppCompatActivity() {
                         } else if (response.code() == 203) {
                             Toast.makeText(
                                 this@ten,
-                                "Aadhar number  already registered",
+                                getString(R.string.aaa),
                                 Toast.LENGTH_SHORT
                             ).show()
                             progress.dismiss()
@@ -108,7 +113,7 @@ class ten : AppCompatActivity() {
                     ) {
                         Log.d("Failure", t.message)
                         Toast.makeText(
-                            this@ten, "Poor Internet Try again",
+                            this@ten, getString(R.string.poorinternet),
                             Toast.LENGTH_LONG
                         ).show()
                         progress.dismiss()
@@ -227,7 +232,7 @@ class ten : AppCompatActivity() {
 
             } else {
                 progress.dismiss()
-                Toast.makeText(this@ten, "Check Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ten, getString(R.string.checkerror), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -240,7 +245,7 @@ class ten : AppCompatActivity() {
             .noNumbers()
             .addErrorCallback {
                 editText.error =
-                    "Enter only Alphabets\n No Numbers are allowed"
+                    getString(R.string.validname)
 
                 x = 1
             }
@@ -258,14 +263,14 @@ class ten : AppCompatActivity() {
             .nonEmpty()
             .onlyNumbers()
             .addErrorCallback {
-                editText.error = "Enter $d digit Number Only"
+                editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                 x = 1
             }
             .addSuccessCallback {
                 x = if (editText.text.toString().length == d) {
                     0
                 } else {
-                    editText.error = "Enter $d digit Number Only"
+                    editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                     1
                 }
 
@@ -281,7 +286,7 @@ class ten : AppCompatActivity() {
             .validEmail()
             .nonEmpty()
             .addErrorCallback {
-                editText.error = "Enter valid email-id"
+                editText.error = getString(R.string.validemail)
                 x = 1
             }
             .addSuccessCallback {
@@ -303,7 +308,7 @@ class ten : AppCompatActivity() {
             .atleastOneUpperCase()
             .addErrorCallback {
                 editText.error =
-                    "Atleast one Uppercase\none LowerCase\none Special Character\none Number"
+                    getString(R.string.validpass)
                 x = 1
             }
             .addSuccessCallback {

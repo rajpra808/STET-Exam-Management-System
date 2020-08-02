@@ -72,7 +72,7 @@
                 android:background="@drawable/button_shape"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
-                android:text="Update Documents Detail" />
+                android:text="@string/update_documents_detail" />
 
 
             <Button

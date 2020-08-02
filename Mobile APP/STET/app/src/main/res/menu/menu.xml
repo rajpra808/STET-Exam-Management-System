@@ -42,7 +42,7 @@
         android:id="@+id/timeline"
         android:title="@string/timeline_menu"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/timeline"/>
+        android:icon="@drawable/ic_timeline_black_24dp"/>
     <item
         android:id="@+id/language"
         android:title="@string/change_language"

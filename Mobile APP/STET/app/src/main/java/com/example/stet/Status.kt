@@ -4,6 +4,7 @@ package com.example.stet
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
@@ -37,6 +38,7 @@ class Status : AppCompatActivity() {
     var Phone:String=""
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     private val URL = BASE_URL
+    var ses=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
@@ -49,163 +51,228 @@ class Status : AppCompatActivity() {
             startActivity(i)
 
         }*/
-        image(phone,"photo","Photo_Documents",status_view_photo)
-        image(phone,"signature","Signature_Documents",status_view_signature)
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
-        val map: HashMap<String?, String?> = HashMap()
-        map["Phone1"] = phone
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
-        val call1: Call<Personal?>? = retrofitInterface.getPersonal(map)
-        call1!!.enqueue(object : Callback<Personal?> {
+        callx!!.enqueue(object : Callback<Void?> {
             override fun onResponse(
-                call: Call<Personal?>?,
-                response: Response<Personal?>
+                call: Call<Void?>?,
+                response: Response<Void?>
             ) {
-                if (response.code() == 200) {
+                if (response.code() == 201) {
 
-                    val result = response.body()
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@Status, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@Status, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
 
-                    if (result != null) {
-                        status_view_aadhar.text = result.Aadhar
-                        status_view_address.text = result.AddressOne
-                        status_view_candidate.text =
-                            result.Fname + " " + result.Mname + " " + result.Lname
-                        status_view_mother.text =
-                            result.MFname + " " + result.MMname + " " + result.MLname
-                        status_view_father.text =
-                            result.FHFname + " " + result.FHMname + " " + result.FHLname
-                        status_view_dist.text = result.DistrictOne
-                        status_view_dob.text = result.DOB
-                        status_view_gender.text = result.gender
-                        status_view_state.text = result.StateOne
-                        status_view_email.text = result.Email1
-                        status_view_mobile.text = result.Phone1
-                        staus_view_pin.text = result.PinCodeOne
-                        status_view_father_husband.text = result.FH
-                        status_view_address2.text =
-                            result.AddressTwo + " " + result.DistrictTwo + " " + result.StateTwo
-                        status_view_community.text = result.Category
-                        status_view_mobile2.text = result.Phone2
-                        status_view_email2.text = result.Email2
-
-
-                    }
-
-
-                }
-            }
-
-            override fun onFailure(
-                call1: Call<Personal?>?,
-                t: Throwable
-            ) {
-                Log.d("Failure", t.message)
-                Toast.makeText(
-                    this@Status, t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
-        val map3: HashMap<String?, String?> = HashMap()
-        map3["Phone"] = phone
-        val call3: Call<Education?>? = retrofitInterface.getEducation(map3)
-        call3!!.enqueue(object : Callback<Education?> {
-            override fun onResponse(
-                call: Call<Education?>?,
-                response: Response<Education?>
-            ) {
-                if (response.code() == 200) {
-
-                    val result = response.body()
-
-
-
-                    if (result != null) {
-                        status_application_view_percentage.text = result.Percentage
-                        status_application_view_uni.text = result.University
-                        status_application_view_prof_quali.text = result.ProfessionalQualification
-                        status_application_view_min_quali.text = result.MinQualification
-                        status_application_view_category.text = result.ApplicationCategory
-                        status_application_view_paper_choice.text = result.PaperLanguage
-
-                    }
-
+                    ses=1
                 } else {
+                    Toast.makeText(
+                        this@Status, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
             }
 
             override fun onFailure(
-                call: Call<Education?>?,
+                call: Call<Void?>?,
                 t: Throwable
             ) {
-                Log.d("Failure", t.message)
                 Toast.makeText(
-                    this@Status, t.message,
+                    this@Status, getString(R.string.poorinternet),
                     Toast.LENGTH_LONG
                 ).show()
+
             }
+
         })
-        val call4: Call<Payment> = retrofitInterface.getpayment(phone)
-        call4!!.enqueue(object : Callback<Payment> {
-            override fun onResponse(
-                call: Call<Payment>,
-                response: Response<Payment>
-            ) {
-                if (response.code() == 200) {
 
-                    val result = response.body()
+            image(phone, "photo", "Photo_Documents", status_view_photo)
+            image(phone, "signature", "Signature_Documents", status_view_signature)
+            val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-                    if (result != null) {
-                       status_view_tran_ID.text=result.paymentId.toString()
-                        status_view_transaction.text=result.date.toString()
-                        status_view_payment_mode.text=getString(R.string.online)
+            var retrofitInterface: RetrofitInterface =
+                retrofit.create(RetrofitInterface::class.java)
+            val map: HashMap<String?, String?> = HashMap()
+            map["Phone1"] = phone
+            val sharedPreferences = getSharedPreferences(
+                "Settings",
+                Context.MODE_PRIVATE
+            )
+            val cookie: String? = sharedPreferences.getString("user_cookie", "")
+            val call1: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it, map) }
+            call1!!.enqueue(object : Callback<Personal?> {
+                override fun onResponse(
+                    call: Call<Personal?>?,
+                    response: Response<Personal?>
+                ) {
+                    if (response.code() == 200) {
+
+                        val result = response.body()
+
+                        if (result != null) {
+                            status_view_aadhar.text = result.Aadhar
+                            status_view_address.text = result.AddressOne
+                            status_view_candidate.text =
+                                result.Fname + " " + result.Mname + " " + result.Lname
+                            status_view_mother.text =
+                                result.MFname + " " + result.MMname + " " + result.MLname
+                            status_view_father.text =
+                                result.FHFname + " " + result.FHMname + " " + result.FHLname
+                            status_view_dist.text = result.DistrictOne
+                            status_view_dob.text = result.DOB
+                            status_view_gender.text = result.gender
+                            status_view_state.text = result.StateOne
+                            status_view_email.text = result.Email1
+                            status_view_mobile.text = result.Phone1
+                            staus_view_pin.text = result.PinCodeOne
+                            status_view_father_husband.text = result.FH
+                            status_view_address2.text =
+                                result.AddressTwo + " " + result.DistrictTwo + " " + result.StateTwo
+                            status_view_community.text = result.Category
+                            status_view_mobile2.text = result.Phone2
+                            status_view_email2.text = result.Email2
+
+
+                        }
+
+
+                    }
+                }
+
+                override fun onFailure(
+                    call1: Call<Personal?>?,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@Status, t.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+            val map3: HashMap<String?, String?> = HashMap()
+            map3["Phone"] = phone
+            val call3: Call<Education?>? = retrofitInterface.getEducation(cookie, map3)
+            call3!!.enqueue(object : Callback<Education?> {
+                override fun onResponse(
+                    call: Call<Education?>?,
+                    response: Response<Education?>
+                ) {
+                    if (response.code() == 200) {
+
+                        val result = response.body()
+
+
+
+                        if (result != null) {
+                            status_application_view_percentage.text = result.Percentage
+                            status_application_view_uni.text = result.University
+                            status_application_view_prof_quali.text =
+                                result.ProfessionalQualification
+                            status_application_view_min_quali.text = result.MinQualification
+                            status_application_view_category.text = result.ApplicationCategory
+                            status_application_view_paper_choice.text = result.PaperLanguage
+
+                        }
+
+                    } else {
+
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<Education?>?,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@Status, t.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+            val call4: Call<Payment> = retrofitInterface.getpayment(cookie, phone)
+            call4!!.enqueue(object : Callback<Payment> {
+                override fun onResponse(
+                    call: Call<Payment>,
+                    response: Response<Payment>
+                ) {
+                    if (response.code() == 200) {
+
+                        val result = response.body()
+
+                        if (result != null) {
+                            status_view_tran_ID.text = result.paymentId.toString()
+                            status_view_transaction.text = result.date.toString()
+                            status_view_payment_mode.text = getString(R.string.online)
+                        }
+
+
+                    } else {
+
+
                     }
 
-
-                } else {
-
-
                 }
 
+                override fun onFailure(
+                    call: Call<Payment>,
+                    t: Throwable
+                ) {
+                    Log.d("Failure", t.message)
+                    Toast.makeText(
+                        this@Status, t.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+            check("aadhar", "Aadhar_Documents", status_view_certi4)
+            check("tenth", "Tenth_Documents", status_view_certi5)
+            check("twelveth", "Twelveth_Documents", status_view_certi6)
+            check("birthcertificate", "Birth_Certificate_Documents", status_view_certi1)
+            check("communitycertificate", "Community_Certificate_Documents", status_view_certi2)
+            check("graduationcertificate", "Graduation_Certificate_Documents", status_view_certi8)
+            check("graduationmarksheet", "Graduation_Marksheet_Documents", status_view_certi7)
+            check("sikkimsubject", "Sikkim_Subject_Documents", status_view_certi3)
+
+            status_print.setOnClickListener {
+                val content: LinearLayout = findViewById(R.id.print)
+                val file = saveBitMap(
+                    this,
+                    content
+                );    //which view you want to pass that view as parameter
+                if (file != null) {
+                    status_print.visibility = View.VISIBLE
+                    Toast.makeText(this, getString(R.string.regisfile), Toast.LENGTH_LONG).show()
+                } else {
+                    status_print.visibility = View.VISIBLE
+                    Toast.makeText(this, getString(R.string.oopsfilenot), Toast.LENGTH_LONG).show()
+                }
             }
 
-            override fun onFailure(
-                call: Call<Payment>,
-                t: Throwable
-            ) {
-                Log.d("Failure", t.message)
-                Toast.makeText(
-                    this@Status, t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
-        check("aadhar","Aadhar_Documents",status_view_certi4)
-        check("tenth","Tenth_Documents",status_view_certi5)
-        check("twelveth","Twelveth_Documents",status_view_certi6)
-        check("birthcertificate","Birth_Certificate_Documents",status_view_certi1)
-        check("communitycertificate","Community_Certificate_Documents",status_view_certi2)
-        check("graduationcertificate","Graduation_Certificate_Documents",status_view_certi8)
-        check("graduationmarksheet","Graduation_Marksheet_Documents",status_view_certi7)
-        check("sikkimsubject","Sikkim_Subject_Documents",status_view_certi3)
-
-        status_print.setOnClickListener {
-            val content: LinearLayout = findViewById(R.id.print)
-            val file = saveBitMap(this, content);    //which view you want to pass that view as parameter
-            if (file != null) {
-                status_print.visibility=View.VISIBLE
-                Toast.makeText(this,"File Saved to Downloads/RegistrationForm",Toast.LENGTH_LONG).show()
-            } else {
-                status_print.visibility=View.VISIBLE
-                Toast.makeText(this,"Oops! File could not be saved.",Toast.LENGTH_LONG).show()
-            }
-        }
 
     }
     private fun check(str:String,coll:String,text: TextView)
@@ -340,7 +407,7 @@ class Status : AppCompatActivity() {
                        val decodedByte =
                            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                        id.setImageBitmap(decodedByte)
-                       Toast.makeText(this@Status,"Image fetched",Toast.LENGTH_SHORT).show()
+                       Toast.makeText(this@Status,getString(R.string.Imagefetched),Toast.LENGTH_SHORT).show()
                    }
                }
             }

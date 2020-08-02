@@ -62,6 +62,7 @@ class seven : AppCompatActivity() {
     var g:Int=0
     var h:Int=0
     var i1:Int=0
+    var ses=0
     var j:Int=0
     var map: HashMap<String?, String?> = HashMap()
     lateinit var phone:String
@@ -91,231 +92,297 @@ class seven : AppCompatActivity() {
         cancel_photo.visibility=View.INVISIBLE
         cancel_community.visibility=View.INVISIBLE
         phone= intent.getStringExtra("phone")
-        check("aadhar","Aadhar_Documents",page_7_aadhar_upload)
-        check("tenth","Tenth_Documents",page_7_10th_upload)
-        check("twelveth","Twelveth_Documents",page_7_12th_upload)
-        check("birthcertificate","Birth_Certificate_Documents",page_7_birth_upload)
-        check("communitycertificate","Community_Certificate_Documents",page_7_community_upload)
-        check("graduationcertificate","Graduation_Certificate_Documents",page_7_graduationC_uplaod)
-        check("graduationmarksheet","Graduation_Marksheet_Documents",page_7_GraduationM_upload)
-        check("photo","Photo_Documents",page_7_photo_upload)
-        check("signature","Signature_Documents",page_7_signature_upload)
-        check("sikkimsubject","Sikkim_Subject_Documents",page_7_subject_upload)
-        page_7_next.setOnClickListener {
-            if (page_7_checkbox.isChecked) {
-                if(page_7_subject_upload.text=="UPLOADED"
-                    && page_7_aadhar_upload.text=="UPLOADED"
-                    && page_7_birth_upload.text=="UPLOADED"
-                    && page_7_signature_upload.text=="UPLOADED"
-                    && page_7_photo_upload.text=="UPLOADED"
-                    && page_7_10th_upload.text=="UPLOADED"
-                    && page_7_12th_upload.text=="UPLOADED"
-                    && page_7_community_upload.text=="UPLOADED"
-                    && page_7_graduationC_uplaod.text=="UPLOADED"
-                    && page_7_GraduationM_upload.text=="UPLOADED"
-                    ) {
-                    val sharedPreferences = getSharedPreferences(
-                        "MySharedPref",
-                        Context.MODE_PRIVATE
-                    )
-                    val myEdit = sharedPreferences.edit()
-                    myEdit.putString("documents", phone).apply()
-                    val i = Intent(this, Register::class.java)
-                    i.putExtra("phone", phone)
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
+            override fun onResponse(
+                call: Call<Void?>?,
+                response: Response<Void?>
+            ) {
+                if (response.code() == 201) {
+
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@seven, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@seven, MainActivity::class.java)
                     startActivity(i)
+                } else if (response.code() == 200) {
+
+                    ses=1
+                } else {
+                    Toast.makeText(
+                        this@seven, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 }
-                else
-                {
-                    val i = Intent(this, Register::class.java)
-                    i.putExtra("phone", phone)
-                    startActivity(i)
-                }
-            } else {
-                Toast.makeText(this, "Please Accept the T&C for Registration", Toast.LENGTH_SHORT)
-                    .show()
             }
 
-        }
-        page_7_back.setOnClickListener {
-            val i = Intent(this, Register::class.java)
-            i.putExtra("phone", phone)
-            startActivity(i)
+            override fun onFailure(
+                call: Call<Void?>?,
+                t: Throwable
+            ) {
+                Toast.makeText(
+                    this@seven, getString(R.string.poorinternet),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
+        })
+
+            check("aadhar", "Aadhar_Documents", page_7_aadhar_upload)
+            check("tenth", "Tenth_Documents", page_7_10th_upload)
+            check("twelveth", "Twelveth_Documents", page_7_12th_upload)
+            check("birthcertificate", "Birth_Certificate_Documents", page_7_birth_upload)
+            check(
+                "communitycertificate",
+                "Community_Certificate_Documents",
+                page_7_community_upload
+            )
+            check(
+                "graduationcertificate",
+                "Graduation_Certificate_Documents",
+                page_7_graduationC_uplaod
+            )
+            check(
+                "graduationmarksheet",
+                "Graduation_Marksheet_Documents",
+                page_7_GraduationM_upload
+            )
+            check("photo", "Photo_Documents", page_7_photo_upload)
+            check("signature", "Signature_Documents", page_7_signature_upload)
+            check("sikkimsubject", "Sikkim_Subject_Documents", page_7_subject_upload)
+            page_7_next.setOnClickListener {
+                if (page_7_checkbox.isChecked) {
+                    if (page_7_subject_upload.text == getString(R.string.uploaded)
+                        && page_7_aadhar_upload.text == getString(R.string.uploaded)
+                        && page_7_birth_upload.text == getString(R.string.uploaded)
+                        && page_7_signature_upload.text == getString(R.string.uploaded)
+                        && page_7_photo_upload.text == getString(R.string.uploaded)
+                        && page_7_10th_upload.text == getString(R.string.uploaded)
+                        && page_7_12th_upload.text == getString(R.string.uploaded)
+                        && page_7_community_upload.text == getString(R.string.uploaded)
+                        && page_7_graduationC_uplaod.text == getString(R.string.uploaded)
+                        && page_7_GraduationM_upload.text == getString(R.string.uploaded)
+                    ) {
+                        val sharedPreferences = getSharedPreferences(
+                            "Settings",
+                            Context.MODE_PRIVATE
+                        )
+                        val myEdit = sharedPreferences.edit()
+                        myEdit.putString("documents", phone).apply()
+                        val i = Intent(this, Register::class.java)
+                        i.putExtra("phone", phone)
+                        startActivity(i)
+                    } else {
+                        val i = Intent(this, Register::class.java)
+                        i.putExtra("phone", phone)
+                        startActivity(i)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.accepttc), Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            }
+            page_7_back.setOnClickListener {
+                val i = Intent(this, Register::class.java)
+                i.putExtra("phone", phone)
+                startActivity(i)
 
 
-        }
+            }
 
 
 
-        page_7_select_aadhar.setOnClickListener {
-            t = 1
-            page_7_aadhar_upload.visibility = View.VISIBLE
-            storage()
+            page_7_select_aadhar.setOnClickListener {
+                t = 1
+                page_7_aadhar_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_10th.setOnClickListener {
-            t = 2
-            page_7_10th_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_10th.setOnClickListener {
+                t = 2
+                page_7_10th_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_12th.setOnClickListener {
-            t = 3
-            page_7_12th_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_12th.setOnClickListener {
+                t = 3
+                page_7_12th_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_birth.setOnClickListener {
-            t = 4
-            page_7_birth_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_birth.setOnClickListener {
+                t = 4
+                page_7_birth_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_community.setOnClickListener {
-            t = 5
-            page_7_community_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_community.setOnClickListener {
+                t = 5
+                page_7_community_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_graduationC.setOnClickListener {
-            t = 6
-            page_7_graduationC_uplaod.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_graduationC.setOnClickListener {
+                t = 6
+                page_7_graduationC_uplaod.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_graduationM.setOnClickListener {
-            t = 7
-            page_7_GraduationM_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_graduationM.setOnClickListener {
+                t = 7
+                page_7_GraduationM_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_photo.setOnClickListener {
-            t = 8
-            page_7_photo_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_photo.setOnClickListener {
+                t = 8
+                page_7_photo_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_signature.setOnClickListener {
-            t = 9
-            page_7_signature_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_signature.setOnClickListener {
+                t = 9
+                page_7_signature_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_select_subject.setOnClickListener {
-            t = 10
-            page_7_subject_upload.visibility = View.VISIBLE
-            storage()
+            }
+            page_7_select_subject.setOnClickListener {
+                t = 10
+                page_7_subject_upload.visibility = View.VISIBLE
+                storage()
 
-        }
-        page_7_aadhar_cam.setOnClickListener {
-            t = 1
-            page_7_aadhar_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_aadhar_cam.setOnClickListener {
+                t = 1
+                page_7_aadhar_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_10th_cam.setOnClickListener {
-            t = 2
-            page_7_10th_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_10th_cam.setOnClickListener {
+                t = 2
+                page_7_10th_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_12th_cam.setOnClickListener {
-            t = 3
-            page_7_12th_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_12th_cam.setOnClickListener {
+                t = 3
+                page_7_12th_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_birth_cam.setOnClickListener {
-            t = 4
-            page_7_birth_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_birth_cam.setOnClickListener {
+                t = 4
+                page_7_birth_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_community_cam.setOnClickListener {
-            t = 5
-            page_7_community_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_community_cam.setOnClickListener {
+                t = 5
+                page_7_community_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_graduationC_cam.setOnClickListener {
-            t = 6
-            page_7_graduationC_uplaod.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_graduationC_cam.setOnClickListener {
+                t = 6
+                page_7_graduationC_uplaod.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_graduationM_cam.setOnClickListener {
-            t = 7
-            page_7_GraduationM_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_graduationM_cam.setOnClickListener {
+                t = 7
+                page_7_GraduationM_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_photo_cam.setOnClickListener {
-            t = 8
-            page_7_photo_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_photo_cam.setOnClickListener {
+                t = 8
+                page_7_photo_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_signature_cam.setOnClickListener {
-            t = 9
-            page_7_signature_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_signature_cam.setOnClickListener {
+                t = 9
+                page_7_signature_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        page_7_subject_cam.setOnClickListener {
-            t = 10
-            page_7_subject_upload.visibility = View.VISIBLE
-            camera()
+            }
+            page_7_subject_cam.setOnClickListener {
+                t = 10
+                page_7_subject_upload.visibility = View.VISIBLE
+                camera()
 
-        }
-        cancel_aadhar.setOnClickListener {
-            image_aadhar.visibility=View.INVISIBLE
-            cancel_aadhar.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_photo.setOnClickListener {
-            image_photo.visibility=View.INVISIBLE
-            cancel_photo.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_10th.setOnClickListener {
-            image_10th.visibility=View.INVISIBLE
-            cancel_10th.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_12th.setOnClickListener {
-            image_12th.visibility=View.INVISIBLE
-            cancel_12th.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_gradc.setOnClickListener {
-            image_gradc.visibility=View.INVISIBLE
-            cancel_gradc.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_gradm.setOnClickListener {
-            image_gradm.visibility=View.INVISIBLE
-            cancel_gradm.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_subject.setOnClickListener {
-            image_subject.visibility=View.INVISIBLE
-            cancel_subject.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_signature.setOnClickListener {
-            image_signature.visibility=View.INVISIBLE
-            cancel_signature.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_birth.setOnClickListener {
-            image_birth.visibility=View.INVISIBLE
-            cancel_birth.visibility=View.INVISIBLE
-            s=0
-        }
-        cancel_community.setOnClickListener {
-            image_community.visibility=View.INVISIBLE
-            cancel_community.visibility=View.INVISIBLE
-            s=0
-        }
+            }
+            cancel_aadhar.setOnClickListener {
+                image_aadhar.visibility = View.INVISIBLE
+                cancel_aadhar.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_photo.setOnClickListener {
+                image_photo.visibility = View.INVISIBLE
+                cancel_photo.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_10th.setOnClickListener {
+                image_10th.visibility = View.INVISIBLE
+                cancel_10th.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_12th.setOnClickListener {
+                image_12th.visibility = View.INVISIBLE
+                cancel_12th.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_gradc.setOnClickListener {
+                image_gradc.visibility = View.INVISIBLE
+                cancel_gradc.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_gradm.setOnClickListener {
+                image_gradm.visibility = View.INVISIBLE
+                cancel_gradm.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_subject.setOnClickListener {
+                image_subject.visibility = View.INVISIBLE
+                cancel_subject.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_signature.setOnClickListener {
+                image_signature.visibility = View.INVISIBLE
+                cancel_signature.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_birth.setOnClickListener {
+                image_birth.visibility = View.INVISIBLE
+                cancel_birth.visibility = View.INVISIBLE
+                s = 0
+            }
+            cancel_community.setOnClickListener {
+                image_community.visibility = View.INVISIBLE
+                cancel_community.visibility = View.INVISIBLE
+                s = 0
+            }
+
 
     }
 
@@ -366,7 +433,7 @@ class seven : AppCompatActivity() {
 
                 showFileChooser()
             } else {
-                Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.permdenied), Toast.LENGTH_LONG)
                     .show()
 
             }
@@ -376,13 +443,13 @@ class seven : AppCompatActivity() {
                 click()
 
             } else {
-                Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.permdenied), Toast.LENGTH_LONG)
                     .show()
 
             }
+
         }
     }
-
     private fun showFileChooser() {
         val intent: Intent = intent
         intent.type = "image/*"
@@ -423,63 +490,63 @@ class seven : AppCompatActivity() {
                         when (t) {
                             1 -> {
                                 bit1 = bit
-                                image_aadhar.visibility=View.VISIBLE
-                                cancel_aadhar.visibility=View.VISIBLE
+                                image_aadhar.visibility = View.VISIBLE
+                                cancel_aadhar.visibility = View.VISIBLE
                                 image_aadhar.setImageBitmap(bit)
 
                             }
                             2 -> {
                                 bit2 = bit
-                                image_10th.visibility=View.VISIBLE
-                                cancel_10th.visibility=View.VISIBLE
+                                image_10th.visibility = View.VISIBLE
+                                cancel_10th.visibility = View.VISIBLE
                                 image_10th.setImageBitmap(bit)
                             }
                             3 -> {
                                 bit3 = bit
-                                image_12th.visibility=View.VISIBLE
-                                cancel_12th.visibility=View.VISIBLE
+                                image_12th.visibility = View.VISIBLE
+                                cancel_12th.visibility = View.VISIBLE
                                 image_12th.setImageBitmap(bit)
                             }
                             4 -> {
                                 bit4 = bit
-                                image_birth.visibility=View.VISIBLE
-                                cancel_birth.visibility=View.VISIBLE
+                                image_birth.visibility = View.VISIBLE
+                                cancel_birth.visibility = View.VISIBLE
                                 image_birth.setImageBitmap(bit)
                             }
                             5 -> {
                                 bit5 = bit
-                                image_community.visibility=View.VISIBLE
-                                cancel_community.visibility=View.VISIBLE
+                                image_community.visibility = View.VISIBLE
+                                cancel_community.visibility = View.VISIBLE
                                 image_community.setImageBitmap(bit)
                             }
                             6 -> {
                                 bit6 = bit
-                                image_gradc.visibility=View.VISIBLE
-                                cancel_gradc.visibility=View.VISIBLE
+                                image_gradc.visibility = View.VISIBLE
+                                cancel_gradc.visibility = View.VISIBLE
                                 image_gradc.setImageBitmap(bit)
                             }
                             7 -> {
                                 bit7 = bit
-                                image_gradm.visibility=View.VISIBLE
-                                cancel_gradm.visibility=View.VISIBLE
+                                image_gradm.visibility = View.VISIBLE
+                                cancel_gradm.visibility = View.VISIBLE
                                 image_gradm.setImageBitmap(bit)
                             }
                             8 -> {
                                 bit8 = bit
-                                image_photo.visibility=View.VISIBLE
-                                cancel_photo.visibility=View.VISIBLE
+                                image_photo.visibility = View.VISIBLE
+                                cancel_photo.visibility = View.VISIBLE
                                 image_photo.setImageBitmap(bit)
                             }
                             9 -> {
                                 bit9 = bit
-                                image_signature.visibility=View.VISIBLE
-                                cancel_signature.visibility=View.VISIBLE
+                                image_signature.visibility = View.VISIBLE
+                                cancel_signature.visibility = View.VISIBLE
                                 image_signature.setImageBitmap(bit)
                             }
                             10 -> {
                                 bit10 = bit
-                                image_subject.visibility=View.VISIBLE
-                                cancel_subject.visibility=View.VISIBLE
+                                image_subject.visibility = View.VISIBLE
+                                cancel_subject.visibility = View.VISIBLE
                                 image_subject.setImageBitmap(bit)
                             }
 
@@ -503,63 +570,63 @@ class seven : AppCompatActivity() {
                         when (t) {
                             1 -> {
                                 bit1 = bit
-                                image_aadhar.visibility=View.VISIBLE
-                                cancel_aadhar.visibility=View.VISIBLE
+                                image_aadhar.visibility = View.VISIBLE
+                                cancel_aadhar.visibility = View.VISIBLE
                                 image_aadhar.setImageBitmap(bit)
 
                             }
                             2 -> {
                                 bit2 = bit
-                                image_10th.visibility=View.VISIBLE
-                                cancel_10th.visibility=View.VISIBLE
+                                image_10th.visibility = View.VISIBLE
+                                cancel_10th.visibility = View.VISIBLE
                                 image_10th.setImageBitmap(bit)
                             }
                             3 -> {
                                 bit3 = bit
-                                image_12th.visibility=View.VISIBLE
-                                cancel_12th.visibility=View.VISIBLE
+                                image_12th.visibility = View.VISIBLE
+                                cancel_12th.visibility = View.VISIBLE
                                 image_12th.setImageBitmap(bit)
                             }
                             4 -> {
                                 bit4 = bit
-                                image_birth.visibility=View.VISIBLE
-                                cancel_birth.visibility=View.VISIBLE
+                                image_birth.visibility = View.VISIBLE
+                                cancel_birth.visibility = View.VISIBLE
                                 image_birth.setImageBitmap(bit)
                             }
                             5 -> {
                                 bit5 = bit
-                                image_community.visibility=View.VISIBLE
-                                cancel_community.visibility=View.VISIBLE
+                                image_community.visibility = View.VISIBLE
+                                cancel_community.visibility = View.VISIBLE
                                 image_community.setImageBitmap(bit)
                             }
                             6 -> {
                                 bit6 = bit
-                                image_gradc.visibility=View.VISIBLE
-                                cancel_gradc.visibility=View.VISIBLE
+                                image_gradc.visibility = View.VISIBLE
+                                cancel_gradc.visibility = View.VISIBLE
                                 image_gradc.setImageBitmap(bit)
                             }
                             7 -> {
                                 bit7 = bit
-                                image_gradm.visibility=View.VISIBLE
-                                cancel_gradm.visibility=View.VISIBLE
+                                image_gradm.visibility = View.VISIBLE
+                                cancel_gradm.visibility = View.VISIBLE
                                 image_gradm.setImageBitmap(bit)
                             }
                             8 -> {
                                 bit8 = bit
-                                image_photo.visibility=View.VISIBLE
-                                cancel_photo.visibility=View.VISIBLE
+                                image_photo.visibility = View.VISIBLE
+                                cancel_photo.visibility = View.VISIBLE
                                 image_photo.setImageBitmap(bit)
                             }
                             9 -> {
                                 bit9 = bit
-                                image_signature.visibility=View.VISIBLE
-                                cancel_signature.visibility=View.VISIBLE
+                                image_signature.visibility = View.VISIBLE
+                                cancel_signature.visibility = View.VISIBLE
                                 image_signature.setImageBitmap(bit)
                             }
                             10 -> {
                                 bit10 = bit
-                                image_subject.visibility=View.VISIBLE
-                                cancel_subject.visibility=View.VISIBLE
+                                image_subject.visibility = View.VISIBLE
+                                cancel_subject.visibility = View.VISIBLE
                                 image_subject.setImageBitmap(bit)
                             }
                         }
@@ -578,12 +645,9 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_aadhar_upload.text=="UPLOADED")
-                {
-                    remove("aadhar","Aadhar_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_aadhar_upload.text == getString(R.string.uploaded)) {
+                    remove("aadhar", "Aadhar_Documents", retrofitInterface2)
+                } else {
 
                 }
                 multipartImageUploadaadhar(bit1, retrofitInterface2, "aadhar", page_7_aadhar_upload)
@@ -596,12 +660,9 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_10th_upload.text=="UPLOADED")
-                {
-                    remove("tenth","Tenth_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_10th_upload.text == getString(R.string.uploaded)) {
+                    remove("tenth", "Tenth_Documents", retrofitInterface2)
+                } else {
 
                 }
                 multipartImageUploadtenth(bit2, retrofitInterface2, "tenth", page_7_10th_upload)
@@ -614,15 +675,17 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_12th_upload.text=="UPLOADED")
-                {
-                    remove("twelveth","Twelveth_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_12th_upload.text == getString(R.string.uploaded)) {
+                    remove("twelveth", "Twelveth_Documents", retrofitInterface2)
+                } else {
 
                 }
-                multipartImageUploadtwelveth(bit, retrofitInterface2, "twelveth", page_7_12th_upload)
+                multipartImageUploadtwelveth(
+                    bit,
+                    retrofitInterface2,
+                    "twelveth",
+                    page_7_12th_upload
+                )
             }
         }
         page_7_birth_upload.setOnClickListener {
@@ -632,15 +695,17 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_birth_upload.text=="UPLOADED")
-                {
-                    remove("birthcertificate","Birth_Certificate_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_birth_upload.text == getString(R.string.uploaded)) {
+                    remove("birthcertificate", "Birth_Certificate_Documents", retrofitInterface2)
+                } else {
 
                 }
-                multipartImageUploadbirth(bit, retrofitInterface2, "birthcertificate", page_7_birth_upload)
+                multipartImageUploadbirth(
+                    bit,
+                    retrofitInterface2,
+                    "birthcertificate",
+                    page_7_birth_upload
+                )
             }
 
         }
@@ -651,15 +716,21 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_community_upload.text=="UPLOADED")
-                {
-                    remove("communitycertificate","Community_Certificate_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_community_upload.text == getString(R.string.uploaded)) {
+                    remove(
+                        "communitycertificate",
+                        "Community_Certificate_Documents",
+                        retrofitInterface2
+                    )
+                } else {
 
                 }
-                multipartImageUploadcommunity(bit, retrofitInterface2, "communitycertificate", page_7_community_upload)
+                multipartImageUploadcommunity(
+                    bit,
+                    retrofitInterface2,
+                    "communitycertificate",
+                    page_7_community_upload
+                )
             }
         }
         page_7_graduationC_uplaod.setOnClickListener {
@@ -669,12 +740,13 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_graduationC_uplaod.text=="UPLOADED")
-                {
-                    remove("graduationcertificate","Graduation_Certificate_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_graduationC_uplaod.text == getString(R.string.uploaded)) {
+                    remove(
+                        "graduationcertificate",
+                        "Graduation_Certificate_Documents",
+                        retrofitInterface2
+                    )
+                } else {
 
                 }
                 multipartImageUploadgradc(
@@ -692,12 +764,13 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_GraduationM_upload.text=="UPLOADED")
-                {
-                    remove("graduationmarksheet","Graduation_Marksheet_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_GraduationM_upload.text == getString(R.string.uploaded)) {
+                    remove(
+                        "graduationmarksheet",
+                        "Graduation_Marksheet_Documents",
+                        retrofitInterface2
+                    )
+                } else {
 
                 }
                 multipartImageUploadgradm(
@@ -715,12 +788,9 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_photo_upload.text=="UPLOADED")
-                {
-                    remove("photo","Photo_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_photo_upload.text == getString(R.string.uploaded)) {
+                    remove("photo", "Photo_Documents", retrofitInterface2)
+                } else {
 
                 }
                 multipartImageUploadphoto(bit, retrofitInterface2, "photo", page_7_photo_upload)
@@ -733,15 +803,17 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_signature_upload.text=="UPLOADED")
-                {
-                    remove("signature","Signature_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_signature_upload.text == getString(R.string.uploaded)) {
+                    remove("signature", "Signature_Documents", retrofitInterface2)
+                } else {
 
                 }
-                multipartImageUploadsignature(bit, retrofitInterface2, "signature", page_7_signature_upload)
+                multipartImageUploadsignature(
+                    bit,
+                    retrofitInterface2,
+                    "signature",
+                    page_7_signature_upload
+                )
             }
         }
         page_7_subject_upload.setOnClickListener {
@@ -751,18 +823,20 @@ class seven : AppCompatActivity() {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 var retrofitInterface2: Retro3? = retrofit.create(Retro3::class.java)
-                if(page_7_subject_upload.text=="UPLOADED")
-                {
-                    remove("sikkimsubject","Sikkim_Subject_Documents",retrofitInterface2)
-                }
-                else
-                {
+                if (page_7_subject_upload.text == getString(R.string.uploaded)) {
+                    remove("sikkimsubject", "Sikkim_Subject_Documents", retrofitInterface2)
+                } else {
 
                 }
-                multipartImageUploadsubject(bit, retrofitInterface2, "sikkimsubject", page_7_subject_upload)
+                multipartImageUploadsubject(
+                    bit,
+                    retrofitInterface2,
+                    "sikkimsubject",
+                    page_7_subject_upload
+                )
             }
-        }
 
+        }
 
     }
 
@@ -775,7 +849,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -789,7 +863,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
             val fos = FileOutputStream(file)
             fos.write(bitmapdata)
@@ -808,10 +882,10 @@ class seven : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(
                             applicationContext,
-                            "file uploaded",
+                            getString(R.string.uploaded),
                             Toast.LENGTH_SHORT
                         ).show()
-                        bt.text = "UPLOADED"
+                        bt.text = getString(R.string.uploaded)
                         image_aadhar.visibility=View.INVISIBLE
                         cancel_aadhar.visibility=View.INVISIBLE
                         bt.background = getDrawable(R.drawable.button_shape2)
@@ -848,7 +922,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -862,7 +936,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
             val fos = FileOutputStream(file)
             fos.write(bitmapdata)
@@ -881,10 +955,10 @@ class seven : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(
                             applicationContext,
-                            "file uploaded",
+                            getString(R.string.uploaded),
                             Toast.LENGTH_SHORT
                         ).show()
-                        bt.text = "UPLOADED"
+                        bt.text = getString(R.string.uploaded)
                         image_10th.visibility=View.INVISIBLE
                         cancel_10th.visibility=View.INVISIBLE
                         bt.background = getDrawable(R.drawable.button_shape2)
@@ -921,7 +995,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -935,7 +1009,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -954,10 +1028,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_12th.visibility=View.INVISIBLE
                             cancel_12th.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -994,7 +1068,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1008,7 +1082,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1027,10 +1101,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_subject.visibility=View.INVISIBLE
                             cancel_subject.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1067,7 +1141,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1081,7 +1155,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1101,10 +1175,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_gradc.visibility=View.INVISIBLE
                             cancel_gradc.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1137,7 +1211,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1151,7 +1225,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1171,10 +1245,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_gradm.visibility=View.INVISIBLE
                             cancel_gradm.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1208,7 +1282,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1222,7 +1296,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb"+filesizeInKB+" "+filesize, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1241,10 +1315,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_photo.visibility=View.INVISIBLE
                             cancel_photo.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1272,7 +1346,7 @@ class seven : AppCompatActivity() {
     private fun remove(str:String,coll:String,retrofitInterface2: Retro3?)
     {
         val progress2 = ProgressDialog(this)
-        progress2.setMessage("Removing last $str.png  :) ")
+        progress2.setMessage(getString(R.string.removefile)+"$str.png  :) ")
         progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress2.isIndeterminate = true
         progress2.show()
@@ -1285,7 +1359,7 @@ class seven : AppCompatActivity() {
                 if (response.code() == 200) {
                     Toast.makeText(
                         applicationContext,
-                        "file removed",
+                        getString(R.string.fileremooved),
                         Toast.LENGTH_SHORT
                     ).show()
                     progress2.dismiss()
@@ -1317,7 +1391,7 @@ class seven : AppCompatActivity() {
                 response: Response<Void?>
             ) {
                 if (response.code() == 200) {
-                    bt.text="UPLOADED"
+                    bt.text=getString(R.string.uploaded)
                     bt.background = getDrawable(R.drawable.button_shape2)
 
                 }
@@ -1340,7 +1414,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1354,7 +1428,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1373,10 +1447,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_community.visibility=View.INVISIBLE
                             cancel_community.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1409,7 +1483,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1423,7 +1497,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1442,10 +1516,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_signature.visibility=View.INVISIBLE
                             cancel_signature.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1478,7 +1552,7 @@ class seven : AppCompatActivity() {
     ) {
         try {
             val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str.png  :) ")
+            progress2.setMessage(getString(R.string.uploading)+" $str.png  :) ")
             progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress2.isIndeterminate = true
             progress2.show()
@@ -1492,7 +1566,7 @@ class seven : AppCompatActivity() {
             var filesizeInKB = filesize / 102400
             if (filesizeInKB > 100) {
                 progress2.dismiss()
-                Toast.makeText(this, "File size must be less than 100 kb", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.filesize), Toast.LENGTH_LONG).show()
             } else {
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -1511,10 +1585,10 @@ class seven : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(
                                 applicationContext,
-                                "file uploaded",
+                                getString(R.string.uploaded),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            bt.text = "UPLOADED"
+                            bt.text = getString(R.string.uploaded)
                             image_birth.visibility=View.INVISIBLE
                             cancel_birth.visibility=View.INVISIBLE
                             bt.background = getDrawable(R.drawable.button_shape2)
@@ -1541,104 +1615,9 @@ class seven : AppCompatActivity() {
     }
 
 
-    private fun multipartMultipleImageUpload(
-        mBitmap1: Bitmap?,
-        mBitmap2: Bitmap?,
-        retrofitInterface2: Retro3?,
-        str1: String,
-        str2: String,
-        bt: Button
-    ) {
-        try {
-            val progress2 = ProgressDialog(this)
-            progress2.setMessage("Uploading $str1.png and $str2.png  :) ")
-            progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-            progress2.isIndeterminate = true
-            progress2.show()
-            val filesDir = applicationContext.filesDir
-            val file = File(filesDir, "$str1.png")
-            val bos = ByteArrayOutputStream()
-            mBitmap1?.compress(Bitmap.CompressFormat.PNG, 0, bos)
-            val bitmapdata = bos.toByteArray()
-            val fos = FileOutputStream(file)
-            fos.write(bitmapdata)
-            fos.flush()
-            fos.close()
-            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-            val body =
-                MultipartBody.Part.createFormData("upload", file.name, reqFile)
-            val filesDir2 = applicationContext.filesDir
-            val file2 = File(filesDir2, "$str2.png")
-            val bos2 = ByteArrayOutputStream()
-            mBitmap2?.compress(Bitmap.CompressFormat.PNG, 0, bos2)
-            val bitmapdata2 = bos2.toByteArray()
-            val fos2 = FileOutputStream(file2)
-            fos2.write(bitmapdata2)
-            fos2.flush()
-            fos2.close()
-            val reqFile2 = RequestBody.create(MediaType.parse("image/*"), file2)
-            val body2 =
-                MultipartBody.Part.createFormData("upload", file2.name, reqFile2)
-            val name = RequestBody.create(MediaType.parse("text/plain"), "upload")
-            val req: Call<ResponseBody?>? = retrofitInterface2?.postMultipleImage(body, body2)
-            req!!.enqueue(object : Callback<ResponseBody?> {
-                override fun onResponse(
-                    call: Call<ResponseBody?>?,
-                    response: Response<ResponseBody?>
-                ) {
-                    if (response.code() == 200) {
-                        Toast.makeText(
-                            applicationContext,
-                            "file uploaded",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        bt.text = "UPLOADED"
-                        bt.background = getDrawable(R.drawable.button_shape2)
-                        progress2.dismiss()
-                    }
-                    else
-                    {
-                        Toast.makeText(
-                            applicationContext,
-                            "file  not uploaded",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    progress2.dismiss()
-                }
 
-                override fun onFailure(call: Call<ResponseBody?>?, t: Throwable) {
 
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT)
-                        .show()
-                    t.printStackTrace()
-                    progress2.dismiss()
-                }
-            })
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
 
-    @NonNull
-    private fun createPartFromString(descriptionString: String): RequestBody {
-        return RequestBody.create(
-            MultipartBody.FORM, descriptionString
-        )
-    }
-
-    @NonNull
-    private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
-        val file = File(fileUri.toString())
-        val requestFile =
-            RequestBody.create(
-                MediaType.parse(contentResolver.getType(fileUri)),
-                file
-            )
-        return MultipartBody.Part.createFormData(partName, file.name, requestFile)
-    }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
         val config = Configuration()

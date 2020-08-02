@@ -32,6 +32,7 @@ class fourth : AppCompatActivity() {
     private lateinit var husbandorfather: String
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var ch: Int = 0
+    var ses=0
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,60 @@ class fourth : AppCompatActivity() {
         loadLocate()
         page_4_progressBar.progress = 100
         page_4_enter_phn_no_1.text = intent.getStringExtra("phone")
+        val sharedPreferencesx = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val retrofitx: Retrofit = Retrofit.Builder()
+            .baseUrl("https://stet2020.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
+        var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
+        val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
+
+        callx!!.enqueue(object : Callback<Void?> {
+            override fun onResponse(
+                call: Call<Void?>?,
+                response: Response<Void?>
+            ) {
+                if (response.code() == 201) {
+
+                    val myEditx = sharedPreferencesx.edit()
+                    myEditx.putBoolean("login", false).apply()
+                    myEditx.putString("phone", "").apply()
+                    myEditx.putString("user_cookie", "").apply()
+                    Toast.makeText(
+                        this@fourth, getString(R.string.logkro),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val i = Intent(this@fourth, MainActivity::class.java)
+                    startActivity(i)
+                } else if (response.code() == 200) {
+
+                    ses=1
+                } else {
+                    Toast.makeText(
+                        this@fourth, getString(R.string.toastslowinternet),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+            }
+
+            override fun onFailure(
+                call: Call<Void?>?,
+                t: Throwable
+            ) {
+                Toast.makeText(
+                    this@fourth, getString(R.string.poorinternet),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
+        })
         page_4_back.setOnClickListener {
             val i = Intent(this, Register::class.java)
             i.putExtra("phone", page_4_enter_phn_no_1.text.toString())
@@ -77,8 +131,12 @@ class fourth : AppCompatActivity() {
         val map: HashMap<String?, String?> = HashMap()
 
         map["phone"] = page_4_enter_phn_no_1.text.toString()
-
-        val call1: Call<Important?>? = retrofitInterface.getDetails(map)
+        val sharedPreferences = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val cookie:String?=sharedPreferences.getString("user_cookie","")
+        val call1: Call<Important?>? = cookie?.let { retrofitInterface.getDetails(it,map) }
         call1!!.enqueue(object : Callback<Important?> {
             override fun onResponse(
                 call: Call<Important?>?,
@@ -118,7 +176,7 @@ class fourth : AppCompatActivity() {
         progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress2.isIndeterminate = true
         progress2.show()
-        val call2: Call<Personal?>? = retrofitInterface.getPersonal(map2)
+        val call2: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it,map2) }
         call2!!.enqueue(object : Callback<Personal?> {
             override fun onResponse(
                 call: Call<Personal?>?,
@@ -249,7 +307,13 @@ class fourth : AppCompatActivity() {
                 Personal["Phone2"] = page_4_enter_phn_no_2.text.toString()
                 Personal["Email1"] = page_4_enter_email_1.text.toString()
                 Personal["Email2"] = page_4_enter_email_2.text.toString()
-                val call: Call<Void?>? = retrofitInterface.executeDetail(Personal)
+                val sharedPreferences = getSharedPreferences(
+                    "Settings",
+                    Context.MODE_PRIVATE
+                )
+                val cookie:String?=sharedPreferences.getString("user_cookie","")
+                val call: Call<Void?>? =
+                    cookie?.let { it1 -> retrofitInterface.executeDetail(it1,Personal) }
                 call!!.enqueue(object : Callback<Void?> {
                     override fun onResponse(
                         call: Call<Void?>?,
@@ -317,7 +381,7 @@ class fourth : AppCompatActivity() {
         } else {
             Toast.makeText(
                 this@fourth,
-                "Either Leave address two all field empty\nOr fill all field correctly",
+                getString(R.string.additional),
                 Toast.LENGTH_SHORT
             ).show()
             1
@@ -414,7 +478,7 @@ class fourth : AppCompatActivity() {
             .noNumbers()
             .addErrorCallback {
                 editText.error =
-                    "Enter only Alphabets\n No Numbers  are allowed"
+                    getString(R.string.validname)
 
                 x = 1
             }
@@ -435,7 +499,7 @@ class fourth : AppCompatActivity() {
             .maxLength(d)
             .minLength(d)
             .addErrorCallback {
-                editText.error = "Enter $d digit Number Only"
+                editText.error = getString(R.string.enterupto) + d + getString(R.string.digitonlu)
                 x = 1
             }
             .addSuccessCallback {
