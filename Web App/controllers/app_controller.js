@@ -3,10 +3,13 @@ const Personal = require("../models/personal_model");
 const File = require("../models/fileupload_model");
 const SignUp = require("../models/signup_model");
 const Razorpay = require("../node_modules/razorpay");
+const Registration = require("../models/registration_model");
 const mongoose = require("mongoose");
 const GridFsStorage = require("multer-gridfs-storage");
 const multer = require("../node_modules/multer");
-const Registration = require("../models/registration_model");
+const crypto = require("crypto");
+const url =
+  "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/Mongodb?retryWrites=true&w=majority";
 
 // Global Variables
 var academic_exam = "";
@@ -30,139 +33,12 @@ var sex = "";
 var phone = "";
 var email = "";
 var current_number = "";
-const url =
-  "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/Mongodb?retryWrites=true&w=majority";
 var today = new Date();
 var date =
   today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 var time =
   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var datetime = date + " " + time;
-
-//Document Upload Functions Start
-
-// const GridFsStorage = require("multer-gridfs-storage");
-// const multer = require("../node_modules/multer");
-// const db = require("../db/db");
-// const mongoose = require("mongoose");
-// const crypto = require("crypto");
-// const database = mongoose.connect(
-//   "mongodb+srv://lakshya:lakshya1234@sihcluster-cvexm.mongodb.net/sihtest?retryWrites=true&w=majority",
-//   { useNewUrlParser: true, useUnifiedTopology: true }
-// );
-
-// db.once("open", () => {
-//   gfs = new mongoose.mongo.GridFSBucket(db.db, { bucketName: "docuploads" });
-// });
-
-//create storage
-// const storage = new GridFsStorage({
-//   db: database,
-//   options: { useUnifiedTopology: true },
-//   file: (req, file) => {
-//     return new Promise((resolve, reject) => {
-//       crypto.randomBytes(16, (err, buf) => {
-//         if (err) {
-//           return reject(err);
-//         }
-//         const filename = file.originalname;
-//         const fileInfo = {
-//           filename: filename,
-//           bucketName: "uploads",
-//         };
-//         resolve(fileInfo);
-//       });
-//     });
-//   },
-// });
-
-// addFile = multer({
-//   storage: storage,
-// }).single("upload", (req, res) => {
-//   console.log(req.file);
-//   console.log(req.file);
-//   console.log(req.file.filename);
-//   return res.status(200).json({
-//     success: true,
-//     message: "File Uploaded Successfully",
-//   });
-// });
-
-// var ObjectId = require("mongodb").ObjectID;
-// var Grid = require("gridfs-stream");
-// Grid.mongo = mongoose;
-
-// getFile = (req, res) => {
-//   // gfs = Grid(db);
-//   var filename = req.params.id;
-//   console.log("Filename :" + filename);
-//   // var readstream = gfs.createReadStream({
-//   //   _id: ObjectId("5f16e7c1b011c80357ee8e4d"),
-//   // });
-//   // readstream.on("error", (err) => {
-//   //   res.send("No Image found");
-//   // });
-//   // readstream.pipe(res);
-//   db.collection("uploads").findOne(
-//     { _id: ObjectId("5f16e7c1b011c80357ee8e4d") },
-//     (err, result) => {
-//       if (err) return console.log(err);
-//       console.log(result);
-//       res.contentType("image/png");
-//       //res.send(result.image.buffer);
-//     }
-//   );
-// };
-
-// const storage = multer.diskStorage({
-//   destination: "./public/",
-//   filename: function (req, file, cb) {
-//     cb(null, "IMAGE-" + Date.now() + file.originalname);
-//   },
-// });
-
-// const upload = multer({
-//   storage: storage,
-//   limits: { fileSize: 1000000 },
-// }).fields([
-//   { name: "passport_photo", maxCount: 1 },
-//   { name: "birth_certificate", maxCount: 1 },
-//   { name: "community_certificate", maxCount: 1 },
-//   { name: "scanned_signature", maxCount: 1 },
-//   { name: "sikkim_sub_certificate", maxCount: 1 },
-//   { name: "aadhar_card", maxCount: 1 },
-//   { name: "eleven_marksheet", maxCount: 1 },
-//   { name: "twelve_marksheet", maxCount: 1 },
-//   { name: "graduation_marksheet", maxCount: 1 },
-//   { name: "graduation_certificate", maxCount: 1 },
-// ]);
-
-// addFile = (req, res) => {
-//   upload(req, res, () => {
-//     console.log("Request ---", req.body);
-//     console.log("Request files ---", req.files);
-//     const file = new File();
-//     file.passport_photo = req.files["passport_photo"][0];
-//     file.birth_certificate = req.files["birth_certificate"][0];
-//     file.community_certificate = req.files["community_certificate"][0];
-//     file.scanned_signature = req.files["scanned_signature"][0];
-//     file.aadhar_card = req.files["aadhar_card"][0];
-//     file.eleven_marksheet = req.files["eleven_marksheet"][0];
-//     file.twelve_marksheet = req.files["twelve_marksheet"][0];
-//     file.graduation_marksheet = req.files["graduation_marksheet"][0];
-//     file.graduation_certificate = req.files["graduation_certificate"][0];
-//     file
-//       .save()
-//       .then(() => {
-//         res.send({ message: "uploaded successfully" });
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   });
-// };
-
-//Document Upload Functions End
 
 //Academic Details Functions Start
 
@@ -470,97 +346,93 @@ getRegistration = (req, res) => {
     console.log("Docs" + docs);
     console.log("Error" + err);
     if (!docs) {
-      res.status(500).json({
-        success: false,
-        error: "Please Update Academic Details",
+      res.json({
+        msg: "Please Update Academic Details",
       });
     } else {
       academic_exam = docs.App_Category;
-    }
-  });
-
-  Personal.findOne({ Phone_Number: current_number }, (err, docs) => {
-    console.log("Docs" + docs);
-    console.log("Error" + err);
-    if (!docs) {
-      res.status(500).json({
-        success: false,
-        error: "Please Update Personal Details",
-      });
-    } else {
-      fname = docs.Fname;
-      mname = docs.Mname;
-      lname = docs.Lname;
-      ffname = docs.FHFname;
-      fmname = docs.FHMname;
-      flname = docs.FHLname;
-      mfname = docs.MFname;
-      mmname = docs.MMname;
-      mlname = docs.MLname;
-      category = docs.Category;
-      aadhar = docs.Aadhar;
-      dob = docs.DOB;
-      address = docs.AddressOne;
-      district = docs.DistrictOne;
-      state = docs.StateOne;
-      pincode = docs.PinCodeOne;
-      sex = docs.Gender;
-      phone = current_number;
-      email = docs.Email1;
-    }
-  });
-
-  Registration.findOne({ phone: current_number }, (err, docs) => {
-    console.log("Docs" + docs);
-    console.log("Error" + err);
-    if (!docs) {
-      res.json({
-        msg:
-          "New Candidate Found, Please Check Details and press 'Register Candidate'",
-        fname: fname,
-        mname: mname,
-        lname: lname,
-        ffname: ffname,
-        fmname: fmname,
-        flname: flname,
-        mfname: mfname,
-        mmname: mmname,
-        mlname: mlname,
-        category: category,
-        aadhar: aadhar,
-        dob: dob,
-        address: address,
-        district: district,
-        state: state,
-        pincode: pincode,
-        sex: sex,
-        phone: current_number,
-        email: email,
-        exam: academic_exam,
-      });
-    } else {
-      res.json({
-        msg: "Candidate Already Registered",
-        fname: docs.fname,
-        mname: docs.mname,
-        lname: docs.lname,
-        ffname: docs.ffname,
-        fmname: docs.fmname,
-        flname: docs.flname,
-        mfname: docs.mfname,
-        mmname: docs.mmname,
-        mlname: docs.mlname,
-        category: docs.category,
-        aadhar: docs.aadhar,
-        dob: docs.dob,
-        address: docs.address,
-        district: docs.district,
-        state: docs.state,
-        pincode: docs.pincode,
-        sex: docs.sex,
-        phone: current_number,
-        email: docs.email,
-        exam: docs.exam,
+      Personal.findOne({ Phone_Number: current_number }, (err, docs) => {
+        console.log("Docs" + docs);
+        console.log("Error" + err);
+        if (!docs) {
+          res.json({
+            msg: "Please Update Personal Details",
+          });
+        } else {
+          fname = docs.Fname;
+          mname = docs.Mname;
+          lname = docs.Lname;
+          ffname = docs.FHFname;
+          fmname = docs.FHMname;
+          flname = docs.FHLname;
+          mfname = docs.MFname;
+          mmname = docs.MMname;
+          mlname = docs.MLname;
+          category = docs.Category;
+          aadhar = docs.Aadhar;
+          dob = docs.DOB;
+          address = docs.AddressOne;
+          district = docs.DistrictOne;
+          state = docs.StateOne;
+          pincode = docs.PinCodeOne;
+          sex = docs.Gender;
+          phone = current_number;
+          email = docs.Email1;
+          Registration.findOne({ phone: current_number }, (err, docs) => {
+            console.log("Docs" + docs);
+            console.log("Error" + err);
+            if (!docs) {
+              res.json({
+                msg:
+                  "New Candidate Found, Please Check Details and press 'Register Candidate'",
+                fname: fname,
+                mname: mname,
+                lname: lname,
+                ffname: ffname,
+                fmname: fmname,
+                flname: flname,
+                mfname: mfname,
+                mmname: mmname,
+                mlname: mlname,
+                category: category,
+                aadhar: aadhar,
+                dob: dob,
+                address: address,
+                district: district,
+                state: state,
+                pincode: pincode,
+                sex: sex,
+                phone: current_number,
+                email: email,
+                exam: academic_exam,
+              });
+            } else {
+              res.json({
+                msg: "Candidate Already Registered",
+                fname: docs.fname,
+                mname: docs.mname,
+                lname: docs.lname,
+                ffname: docs.ffname,
+                fmname: docs.fmname,
+                flname: docs.flname,
+                mfname: docs.mfname,
+                mmname: docs.mmname,
+                mlname: docs.mlname,
+                category: docs.category,
+                aadhar: docs.aadhar,
+                dob: docs.dob,
+                address: docs.address,
+                district: docs.district,
+                state: docs.state,
+                pincode: docs.pincode,
+                sex: docs.sex,
+                phone: current_number,
+                email: docs.email,
+                exam: docs.exam,
+              });
+            }
+          });
+        }
       });
     }
   });
@@ -577,14 +449,6 @@ const promise = mongoose.connect(url, {
 
 //******************************************************************************************************************* */
 
-// const conn1 = mongoose.connection;
-// let gfs1;
-// conn1.once("open", () => {
-//   gfs1 = new mongoose.mongo.GridFSBucket(conn1.db, {
-//     bucketName: "Aadhar_Documents",
-//   });
-// });
-
 storage1 = new GridFsStorage({
   db: promise,
   options: { useUnifiedTopology: true },
@@ -596,7 +460,7 @@ storage1 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Aadhar_Documents",
         };
         resolve(fileInfo);
@@ -605,29 +469,18 @@ storage1 = new GridFsStorage({
   },
 });
 
-(uploadAadhar = multer({
+uploadAadhar = multer({
   storage: storage1,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).json({
-      success: true,
-      message: "File Uploaded Successfully",
-    });
-  };
+});
+
+function uploadAadharFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
-
-// const conn2 = mongoose.connection;
-// let gfs2;
-
-// conn2.once("open", () => {
-//   gfs2 = new mongoose.mongo.GridFSBucket(conn2.db, {
-//     bucketName: "Tenth_Documents",
-//   });
-// });
 
 storage2 = new GridFsStorage({
   db: promise,
@@ -640,7 +493,7 @@ storage2 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Tenth_Documents",
         };
         resolve(fileInfo);
@@ -648,15 +501,17 @@ storage2 = new GridFsStorage({
     });
   },
 });
-(uploadTenth = multer({
+
+uploadTenth = multer({
   storage: storage2,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadTenthFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -680,7 +535,7 @@ storage3 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Twelveth_Documents",
         };
         resolve(fileInfo);
@@ -688,15 +543,17 @@ storage3 = new GridFsStorage({
     });
   },
 });
-(uploadTwelveth = multer({
+
+uploadTwelveth = multer({
   storage: storage3,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadTwelvethFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -720,7 +577,7 @@ storage4 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Sikkim_Subject_Documents",
         };
         resolve(fileInfo);
@@ -728,15 +585,17 @@ storage4 = new GridFsStorage({
     });
   },
 });
-(uploadSubject = multer({
+
+uploadSubject = multer({
   storage: storage4,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadSubjectFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -760,7 +619,7 @@ storage5 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Signature_Documents",
         };
         resolve(fileInfo);
@@ -768,15 +627,17 @@ storage5 = new GridFsStorage({
     });
   },
 });
-(uploadSignature = multer({
+
+uploadSignature = multer({
   storage: storage5,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadSignatureFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -800,7 +661,7 @@ storage6 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Photo_Documents",
         };
         resolve(fileInfo);
@@ -809,15 +670,16 @@ storage6 = new GridFsStorage({
   },
 });
 
-(uploadPhoto = multer({
+uploadPhoto = multer({
   storage: storage6,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadPhotoFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -841,7 +703,7 @@ storage7 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Birth_Certificate_Documents",
         };
         resolve(fileInfo);
@@ -850,15 +712,16 @@ storage7 = new GridFsStorage({
   },
 });
 
-(uploadBirth = multer({
+uploadBirth = multer({
   storage: storage7,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadBirthFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 
@@ -882,7 +745,7 @@ storage8 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Graduation_Certificate_Documents",
         };
         resolve(fileInfo);
@@ -891,15 +754,16 @@ storage8 = new GridFsStorage({
   },
 });
 
-(uploadGradCir = multer({
+uploadGradCir = multer({
   storage: storage8,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadGradCirFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 // const conn9 = mongoose.connection;
@@ -922,7 +786,7 @@ storage9 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Graduation_Marksheet_Documents",
         };
         resolve(fileInfo);
@@ -931,15 +795,16 @@ storage9 = new GridFsStorage({
   },
 });
 
-(uploadGradMark = multer({
+uploadGradMark = multer({
   storage: storage9,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadGradMarkFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //******************************************************************************************************************* */
 // const conn10 = mongoose.connection;
@@ -962,7 +827,7 @@ storage10 = new GridFsStorage({
         }
         const filename = file.originalname;
         const fileInfo = {
-          filename: filename,
+          filename: current_number + "_" + filename,
           bucketName: "Community_Certificate_Documents",
         };
         resolve(fileInfo);
@@ -970,15 +835,17 @@ storage10 = new GridFsStorage({
     });
   },
 });
-(uploadComm = multer({
+
+uploadComm = multer({
   storage: storage10,
-}).single("upload")),
-  function (req, res) {
-    console.log(req.file);
-    console.log(req.body);
-    console.log(req.file.filename);
-    return res.status(200).end();
-  };
+});
+
+function uploadCommFun(req, res) {
+  console.log(req.file);
+  console.log(req.body);
+  console.log(req.file.filename);
+  return res.status(200).end();
+}
 
 //Document Upload End *************************************************************************************************
 
@@ -989,16 +856,26 @@ module.exports = {
   razorPay,
   createUser,
   verifyUser,
-  uploadAadhar,
-  uploadBirth,
-  uploadComm,
-  uploadGradCir,
-  uploadGradMark,
-  uploadPhoto,
-  uploadSignature,
-  uploadSubject,
-  uploadTenth,
-  uploadTwelveth,
   registerUser,
   getRegistration,
+  uploadAadhar,
+  uploadAadharFun,
+  uploadBirth,
+  uploadBirthFun,
+  uploadComm,
+  uploadCommFun,
+  uploadGradCir,
+  uploadGradCirFun,
+  uploadGradMark,
+  uploadGradMarkFun,
+  uploadPhoto,
+  uploadPhotoFun,
+  uploadSignature,
+  uploadSignatureFun,
+  uploadSubject,
+  uploadSubjectFun,
+  uploadTenth,
+  uploadTenthFun,
+  uploadTwelveth,
+  uploadTwelvethFun,
 };

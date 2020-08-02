@@ -8,7 +8,7 @@ const appRouter = require("./routes/routes");
 const emailRouter = require("./routes/test_routes");
 
 const app = express();
-const { PORT } = require("./config") ;
+const { PORT } = require("./config");
 const apiPort = PORT;
 
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -78,8 +78,7 @@ class SignUp extends Component {
       .then((data) => {
         this.setState({ sendingEmail: false });
         window.alert(data.msg);
-        window.location.href = "./validate";
-        //  this.form.reset();
+        this.form.reset();
       })
       .catch((err) => console.log(err));
   }
@@ -108,6 +107,7 @@ class SignUp extends Component {
             placeholder="Name..."
             value={Name}
             onChange={this.handleChangeName}
+            required="true"
           />
           <label htmlFor="emailid">
             <p>{t("welcome.EnterEmailId")}</p>
@@ -119,32 +119,37 @@ class SignUp extends Component {
             placeholder="Email_id.."
             value={Email_id}
             onChange={this.handleChangeEmail}
+            required="true"
           />
 
           <label htmlFor="aadharno">
             <p>{t("welcome.EnterAadharNumber")}</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="Aadhar_no"
             name="Aadhar_no"
             placeholder="Aadhar_no.."
             value={Aadhar_no}
             onChange={this.handleChangeAadhar}
-            maxLength={12}
+            pattern="(?=.*\d).{12,}"
+            required="true"
+            title="Please Enter 12-digit Aadhar Number"
           />
 
           <label htmlFor="phoneno">
             <p>{t("welcome.EnterPhoneNumber")}</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="Phone_no"
             name="Phone_no"
             placeholder="Phone_no.."
             value={Phone_no}
             onChange={this.handleChangePhone}
-            maxLength={10}
+            pattern="[0-9]{10,}"
+            required="true"
+            title="Please Enter 10-digit Mobile Number"
           />
 
           <label htmlFor="password">
@@ -159,6 +164,7 @@ class SignUp extends Component {
             onChange={this.handleChangePassword}
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{5,}"
             title="Must contain at least one number, one lowercase, one uppercase letter, one special character and at least 5 or more characters"
+            required="true"
           />
           <div className="myheader">
             <br />

@@ -5,6 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import common_hi from "./translations/hi/common.json";
 import common_en from "./translations/en/common.json";
+import common_ne from "./translations/ne/common.json";
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -15,6 +16,9 @@ i18next.init({
     },
     hi: {
       common: common_hi,
+    },
+    ne: {
+      common: common_ne,
     },
   },
 });

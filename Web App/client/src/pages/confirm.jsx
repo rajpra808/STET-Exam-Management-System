@@ -77,22 +77,21 @@ class Confirm extends Component {
   }
 
   componentDidMount = () => {
-    // const { id } = this.props.match.params;
-    // fetch(`${API_URL}/confirmation/email/confirm/${id}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     this.setState({
-    //       confirming: false,
-    //       Name: data.name,
-    //       Email_id: data.email,
-    //       Aadhar_no: data.aadhar_no,
-    //       Phone_no: data.phone_no,
-    //       Password: data.pwd,
-    //     });
-    //     numberInput = data.aadhar_no;
-    //     window.alert(data.msg);
-    //   })
-    //   .catch((err) => console.log(err));
+    const { id } = this.props.match.params;
+    fetch(`${API_URL}/confirmation/email/confirm/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          confirming: false,
+          Name: data.name,
+          Email_id: data.email,
+          Aadhar_no: data.aadhar_no,
+          Phone_no: data.phone_no,
+          Password: data.pwd,
+        });
+        window.alert(data.msg);
+      })
+      .catch((err) => console.log(err));
   };
   handleChangeName = async (event) => {
     const Name = event.target.value;
@@ -230,7 +229,11 @@ class Confirm extends Component {
           <div className="myheader">
             <br />
             <div className="myheader">
-              <input type="button" value="Verify Email" disabled={"disabled"} />
+              <input
+                type="button"
+                value="Email Verified"
+                disabled={"disabled"}
+              />
               <br />
               <br />
               <input

@@ -19,7 +19,6 @@ class DocumentUpload extends Component {
       graduation_certificate: null,
     };
 
-    this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChangepp = this.onChangepp.bind(this);
     this.onChangebc = this.onChangebc.bind(this);
     this.onChangecc = this.onChangecc.bind(this);
@@ -31,6 +30,15 @@ class DocumentUpload extends Component {
     this.onChangegm = this.onChangegm.bind(this);
     this.onChangegc = this.onChangegc.bind(this);
     this.onSubmitbc = this.onSubmitbc.bind(this);
+    this.onSubmitac = this.onSubmitac.bind(this);
+    this.onSubmitpp = this.onSubmitpp.bind(this);
+    this.onSubmitcc = this.onSubmitcc.bind(this);
+    this.onSubmitss = this.onSubmitss.bind(this);
+    this.onSubmitsc = this.onSubmitsc.bind(this);
+    this.onSubmitem = this.onSubmitem.bind(this);
+    this.onSubmitgm = this.onSubmitgm.bind(this);
+    this.onSubmittm = this.onSubmittm.bind(this);
+    this.onSubmitgc = this.onSubmitgc.bind(this);
   }
 
   onFormSubmit(e) {
@@ -118,13 +126,202 @@ class DocumentUpload extends Component {
         alert("Files not Uploaded!");
       });
   }
+  onSubmitac(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.aadhar_card);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadAadhar`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitpp(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.passport_photo);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadPhoto`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitcc(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.community_certificate);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadComm`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitss(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.scanned_signature);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadSign`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitsc(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.sikkim_sub_certificate);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadSubject`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitem(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.eleven_marksheet);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadTenth`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitgm(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.graduation_marksheet);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadGradMark`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmittm(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.twelve_marksheet);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadTwelveth`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
+  onSubmitgc(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("upload", this.state.graduation_certificate);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData);
+    axios
+      .post(`${API_URL}/details/uploadGradCir`, formData, config)
+      .then((response) => {
+        alert("File Uploaded Successfully!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Files not Uploaded!");
+      });
+  }
 
   render() {
     return (
       <div>
         <Navbar />
         <br />
-        <form onSubmit={this.onFormSubmit}>
+        <form>
           <div className="meter">
             <span id="myspan"></span>
           </div>
@@ -138,6 +335,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload Passport Photo"
+            onClick={this.onSubmitpp}
           />
           <hr id="myhr" />
           <p>Upload your Birth Certificate.</p>
@@ -161,6 +359,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload Community Certificate."
+            onClick={this.onSubmitcc}
           />
 
           <hr id="myhr" />
@@ -175,6 +374,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload scanned signature."
+            onClick={this.onSubmitss}
           />
 
           <hr id="myhr" />
@@ -190,6 +390,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload Sikkim subject Certificate."
+            onClick={this.onSubmitsc}
           />
 
           <hr id="myhr" />
@@ -199,7 +400,8 @@ class DocumentUpload extends Component {
           <input
             type="button"
             name="passport_button"
-            value="Upload Passport Photo"
+            value="Upload scanned Aadhar Card"
+            onClick={this.onSubmitac}
           />
           <hr id="myhr" />
           <p>Upload your scanned 11th Marksheet/Certificate.</p>
@@ -212,7 +414,8 @@ class DocumentUpload extends Component {
           <input
             type="button"
             name="passport_button"
-            value="Upload scanned Aadhar Card"
+            value="Upload scanned 11th Marksheet/Certificate."
+            onClick={this.onSubmitem}
           />
           <hr id="myhr" />
           <p>Upload your scanned 12th Marksheet/Certificate.</p>
@@ -226,6 +429,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload scanned 12th Marksheet/Certificate"
+            onClick={this.onSubmittm}
           />
           <hr id="myhr" />
           <p>Upload your scanned Graduation Marksheet.</p>
@@ -239,6 +443,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload scanned Graduation Marksheet"
+            onClick={this.onSubmitgm}
           />
           <hr id="myhr" />
           <p>Upload your scanned Graduation Certificate.</p>
@@ -252,6 +457,7 @@ class DocumentUpload extends Component {
             type="button"
             name="passport_button"
             value="Upload scanned Graduation Certificate"
+            onClick={this.onSubmitgc}
           />
           <hr id="myhr" />
         </form>

@@ -29,7 +29,7 @@ function App() {
         <Route path="/otp" component={NameForm} />
         <Route exact path="/" component={Home} />
         <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/confirm" component={Confirm} />
+        <Route exact path="/confirm/:id" component={Confirm} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/validate" component={Validate} />
         <Route exact path="/admit" component={AdmitCard} />

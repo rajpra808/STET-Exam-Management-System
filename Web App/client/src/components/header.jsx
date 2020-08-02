@@ -10,6 +10,7 @@ class Header extends Component {
       <header>
         <button onClick={() => i18n.changeLanguage("hi")}>hi</button>
         <button onClick={() => i18n.changeLanguage("en")}>en</button>
+        <button onClick={() => i18n.changeLanguage("ne")}>ne</button>
         <div className="myheader">
           <img src="sikkim.png" alt="" />
           <h1>{t("welcome.title")}</h1>

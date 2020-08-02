@@ -55,6 +55,7 @@ textarea {
   overflow: hidden;
 }
 /* Style the submit button with a specific background color etc */
+
 input[type="submit"],
 input[type="button"] {
   text-align: center;
