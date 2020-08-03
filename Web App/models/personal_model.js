@@ -67,7 +67,7 @@ const personal = mongoose.Schema({
     required: true,
   },
   PinCodeOne: {
-    type: Number,
+    type: String,
     required: true,
   },
   AddressTwo: {
@@ -80,10 +80,10 @@ const personal = mongoose.Schema({
     type: String,
   },
   PinCodeTwo: {
-    type: Number,
+    type: String,
   },
   Phone1: {
-    type: Number,
+    type: String,
     required: true,
   },
   Email1: {
@@ -91,13 +91,13 @@ const personal = mongoose.Schema({
     required: true,
   },
   Phone2: {
-    type: Number,
+    type: String,
   },
   Email2: {
     type: String,
   },
   Phone_Number: {
-    type: Number,
+    type: String,
   },
 });
 

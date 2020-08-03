@@ -14,7 +14,7 @@ const academic = mongoose.Schema({
     required: true,
   },
   Percentage: {
-    type: Number,
+    type: String,
     required: true,
   },
   Pro_Qual: {
@@ -26,7 +26,7 @@ const academic = mongoose.Schema({
     required: true,
   },
   Phone_Number: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

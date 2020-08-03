@@ -32,7 +32,6 @@ class Login extends Component {
       Password,
     };
     console.log(payload);
-
     axios
       .post(`${API_URL}/details/login`, payload)
       .then((res) => {
@@ -42,7 +41,7 @@ class Login extends Component {
           Phone_no: "",
           Password: "",
         });
-        window.location.href = "/personal";
+        window.location.assign("/personal");
       })
       .catch((err) => {
         window.alert(`Error : ` + err);
@@ -67,7 +66,7 @@ class Login extends Component {
             <p>{t("welcome.EnterPhoneNumber")}</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="Phone_no"
             name="Phone_no"
             placeholder="Phone_no.."

@@ -40,7 +40,7 @@ const Registration = mongoose.Schema({
     required: true,
   },
   aadhar: {
-    type: Number,
+    type: String,
     required: true,
   },
   dob: {
@@ -59,7 +59,7 @@ const Registration = mongoose.Schema({
     required: true,
   },
   pincode: {
-    type: Number,
+    type: String,
     required: true,
   },
   sex: {
@@ -67,7 +67,7 @@ const Registration = mongoose.Schema({
     required: true,
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
   },
   email: {

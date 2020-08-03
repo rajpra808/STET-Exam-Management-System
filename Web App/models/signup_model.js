@@ -8,10 +8,10 @@ const signup = mongoose.Schema({
     type: String,
   },
   Aadhar_no: {
-    type: Number,
+    type: String,
   },
   Phone_no: {
-    type: Number,
+    type: String,
     required: true,
   },
   Password: {

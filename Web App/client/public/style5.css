@@ -1,17 +1,15 @@
 .content-box-gray {
-  padding-left: 100px;
   box-sizing: border-box;
-  display: list-item;
   float: none;
-  line-height: 50px;
+  line-height: 35px;
   position: static;
   z-index: auto;
-  font-size: 30px;
-
+  font-size: 26px;
+  margin-left: 5px;
   color: black;
 }
 .content-box-gray a {
-  text-decoration: underline;
+  text-decoration: none;
   color: black;
 }
 .content-box-gray a:hover {
@@ -20,10 +18,11 @@
 
 .parody {
   text-align: center;
+  font-size: larger;
 }
 .parody p {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .faq1 p {

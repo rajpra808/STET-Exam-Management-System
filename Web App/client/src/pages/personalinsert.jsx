@@ -7,8 +7,9 @@ import { withTranslation } from "react-i18next";
 //import { BrowserRouter, Route, Link } from "react-router-dom";
 
 // OTP Verification Functions Start
-let numberInput, check;
-const token = 123456789;
+//let numberInput,
+let check;
+//const token = 123456789;
 //let phno = 0;
 
 class PersonalInsert extends Component {
@@ -43,9 +44,49 @@ class PersonalInsert extends Component {
       Email1: "",
       Phone2: "",
       Email2: "",
+      currentUser: "",
     };
   }
-
+  componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`)
+      .then((res) => res.json())
+      .then((data) => {
+        const Name = localStorage.getItem(data.phone_no);
+        console.log(Name);
+        if (Name) {
+          this.setState({
+            currentUser: Name,
+          });
+        } else {
+          localStorage.setItem(data.phone_no, data.Name);
+          this.setState({
+            currentUser: data.Name,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+/*
+componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`, {
+      credentials: 'include'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.phone_no != null){
+          this.setState({
+            currentUser: data.phone_no
+          });
+        }
+        else
+        {
+          window.alert("Session Expired");
+          window.location.assign("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+*/
   handleChangeFname = async (event) => {
     const Fname = event.target.value;
     this.setState({ Fname });
@@ -100,7 +141,7 @@ class PersonalInsert extends Component {
   };
   handleChangeAadhar = async (event) => {
     const Aadhar = event.target.value;
-    numberInput = Aadhar;
+    //numberInput = Aadhar;
     this.setState({ Aadhar });
   };
   handleChangeAddress1 = async (event) => {
@@ -284,14 +325,16 @@ class PersonalInsert extends Component {
       PinCodeTwo,
       Phone2,
       Email2,
+      currentUser,
     } = this.state;
     return (
       <div className="container1">
         <Navbar />
         <br />
+        <p>Current User : {currentUser}</p>
         <form onSubmit={this.onSubmit}>
           <div className="meter">
-            <span id="myspan2"></span>
+            <span id="myspan3"></span>
           </div>
 
           <div className="myheader">
@@ -453,7 +496,7 @@ class PersonalInsert extends Component {
           <p>{t("welcome.AadharNo")}</p>
           <label htmlFor="aadhar"></label>
           <input
-            type="number"
+            type="text"
             id="aadhar"
             name="aadhar"
             placeholder="Aadhar No.."
@@ -547,7 +590,7 @@ class PersonalInsert extends Component {
             <p>{t("welcome.PinCode1")}</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="zip1"
             name="Zip1"
             placeholder="Pin Code.."
@@ -556,16 +599,18 @@ class PersonalInsert extends Component {
           />
 
           <label htmlFor="zip1">
-            <p>{t("welcome.PhoneNumber1")}</p>+91-
+            <p>{t("welcome.PhoneNumber1")}</p>
+            <p>+91-</p>
+            <input
+              type="text"
+              id="zip1"
+              name="phone1"
+              placeholder="Phone Number.."
+              value={Phone1}
+              onChange={this.handleChangePhone1}
+            />
           </label>
-          <input
-            type="number"
-            id="zip1"
-            name="phone1"
-            placeholder="Phone Number.."
-            value={Phone1}
-            onChange={this.handleChangePhone1}
-          />
+
           <br />
 
           <label htmlFor="email1">
@@ -659,27 +704,29 @@ class PersonalInsert extends Component {
 
           <label htmlFor="zip2">
             <p>{t("welcome.PinCode2")}</p>
+            <input
+              type="text"
+              id="zip"
+              name="Zip"
+              placeholder="Pin Code.."
+              value={PinCodeTwo}
+              onChange={this.handleChangePincode2}
+            />
           </label>
-          <input
-            type="number"
-            id="zip"
-            name="Zip"
-            placeholder="Pin Code.."
-            value={PinCodeTwo}
-            onChange={this.handleChangePincode2}
-          />
 
           <label htmlFor="zip2">
-            <p>{t("welcome.PhoneNumber2")}</p>+91-
+            <p>{t("welcome.PhoneNumber2")}</p>
+            <p>+91-</p>
+            <input
+              type="number"
+              id="zip2"
+              name="phone2"
+              placeholder="Phone Number.."
+              value={Phone2}
+              onChange={this.handleChangePhone2}
+            />
           </label>
-          <input
-            type="number"
-            id="zip2"
-            name="phone2"
-            placeholder="Phone Number.."
-            value={Phone2}
-            onChange={this.handleChangePhone2}
-          />
+
           <br />
 
           <label htmlFor="email">
@@ -695,6 +742,7 @@ class PersonalInsert extends Component {
           />
 
           <div className="myheader">
+            <br />
             <input
               type="checkbox"
               name="check"
@@ -707,11 +755,10 @@ class PersonalInsert extends Component {
             />
             {t("welcome.checkme")}
             <br />
+            <br />
           </div>
           <div className="myheader">
             <input type="submit" value="Add Personal Details" />
-            {/* <Link to="/"> Go to previous page </Link>
-            <Link to="/Academic"> Go to Academic part </Link> */}
           </div>
           <br />
         </form>

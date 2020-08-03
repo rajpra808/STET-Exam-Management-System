@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <div className="container1">
         <div className="parody">
           <div>
             <h2>{t("welcome.stet")}</h2>
@@ -64,7 +64,7 @@ class Home extends Component {
               </li>
               <br />
               <li>
-                <Link to="/">
+                <Link to="/Faq">
                   <span>{t("welcome.FAQs")}</span>
                 </Link>
               </li>

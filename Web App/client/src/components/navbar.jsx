@@ -12,28 +12,28 @@ class Navbar extends Component {
             <div id="menu">
               <ul>
                 <li>
-                  <Link to="/academic">
-                    <span>{t("welcome.AcademicDetails")}</span>
+                  <Link to="/personal">
+                    <input type="button" value={t("welcome.PersonalDetails")} />
                   </Link>
                 </li>
                 <li>
-                  <Link to="/personal">
-                    <span>{t("welcome.PersonalDetails")}</span>
+                  <Link to="/academic">
+                    <input type="button" value={t("welcome.AcademicDetails")} />
                   </Link>
                 </li>
                 <li>
                   <Link to="/docs">
-                    <span>{t("welcome.UploadDocuments")}</span>
+                    <input type="button" value={t("welcome.UploadDocuments")} />
                   </Link>
                 </li>
                 <li>
                   <Link to="/payment">
-                    <span>{t("welcome.Payment")}</span>
+                    <input type="button" value={t("welcome.Payment")} />
                   </Link>
                 </li>
                 <li>
                   <Link to="/admit">
-                    <span>{t("welcome.ViewAdmitCard")}</span>
+                    <input type="button" value={t("welcome.ViewAdmitCard")} />
                   </Link>
                 </li>
               </ul>

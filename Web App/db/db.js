@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    process.env.MONGODB_URI ||
       "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/Mongodb?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
@@ -15,3 +14,4 @@ mongoose
 
 const db = mongoose.connection;
 module.exports = db;
+// process.env.MONGODB_URI ||

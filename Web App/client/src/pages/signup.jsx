@@ -15,6 +15,7 @@ class SignUp extends Component {
       Phone_no: "",
       Password: "",
       sendingEmail: false,
+      currentUser: "",
     };
   }
 
@@ -59,6 +60,7 @@ class SignUp extends Component {
       sendingEmail,
     };
     console.log(payload);
+    localStorage.setItem(Phone_no, Name);
 
     fetch(`${API_URL}/confirmation/email`, {
       method: "pOSt",
@@ -81,6 +83,7 @@ class SignUp extends Component {
         this.form.reset();
       })
       .catch((err) => console.log(err));
+    window.location.assign("/validate");
   }
 
   render() {

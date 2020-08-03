@@ -17,8 +17,40 @@ class AcademicInsert extends Component {
       Percentage: "",
       Pro_Qual: "",
       University: "",
+      currentUser: "",
     };
   }
+  componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`)
+      .then((res) => res.json())
+      .then((data) => {
+        const Name = localStorage.getItem(data.phone_no);
+        this.setState({
+          currentUser: Name,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+ /* componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`, {
+      credentials: 'include'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.phone_no != null){
+          this.setState({
+            currentUser: data.phone_no
+          });
+        }
+        else
+        {
+          window.alert("Session Expired");
+          window.location.assign("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  }; */
 
   handleChangeAppCat = async (event) => {
     const App_Category = event.target.value;
@@ -81,7 +113,7 @@ class AcademicInsert extends Component {
         Pro_Qual: "",
         University: "",
       });
-      window.location.href = "/payment";
+      window.location.assign("/payment");
     });
   }
 
@@ -93,15 +125,17 @@ class AcademicInsert extends Component {
       Percentage,
       Pro_Qual,
       University,
+      currentUser,
     } = this.state;
     const { t } = this.props;
     return (
       <div className="container1">
         <Navbar />
         <br />
+        <p>Current User : {currentUser}</p>
         <form onSubmit={this.onSubmit}>
           <div className="meter">
-            <span className="myspan1"></span>
+            <span id="myspan2"></span>
           </div>
 
           <div className="myheader">
@@ -120,7 +154,7 @@ class AcademicInsert extends Component {
           >
             <option value="none">{t("welcome.None")}</option>
             <option value="Primary Teacher">
-              {t("welcome.Primary Teacher")}
+              {t("welcome.PrimaryTeacher")}
             </option>
             <option value="GT Art">{t("welcome.GTART(1to8)")}</option>
             <option value="GT Science">{t("welcome.GTSCIENCE(1to8)")}</option>
@@ -160,7 +194,9 @@ class AcademicInsert extends Component {
             <option value="Graduation">{t("welcome.Graduation")}</option>
           </select>
 
-          <label htmlFor="percentage">{t("welcome.Percentage")}</label>
+          <label htmlFor="percentage">
+            <p>{t("welcome.Percentage")}</p>
+          </label>
           <input
             type="text"
             id="percentage"
@@ -181,13 +217,15 @@ class AcademicInsert extends Component {
             value={Pro_Qual}
           >
             <option value="none">{t("welcome.None")}</option>
-            <option value="D.EI.Ed">{t("welcome.D.El.Ed.")}</option>
-            <option value="B.Ed">{t("welcome.B.Ed")}</option>
-            <option value="BA B.Ed">{t("welcome.BAB.ed")}</option>
-            <option value="BSc B.Ed">{t("welcome.BSc B.ed")}</option>
+            <option value="D.EI.Ed">{t("welcome.DElEd")}</option>
+            <option value="B.Ed">{t("welcome.BEd")}</option>
+            <option value="BA B.Ed">{t("welcome.BABed")}</option>
+            <option value="BSc B.Ed">{t("welcome.BScBed")}</option>
           </select>
 
-          <label htmlFor="univesity">{t("welcome.Univesity")}</label>
+          <label htmlFor="univesity">
+            <p>{t("welcome.Univesity")}</p>
+          </label>
           <input
             type="text"
             id="univesity"

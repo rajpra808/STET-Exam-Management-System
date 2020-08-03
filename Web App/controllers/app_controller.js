@@ -1,3 +1,4 @@
+const bcrypt = require("../node_modules/bcryptjs");
 const Academic = require("../models/academic_model");
 const Personal = require("../models/personal_model");
 const File = require("../models/fileupload_model");
@@ -10,6 +11,7 @@ const multer = require("../node_modules/multer");
 const crypto = require("crypto");
 const url =
   "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/Mongodb?retryWrites=true&w=majority";
+const mongoClient = require("mongodb").MongoClient;
 
 // Global Variables
 var academic_exam = "";
@@ -32,7 +34,7 @@ var pincode = "";
 var sex = "";
 var phone = "";
 var email = "";
-var current_number = "";
+var current_number = null;
 var today = new Date();
 var date =
   today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
@@ -207,6 +209,9 @@ createUser = (req, res) => {
       error: "Fill Required Details",
     });
   }
+  var hash_pwd = body.Password;
+  hash_pwd = bcrypt.hashSync(hash_pwd, 10);
+  body.Password = hash_pwd;
 
   const signup = new SignUp(body);
 
@@ -250,16 +255,25 @@ verifyUser = (req, res) => {
       error: "Fill Required Details",
     });
   }
-  const login = new SignUp(body);
+  //const login = new SignUp(body);
 
   SignUp.findOne({ Phone_no: body.Phone_no }, (err, docs) => {
     console.log(docs);
     if (docs != null) {
       current_number = docs.Phone_no;
-      return res.status(201).json({
-        success: true,
-        message: "Login Successfull",
-      });
+      if (bcrypt.compareSync(body.Password, docs.Password)) {
+        // req.session.user = {phone: docs.Phone_no};
+        // console.log(req.session.user);
+        return res.status(201).json({
+          success: true,
+          message: "Login Successfull",
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "Login Unsuccessfull",
+        });
+      }
     } else {
       console.log(err);
       return res.status(404).json({
@@ -309,7 +323,7 @@ registerUser = (req, res) => {
     exam: body.exam,
     exam_date: "20 October 2020",
     venue: "Sikkim",
-    eno: parseInt(Math.random() * 100000000, 10),
+    eno: phone_number,
     Date: datetime,
   });
 
@@ -325,6 +339,8 @@ registerUser = (req, res) => {
       registration
         .save()
         .then(() => {
+          // req.session.user = {phone: phone_number};
+          // console.log(req.session.user);
           return res.status(201).json({
             success: true,
             message: "Registration Successfull",
@@ -439,6 +455,42 @@ getRegistration = (req, res) => {
 };
 
 //Final Registration Functions********************************************************************************************
+
+//Test***********************************************************************************************************************
+currentUser = (req, res) => {
+  SignUp.findOne({ Phone_no: current_number }, (err, docs) => {
+    if (!docs) {
+      res.json({
+        msg: "Please Sign Up!",
+      });
+    } else {
+      res.json({
+        phone_no: docs.Phone_no,
+        Name: docs.Name,
+      });
+    }
+  }).catch((err) => {
+    res.json({
+      msg: "Unidentified Error Occurred.",
+    });
+  });
+};
+
+// currentUser = (req, res) => {
+//   console.log("I'm in");
+//   console.log(req.session.user.phone);
+//     if(req.session.user){
+//       res.json({
+//         phone_no: req.session.user.phone
+//       });
+//     }
+//     else
+//     {
+//       res.json({
+//         phone_no: null
+//       });
+//     }
+// };
 
 //Document Upload Start *************************************************************************************************
 
@@ -848,6 +900,49 @@ function uploadCommFun(req, res) {
 }
 
 //Document Upload End *************************************************************************************************
+/*Download Admit Card Start *************************************************************************************************/
+getAdmitCard = (req, res) => {
+  let fileName = req.params.filename;
+  console.log(fileName);
+  mongoClient.connect(url, function (err, client) {
+    if (err) {
+      throw err;
+    }
+    const db = client.db("Mongodb");
+    const collection = db.collection(req.params.coll + ".files");
+    const collectionChunks = db.collection(req.params.coll + ".chunks");
+    collection.find({ filename: fileName }).toArray(function (err, docs) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      if (!docs || docs.length === 0) {
+        return res.status(400).send();
+      } else {
+        collectionChunks
+          .find({ files_id: docs[0]._id })
+          .sort({ n: 1 })
+          .toArray(function (err, chunks) {
+            if (err) {
+              throw err;
+            }
+            if (!chunks || chunks.length === 0) {
+              return res.status(404).send();
+            }
+            let fileData = [];
+            for (let i = 0; i < chunks.length; i++) {
+              fileData.push(chunks[i].data.toString("base64"));
+            }
+            let finalFile =
+              "data:" + docs[0].contentType + ";base64," + fileData.join("");
+            console.log("File");
+            res.status(200).json({ imageURL: finalFile });
+          });
+      }
+    });
+  });
+};
+/*Download Admit Card Start ******************************************** ************************************/
 
 module.exports = {
   createAcademic,
@@ -878,4 +973,6 @@ module.exports = {
   uploadTenthFun,
   uploadTwelveth,
   uploadTwelvethFun,
+  currentUser,
+  getAdmitCard,
 };

@@ -6,7 +6,7 @@ class Validate extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      validatenumber:""
+      validatenumber: "",
     };
   }
 
@@ -15,21 +15,17 @@ class Validate extends Component {
     this.setState({ validatenumber });
   };
 
-
   onSubmit(event) {
     event.preventDefault();
-    const {
-        validatenumber
-    } = this.state;
-    
-    if (validatenumber === "3765") {
-        window.alert("Email Confirmed");
-        window.location.href="./confirm";
-    } else {
-        window.alert("Email not Confirmed, Please try again.");
-        window.location.href = "./signup"
-    }
+    const { validatenumber } = this.state;
 
+    if (validatenumber === "3765") {
+      window.alert("Email Confirmed");
+      window.location.assign("./confirm");
+    } else {
+      window.alert("Email not Confirmed, Please try again.");
+      window.location.assign("./signup");
+    }
   }
 
   render() {

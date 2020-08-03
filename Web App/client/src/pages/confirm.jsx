@@ -77,21 +77,24 @@ class Confirm extends Component {
   }
 
   componentDidMount = () => {
-    const { id } = this.props.match.params;
-    fetch(`${API_URL}/confirmation/email/confirm/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          confirming: false,
-          Name: data.name,
-          Email_id: data.email,
-          Aadhar_no: data.aadhar_no,
-          Phone_no: data.phone_no,
-          Password: data.pwd,
-        });
-        window.alert(data.msg);
-      })
-      .catch((err) => console.log(err));
+    window.alert("Please Enter again for confirmation");
+    // const { id } = this.props.match.params;
+    // fetch(`${API_URL}/confirmation/email/confirm/${id}`)
+    //   .then(function (res) {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     this.setState({
+    //       confirming: false,
+    //       Name: data.name,
+    //       Email_id: data.email,
+    //       Aadhar_no: data.aadhar_no,
+    //       Phone_no: data.phone_no,
+    //       Password: data.pwd,
+    //     });
+    //   })
+    //   .catch((err) => console.log(err));
   };
   handleChangeName = async (event) => {
     const Name = event.target.value;
@@ -133,7 +136,6 @@ class Confirm extends Component {
       Phone_no,
       Password,
     };
-    console.log(payload);
 
     axios
       .post(`${API_URL}/details/signup`, payload)
@@ -143,7 +145,7 @@ class Confirm extends Component {
         this.setState({
           sendingEmail: true,
         });
-        window.location.href = "/personal";
+        window.location.assign("/personal");
       })
       .catch((err) => {
         window.alert(`Error : ` + err.response);
@@ -191,26 +193,30 @@ class Confirm extends Component {
             <p>Enter Aadhar Number</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="Aadhar_no"
             name="Aadhar_no"
             placeholder="Aadhar_no.."
             value={Aadhar_no}
             onChange={this.handleChangeAadhar}
-            maxLength="12"
+            pattern="(?=.*\d).{12,}"
+            required="true"
+            title="Please Enter 12-digit Aadhar Number"
           />
 
           <label htmlFor="phoneno">
             <p>Enter Phone Number</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="Phone_no"
             name="Phone_no"
             placeholder="Phone_no.."
             value={Phone_no}
             onChange={this.handleChangePhone}
-            maxLength="10"
+            pattern="[0-9]{10,}"
+            required="true"
+            title="Please Enter 10-digit Mobile Number"
           />
 
           <label htmlFor="password">

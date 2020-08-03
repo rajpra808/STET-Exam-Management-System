@@ -9,6 +9,8 @@ import Confirm from "./confirm";
 import Home from "./home";
 import Validate from "./validate";
 import AdmitCard from "./admitcard";
+import Faq from "./faq";
+import Contact from "./contact";
 
 export {
   AcademicInsert,
@@ -22,4 +24,6 @@ export {
   Home,
   Validate,
   AdmitCard,
+  Faq,
+  Contact,
 };

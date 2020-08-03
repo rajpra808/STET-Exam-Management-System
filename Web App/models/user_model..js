@@ -9,10 +9,10 @@ const fields = {
     type: String,
   },
   aadhar_no: {
-    type: Number,
+    type: String,
   },
   phone_no: {
-    type: Number,
+    type: String,
   },
   pwd: {
     type: String,

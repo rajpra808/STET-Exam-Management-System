@@ -13,6 +13,7 @@ router.post("/signup", AppCtrl.createUser);
 router.post("/login", AppCtrl.verifyUser);
 router.post("/registration", AppCtrl.registerUser);
 router.get("/registrationdetails", AppCtrl.getRegistration);
+router.get("/currentUser", AppCtrl.currentUser);
 router.post(
   "/uploadTenth",
   AppCtrl.uploadTenth.single("upload"),
@@ -63,5 +64,5 @@ router.post(
   AppCtrl.uploadAadhar.single("upload"),
   AppCtrl.uploadAadharFun
 );
-
+router.get("/download/:filename/:coll", AppCtrl.getAdmitCard);
 module.exports = router;

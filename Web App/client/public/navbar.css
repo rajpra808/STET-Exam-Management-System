@@ -1,3 +1,12 @@
+@media screen and (max-width: 600px) {
+  #navbar ul li {
+    width: 100%;
+  }
+  .vl {
+    display: none;
+  }
+}
+
 #navbar {
   width: 100%;
 }
@@ -6,18 +15,19 @@
   width: 80%;
   margin: 0 auto;
   padding: 0;
+  text-align: center;
 }
 
 #navbar ul li {
   list-style-type: none;
   display: inline-block;
-  padding: 20px;
+  padding: 5px;
 }
-
+/* 
 #navbar ul li:hover {
   background-color: #4cd151;
   color: black;
-}
+} */
 
 a {
   position: relative;

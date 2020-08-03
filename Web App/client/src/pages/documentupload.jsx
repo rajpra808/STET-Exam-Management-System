@@ -17,6 +17,7 @@ class DocumentUpload extends Component {
       twelve_marksheet: null,
       graduation_marksheet: null,
       graduation_certificate: null,
+      currentUser: "",
     };
 
     this.onChangepp = this.onChangepp.bind(this);
@@ -41,6 +42,38 @@ class DocumentUpload extends Component {
     this.onSubmitgc = this.onSubmitgc.bind(this);
   }
 
+  componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`)
+      .then((res) => res.json())
+      .then((data) => {
+        const Name = localStorage.getItem(data.phone_no);
+        this.setState({
+          currentUser: Name,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+/*
+  componentDidMount = () => {
+    fetch(`${API_URL}/details/currentUser`, {
+      credentials: 'include'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.phone_no != null){
+          this.setState({
+            currentUser: data.phone_no
+          });
+        }
+        else
+        {
+          window.alert("Session Expired");
+          window.location.assign("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+*/
   onFormSubmit(e) {
     e.preventDefault();
     //const formData = new FormData();
@@ -317,16 +350,18 @@ class DocumentUpload extends Component {
   }
 
   render() {
+    const { currentUser } = this.state;
     return (
-      <div>
+      <div className="container1">
         <Navbar />
         <br />
+        <p>Current User : {currentUser}</p>
         <form>
           <div className="meter">
-            <span id="myspan"></span>
+            <span id="myspan1"></span>
           </div>
           <div className="myheader">
-            <h2>Upload Your file</h2>
+            <h2>Upload Your files</h2>
           </div>
           <br />
           <p>Upload your passport size photo.</p>

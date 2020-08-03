@@ -29,6 +29,8 @@ class AdmitCard extends Component {
       phone: "",
       email: "",
       exam: "",
+      currentUser: "",
+      file: "",
     };
   }
 
@@ -58,7 +60,32 @@ class AdmitCard extends Component {
           email: data.email,
           exam: data.exam,
         });
-        window.alert(data.msg);
+        if (data.msg === "Please Update Academic Details") {
+          window.alert(data.msg);
+          window.location.assign("/academic");
+        } else if (data.msg === "Please Update Personal Details") {
+          window.alert(data.msg);
+          window.location.assign("/personal");
+        } else {
+          window.alert(data.msg);
+        }
+        fetch(`${API_URL}/details/download/${"8200626211"}/${"fs"}`).then(
+          (data) => {
+            this.setState({
+              file: data.imageURL,
+            });
+          }
+        );
+      })
+      .catch((err) => console.log(err));
+
+    fetch(`${API_URL}/details/currentUser`)
+      .then((res) => res.json())
+      .then((data) => {
+        const Name = localStorage.getItem(data.phone_no);
+        this.setState({
+          currentUser: Name,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -223,19 +250,22 @@ class AdmitCard extends Component {
       phone,
       email,
       exam,
+      currentUser,
+      file,
     } = this.state;
     const { t } = this.props;
     return (
       <div className="container1">
         <Navbar />
         <br />
+        <p>Current User : {currentUser}</p>
         <form onSubmit={this.onSubmit}>
           <div className="meter">
-            <span id="myspan2"></span>
+            <span id="myhr"></span>
           </div>
 
           <div className="myheader">
-            <h2>Admit Card</h2>
+            <h2>Review and Submit</h2>
           </div>
 
           <p>{t("welcome.CandidateName")}</p>
@@ -397,7 +427,7 @@ class AdmitCard extends Component {
           <p>{t("welcome.AadharNo")}</p>
           <label htmlFor="aadhar"></label>
           <input
-            type="number"
+            type="text"
             id="aadhar"
             name="aadhar"
             placeholder="Aadhar No.."
@@ -491,7 +521,7 @@ class AdmitCard extends Component {
             <p>{t("welcome.PinCode1")}</p>
           </label>
           <input
-            type="number"
+            type="text"
             id="zip1"
             name="Zip1"
             placeholder="Pin Code.."
@@ -503,7 +533,7 @@ class AdmitCard extends Component {
             <p>{t("welcome.PhoneNumber1")}</p>+91-
           </label>
           <input
-            type="number"
+            type="text"
             id="zip1"
             name="phone1"
             placeholder="Phone Number.."
@@ -527,6 +557,7 @@ class AdmitCard extends Component {
             <input type="submit" value="Register Candidate" />
             {/* <Link to="/"> Go to previous page </Link>
             <Link to="/Academic"> Go to Academic part </Link> */}
+            <input type="button" value={file} />
           </div>
           <br />
         </form>
