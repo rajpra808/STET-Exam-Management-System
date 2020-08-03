@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
-                android:text="CHANGE LANGUAGE"
+                android:text="@string/change_language"
 
                 android:textStyle="bold"
                 android:textColor="#F42738"
