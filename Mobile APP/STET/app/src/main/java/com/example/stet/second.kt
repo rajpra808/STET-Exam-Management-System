@@ -38,7 +38,7 @@ class second : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     var codeSent: String? = null
     lateinit var Email: String
-    lateinit var Password: String
+    var Password: String ="Abc!123"
     var E: Int = 0
     var P: Int = 0
     var check = 0
@@ -235,7 +235,7 @@ class second : AppCompatActivity() {
         //email verify
         page_2_email_verify.setOnClickListener {
             //  progress5.show()
-            auth2.signInWithEmailAndPassword(Email, Password)
+            auth2.signInWithEmailAndPassword(Email,"Abc!123")
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
 
