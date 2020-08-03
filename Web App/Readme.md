@@ -1,5 +1,5 @@
 
-###  STET Web Application
+#  STET Web Application
 
 ## Use 
   - The main use of the web application is to facilitate the easy and safe registration of the candidates appearing for the STET Examination.
@@ -7,7 +7,8 @@
   - The application uses these technologies to provide a simple yet elegant GUI and a reliable and safe backend for the registration of the candidates.
 
 ## Dependencies 
-  - The application uses third-party services to authenticate the users. It uses Nexmo to verify the user’s mobile number via an otp and Nodemailer to verify the user's email.
+  - The application uses third-party services to authenticate the users. 
+  - It uses Nexmo to verify the user’s mobile number via an otp and Nodemailer to verify the user's email.
 
 ## How To Run the Code  
 - In test mode : 
