@@ -25,8 +25,8 @@ import java.util.*
 
 
 class five : AppCompatActivity() {
+    //this file for academics purpose.
 
-    // private val BASE_URL = "http://192.168.43.114:3000"
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var ses=0
     @RequiresApi(Build.VERSION_CODES.O)
@@ -36,6 +36,7 @@ class five : AppCompatActivity() {
         page_5_progress_bar.progress = 100
         val phone: String = intent.getStringExtra("phone")
         loadLocate()
+        //shared preference to get user_cookie
         val sharedPreferencesx = getSharedPreferences(
             "Settings",
             Context.MODE_PRIVATE
@@ -48,7 +49,7 @@ class five : AppCompatActivity() {
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
-
+        //callback for check session
         callx!!.enqueue(object : Callback<Void?> {
             override fun onResponse(
                 call: Call<Void?>?,
@@ -109,6 +110,7 @@ class five : AppCompatActivity() {
             progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             progress.isIndeterminate = true
             progress.show()
+            //callback for loading academics from db
             val call3: Call<Education?>? = cookie?.let { retrofitInterface.getEducation(it, map) }
             call3!!.enqueue(object : Callback<Education?> {
                 override fun onResponse(
@@ -180,6 +182,7 @@ class five : AppCompatActivity() {
                         "Settings",
                         Context.MODE_PRIVATE
                     )
+                    //callback for storing academics data in db
                     val cookie: String? = sharedPreferences.getString("user_cookie", "")
                     val call: Call<Void?>? =
                         cookie?.let { it1 ->
@@ -205,11 +208,11 @@ class five : AppCompatActivity() {
                                 progress.dismiss()
                             } else {
                                 Toast.makeText(
-                                    this@five,
-                                    getString(R.string.toastslowinternet), Toast.LENGTH_LONG
-                                ).show()
-                                progress.dismiss()
-                            }
+                                               this@five,
+                            getString(R.string.toastslowinternet), Toast.LENGTH_LONG
+                            ).show()
+                            progress.dismiss()
+                        }
 
                         }
 
@@ -253,7 +256,7 @@ class five : AppCompatActivity() {
 
     }
 
-    private fun validUniversity(editText: EditText): Int {
+    private fun validUniversity(editText: EditText): Int {   //check for valid university
         var x = 0
         editText.text.toString().validator()
             .nonEmpty()
@@ -269,7 +272,7 @@ class five : AppCompatActivity() {
         return x
     }
 
-    private fun validPercentage(editText: EditText, d: Int): Int {
+    private fun validPercentage(editText: EditText, d: Int): Int {   //check for valid percentage
         var x = 0
         editText.text.toString().validator()
             .nonEmpty()
@@ -288,7 +291,7 @@ class five : AppCompatActivity() {
         return x
     }
 
-    private fun validSpinner(Spinner1: Spinner): Int {
+    private fun validSpinner(Spinner1: Spinner): Int {   //check for spinner
         var x = 0
         if (Spinner1.selectedItem.toString().trim() == "Select") {
             x = 1
@@ -298,7 +301,7 @@ class five : AppCompatActivity() {
         return x
     }
 
-    private fun getSpinApplicationCategory(str: String?): Int {
+    private fun getSpinApplicationCategory(str: String?): Int {   //get spin index
 
         val list = resources.getStringArray(R.array.application_category)
         val i = 1

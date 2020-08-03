@@ -31,9 +31,10 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class eight : AppCompatActivity() {
+    //this file is for final registration .
     var ses=0
-    private val BASE_URL = "https://stet2020.herokuapp.com/"
-    private var mAuth: FirebaseAuth? = null
+    private val BASE_URL = "https://stet2020.herokuapp.com/"   //baseurl
+    private var mAuth: FirebaseAuth? = null     //firbase auth
     var codeSent: String? = null
     var P = 0
     var auth2: FirebaseAuth = FirebaseAuth.getInstance()
@@ -50,9 +51,11 @@ class eight : AppCompatActivity() {
             "Settings",
             Context.MODE_PRIVATE
         )
+        //shared preference for user_cookie
         val cookie:String?=sharedPreferences.getString("user_cookie","")
         map["venue"]="Sikkim"
-        map["eno"]="12345678"
+        map["eno"]=phone
+        //retofit builder
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -65,16 +68,18 @@ class eight : AppCompatActivity() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        //retrofit instance
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
-
+        //callback function
         callx!!.enqueue(object : Callback<Void?> {
+            //on response
             override fun onResponse(
                 call: Call<Void?>?,
                 response: Response<Void?>
             ) {
+                //code 201 means session expired
                 if (response.code() == 201) {
 
                     val myEditx = sharedPreferencesx.edit()
@@ -98,7 +103,7 @@ class eight : AppCompatActivity() {
 
                 }
             }
-
+            //on failure
             override fun onFailure(
                 call: Call<Void?>?,
                 t: Throwable
@@ -153,7 +158,7 @@ class eight : AppCompatActivity() {
             })
             val map1: HashMap<String?, String?> = HashMap()
             map1["Phone1"] = phone
-
+            //return response body to get personal details from db
             val call1: Call<Personal?>? = retrofitInterface2.getPersonal(cookie, map1)
             call1!!.enqueue(object : Callback<Personal?> {
                 override fun onResponse(
@@ -163,7 +168,7 @@ class eight : AppCompatActivity() {
                     if (response.code() == 200) {
 
                         val result = response.body()
-
+                        //response body to get personal details from db
                         if (result != null) {
 
                             map["address"] = result.AddressOne
@@ -204,6 +209,7 @@ class eight : AppCompatActivity() {
             })
             val map3: HashMap<String?, String?> = HashMap()
             map3["Phone"] = phone
+            //return response body to get academics details from db
             val call2: Call<Education?>? = retrofitInterface2.getEducation(cookie, map3)
             call2!!.enqueue(object : Callback<Education?> {
                 override fun onResponse(
@@ -250,6 +256,7 @@ class eight : AppCompatActivity() {
                 val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
                 val formatted = current.format(formatter)
                 map["Date"] = formatted
+                //post request to store admit card info in db
                 var retrofitInterface: RetrofitInterface =
                     retrofit.create(RetrofitInterface::class.java)
                 val call3: Call<Void?>? = cookie?.let { it1 -> retrofitInterface.timings(it1,map) }
@@ -282,11 +289,11 @@ class eight : AppCompatActivity() {
             }
         }
         page_8_sendotp.setOnClickListener {
-            sendVerificationCode(phone)
+            sendVerificationCode(phone)     //send phone otp
         }
         page_8_verify.setOnClickListener {
             if (codeSent != null) {
-                verifySignInCode()
+                verifySignInCode()  //verify otp
             }
 
         }
@@ -355,11 +362,11 @@ class eight : AppCompatActivity() {
             override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
 
             }
-
+            //failure
             override fun onVerificationFailed(e: FirebaseException) {
                 Log.d("error", e.toString())
             }
-
+            //otp sent
             override fun onCodeSent(
                 s: String,
                 forceResendingToken: PhoneAuthProvider.ForceResendingToken
@@ -369,6 +376,7 @@ class eight : AppCompatActivity() {
                 page_8_sendotp.text = getString(R.string.resendotp)
             }
         }
+    //setlocale for language
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
         val config = Configuration()
@@ -380,6 +388,7 @@ class eight : AppCompatActivity() {
         editor.putString("My_Lang", Lang)
         editor.apply()
     }
+    //landlocate  for language
     private fun loadLocate() {
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
         val language = sharedPreferences.getString("My_Lang", "")

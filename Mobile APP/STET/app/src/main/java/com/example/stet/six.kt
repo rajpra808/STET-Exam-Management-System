@@ -26,6 +26,9 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class six : Activity(), PaymentResultWithDataListener {
+
+    //payment activity
+
     val TAG:String = six::class.toString()
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var Phone:String=""
@@ -50,6 +53,9 @@ class six : Activity(), PaymentResultWithDataListener {
 
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+
+        //check for session
+
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
         callx!!.enqueue(object : Callback<Void?> {
@@ -133,7 +139,7 @@ class six : Activity(), PaymentResultWithDataListener {
 
     }
 
-
+        //payment functions
         override fun onPaymentError(errorCode: Int, errorDescription: String?, paymentData: PaymentData?) {
             Toast.makeText(this, " Payment Failed Error $errorCode : $errorDescription",Toast.LENGTH_LONG).show()
 

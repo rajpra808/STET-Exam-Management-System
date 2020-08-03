@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.help.*
 import java.util.*
 
 class Help : AppCompatActivity() {
-
+    //this file is for help section
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.help)

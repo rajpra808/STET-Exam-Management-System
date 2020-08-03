@@ -202,7 +202,7 @@
     <string name="page_6_pay">Pay</string>
     <string name="page_6_back">Back</string>
     <string name="page_6_next">Next</string>
-    <string name="page_7_aadhar">Aadhar Card Number:</string>
+    <string name="page_7_aadhar">Aadhar Card </string>
     <string name="page_7_choose">Choose</string>
     <string name="page_7_take">Take</string>
     <string name="page_7_digi">Digilocker</string>
@@ -247,9 +247,9 @@
     <string name="page_2_emailSendLink">Send Link</string>
     <string name="page_2_verifyEmail">Email ID Verification</string>
     <string name="page_2_emailVerify">Verify</string>
-    <string name="page_2_aadhar">Aadhar No:</string>
+    <string name="page_2_aadhar">Aadhaar No:</string>
     <string name="page_2_sendAadharOTP">Send OTP</string>
-    <string name="page_2_aadharVerification">Aadhar Verification</string>
+    <string name="page_2_aadharVerification">Aadhaar Verification</string>
     <string name="page_2_enter_aadharOTP">Enter OTP :</string>
     <string name="page_2_aadharVerify">Verify</string>
     <string name="page_2_back">Back</string>
@@ -288,8 +288,8 @@
     <string name="page_4_dob">Date Of Birth :</string>
     <string name="page_4_ddmmyy">dd-mm-yyyy</string>
     <string name="page_4_community">Community :</string>
-    <string name="page_4_aadhar">Aadhar Number:</string>
-    <string name="page_4_aadhar_h">Aadhar Number</string>
+    <string name="page_4_aadhar">Aadhaar Number:</string>
+    <string name="page_4_aadhar_h">Aadhaar Number</string>
     <string name="page_4_postal">Postal Address</string>
     <string name="page_4_add">Address :</string>
     <string name="page_4_add2">Address</string>
@@ -315,7 +315,7 @@
     <string name="status_reg_number">Registration No.</string>
     <string name="status_status">Status</string>
     <string name="status_personal_info">Personal Info</string>
-    <string name="status_aadhar">Aadhar Card No.</string>
+    <string name="status_aadhar">Aadhaar Card No.</string>
     <string name="status_can">Candidate\'s Name</string>
     <string name="status_G">Candidate\'s Gender</string>
     <string name="status_fh">Father/Husband</string>

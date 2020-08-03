@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 class NinthActivity: AppCompatActivity() {
+    //show syllabus
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()

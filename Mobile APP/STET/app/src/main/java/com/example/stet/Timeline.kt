@@ -18,6 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class Timeline : AppCompatActivity() {
+    //timeline
+
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class Timeline : AppCompatActivity() {
         var retrofitInterface: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
         val y:Int= Calendar.getInstance().get(Calendar.YEAR)
         val year:String=y.toString()
+        //timeline callback
         val call: Call<Schedule>? = cookie?.let { retrofitInterface.timeline(it,year) }
 
         call!!.enqueue(object : Callback<Schedule> {

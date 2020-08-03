@@ -34,11 +34,13 @@ import kotlin.collections.HashMap
 
 
 class seven : AppCompatActivity() {
+    //documents upload
+
     private val PICK_IMAGE_REQUEST = 1
     private val CLICK_PHOTO = 2
     private var bit: Bitmap? = null
     private var filePath: Uri? = null
-    //private var URL: String = "http://192.168.43.114:3000"
+
 
     private val URL = "https://stet2020.herokuapp.com/"
     private var bit1: Bitmap? = null

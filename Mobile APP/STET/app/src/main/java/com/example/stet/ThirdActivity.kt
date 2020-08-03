@@ -10,6 +10,7 @@ import com.example.stet.R
 import java.util.*
 
 class ThirdActivity : AppCompatActivity() {
+    //exam pattern
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()

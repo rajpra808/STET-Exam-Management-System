@@ -22,7 +22,7 @@ import java.util.*
 
 
 class third : AppCompatActivity() {
-
+    //containing menu bar
     lateinit var Phone: String
     //private val BASE_URL = "http://192.168.43.114:3000"
     private val BASE_URL = "https://stet2020.herokuapp.com/"
@@ -50,6 +50,7 @@ class third : AppCompatActivity() {
 
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        //check session
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
         callx!!.enqueue(object : Callback<Void?> {
@@ -107,6 +108,7 @@ class third : AppCompatActivity() {
                 Context.MODE_PRIVATE
             )
             val cookie: String? = sharedPreferences.getString("user_cookie", "")
+        //check for user
             val call: Call<Void>? =
                 cookie?.let { retrofitInterface.submittedphone(it, phone) }
             call!!.enqueue(object : Callback<Void> {
@@ -162,12 +164,16 @@ class third : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        Toast.makeText(this,"Logout to go back further",Toast.LENGTH_LONG).show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
+    //menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.home -> {

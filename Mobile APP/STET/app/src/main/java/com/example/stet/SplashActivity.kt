@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.stet.R
 
 class SplashActivity : AppCompatActivity() {
+
+    //splash app
+
     private var mDelayHandler: Handler? = null
     private val SPLASH_DELAY: Long = 3000
 

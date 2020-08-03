@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 class FourthActivity : AppCompatActivity() {
+    //this file is for how to prepare for stet
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.prepare)

@@ -32,6 +32,9 @@ import kotlin.collections.HashMap
 
 
 class second : AppCompatActivity() {
+
+    //verification of email,phn,aadhar and signup
+
     private var mAuth: FirebaseAuth? = null
     var codeSent: String? = null
     lateinit var Email: String
@@ -40,7 +43,7 @@ class second : AppCompatActivity() {
     var P: Int = 0
     var check = 0
     var ses=0
-    // private val BASE_URL = "http://192.168.43.114:3000"
+
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var auth2: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +71,11 @@ class second : AppCompatActivity() {
         page_2_phn_verify.visibility = View.INVISIBLE
         page_2_email_verify.visibility = View.INVISIBLE
         page_2_aadhar_verify.visibility = View.INVISIBLE
-
+        val sharedPreferences = getSharedPreferences(
+            "Settings",
+            Context.MODE_PRIVATE
+        )
+        val myEdit = sharedPreferences.edit()
         page_2_next.setOnClickListener {
 
             when {
@@ -92,6 +99,7 @@ class second : AppCompatActivity() {
                     map["password"] = pass
                     map["aadhar"] = aadhar
                     map["phone"] = phone
+                    //execute signup
                     val call: Call<Void?>? = retrofitInterface.executeSignup(map)
                     call!!.enqueue(object : Callback<Void?> {
                         override fun onResponse(
@@ -99,6 +107,10 @@ class second : AppCompatActivity() {
                             response: Response<Void?>
                         ) {
                             if (response.code() == 200) {
+                                val cookie = response.headers()["Set-Cookie"]
+                                if (cookie != null) {
+                                    myEdit.putString("user_cookie", cookie.split(";")[0]).apply()
+                                }
                                 Toast.makeText(
                                     this@second,
                                     getString(R.string.signupsuccess), Toast.LENGTH_LONG
@@ -169,12 +181,12 @@ class second : AppCompatActivity() {
         page_2_send_email_link.setOnClickListener {
 
 
-            emailVal(email, pass)
+            emailVal(email, "Abc!123")
 
         }
 
     }
-
+    //send email
     private fun emailVal(eml: String, pass: String) {
         //  progress4.show()
         auth2.createUserWithEmailAndPassword(eml, pass)
@@ -220,7 +232,7 @@ class second : AppCompatActivity() {
 
 
             }
-
+        //email verify
         page_2_email_verify.setOnClickListener {
             //  progress5.show()
             auth2.signInWithEmailAndPassword(Email, Password)
@@ -268,7 +280,7 @@ class second : AppCompatActivity() {
 
 
 
-
+    //check otp
     private fun verifySignInCode() {
         val code: String = page_2_otp_phn.text.toString()
         val credential = PhoneAuthProvider.getCredential(codeSent!!, code)
@@ -309,7 +321,7 @@ class second : AppCompatActivity() {
                 }
             }
     }
-
+    //send phn otp
     private fun sendVerificationCode(phn: String) {
 
         val phone: String = "+91$phn"
@@ -372,7 +384,7 @@ class second : AppCompatActivity() {
         }
 
 
-
+    //verify aadhar
 
     private fun verifyAadhar(aadhar: String, URL: String) {
         val retrofit: Retrofit = Retrofit.Builder()
@@ -473,6 +485,7 @@ class second : AppCompatActivity() {
 
 
     }
+    //verify aadhar otp
     private fun verifyotp(URL: String){
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(URL)
