@@ -50,7 +50,7 @@
  
 #  Important Points about Test Mode and Production mode:
 - Test Mode:
-	- User can move forward to profile page without verification aadhar number.
+	- User can move forward to profile page without verification of aadhar number.
 	- User can move forward to final verification page without payment.
 	- User can submit final registration without OTP verification.
 - Production Mode:
