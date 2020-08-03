@@ -14,4 +14,13 @@
     - The application is run in the local environment.
     - Run npm start in the client folder
     - Run node server.js in the root folder
-    
+- In production mode : 
+    - The application will run on an online platform.
+
+
+## API Used
+  -	We used Aadhar API for the verification of Aadhar API.
+  -	We used Nexmo for the verification of the user's phone number.
+  -	We used Nodemailer for the verification of the user’s mail.
+
+
