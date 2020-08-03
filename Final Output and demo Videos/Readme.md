@@ -42,6 +42,9 @@ The data is secured and can not be seen by any un-authorized person.
 ```
 ## STET-app.apk
 ```
+  defualt mobile and password to login: 
+  Mobile Number: 6387012615
+  Password: Abc@123
   This is the current working mobile app. It can be isntalled easily. 
   For testing purpose, you do not need to verify the aadhar and make payment. 
 ```
@@ -61,5 +64,11 @@ The data is secured and can not be seen by any un-authorized person.
 ```
     Slides of round 2 evoluation
 ```
+
+##  Round 3-evaluation.pdf
+```
+    Slides of round 3 evoluation
+```
+
 
 
