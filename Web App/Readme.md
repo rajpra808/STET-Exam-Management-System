@@ -11,11 +11,11 @@
   - It uses Nexmo to verify the user’s mobile number via an otp and Nodemailer to verify the user's email.
 
 ## How To Run the Code  
-- In test mode : 
+  ### In test mode : 
     - The application is run in the local environment.
     - Run npm start in the client folder
     - Run node server.js in the root folder
-- In production mode : 
+  ### In production mode : 
     - The application will run on an online platform.
 
 
