@@ -58,8 +58,7 @@
 	- Payment is neccessary for final verification.
 	- Final OTP verification is compulsary.
 
-# User-Id and Password for testing purpose:
-	phone:"6387012615" password:"Abc@123"
+
 
 # APIs: 
 - Razorpay api for payment through razorpay.
