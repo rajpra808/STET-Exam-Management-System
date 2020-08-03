@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 class FifthActivity : AppCompatActivity() {
+    //this file is for application form info.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.application_form)
         loadLocate()
     }
+    //locale for language
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
         val config = Configuration()

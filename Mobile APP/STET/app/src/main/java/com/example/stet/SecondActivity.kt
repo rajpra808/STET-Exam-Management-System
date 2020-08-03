@@ -25,6 +25,9 @@ import java.util.*
 
 
 class SecondActivity : AppCompatActivity() {
+
+    // download admit card
+
     var ses=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +45,7 @@ class SecondActivity : AppCompatActivity() {
 
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        //check for session
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
         callx!!.enqueue(object : Callback<Void?> {
@@ -85,7 +89,7 @@ class SecondActivity : AppCompatActivity() {
             }
 
         })
-        if(ses==1) {
+
             download.setOnClickListener {
                 if (phone != "0") {
                     image(phone, "admit", "fs")
@@ -94,7 +98,7 @@ class SecondActivity : AppCompatActivity() {
                         .show()
                 }
             }
-        }
+
     }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
@@ -114,6 +118,7 @@ class SecondActivity : AppCompatActivity() {
             setLocate(language)
         }
     }
+    //download admit function
     fun image(phone:String,str: String,coll: String){
         val retrofit1: Retrofit = Retrofit.Builder()
             .baseUrl("https://stet2020.herokuapp.com/")

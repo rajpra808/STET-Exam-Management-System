@@ -35,6 +35,8 @@ import java.util.*
 
 
 class Status : AppCompatActivity() {
+    //status page
+
     var Phone:String=""
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     private val URL = BASE_URL
@@ -59,7 +61,7 @@ class Status : AppCompatActivity() {
             .baseUrl("https://stet2020.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        //check session
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
@@ -122,6 +124,7 @@ class Status : AppCompatActivity() {
                 Context.MODE_PRIVATE
             )
             val cookie: String? = sharedPreferences.getString("user_cookie", "")
+            //get personal
             val call1: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it, map) }
             call1!!.enqueue(object : Callback<Personal?> {
                 override fun onResponse(
@@ -147,6 +150,7 @@ class Status : AppCompatActivity() {
                             status_view_state.text = result.StateOne
                             status_view_email.text = result.Email1
                             status_view_mobile.text = result.Phone1
+                            status_view_registration_no.text=result.Phone1
                             staus_view_pin.text = result.PinCodeOne
                             status_view_father_husband.text = result.FH
                             status_view_address2.text =
@@ -175,6 +179,7 @@ class Status : AppCompatActivity() {
             })
             val map3: HashMap<String?, String?> = HashMap()
             map3["Phone"] = phone
+            //get acdemics
             val call3: Call<Education?>? = retrofitInterface.getEducation(cookie, map3)
             call3!!.enqueue(object : Callback<Education?> {
                 override fun onResponse(
@@ -214,6 +219,7 @@ class Status : AppCompatActivity() {
                     ).show()
                 }
             })
+            //get payment
             val call4: Call<Payment> = retrofitInterface.getpayment(cookie, phone)
             call4!!.enqueue(object : Callback<Payment> {
                 override fun onResponse(
@@ -257,7 +263,6 @@ class Status : AppCompatActivity() {
             check("graduationcertificate", "Graduation_Certificate_Documents", status_view_certi8)
             check("graduationmarksheet", "Graduation_Marksheet_Documents", status_view_certi7)
             check("sikkimsubject", "Sikkim_Subject_Documents", status_view_certi3)
-
             status_print.setOnClickListener {
                 val content: LinearLayout = findViewById(R.id.print)
                 val file = saveBitMap(
@@ -275,6 +280,7 @@ class Status : AppCompatActivity() {
 
 
     }
+    //check for documents
     private fun check(str:String,coll:String,text: TextView)
     {
         val retrofit: Retrofit = Retrofit.Builder()
@@ -320,7 +326,7 @@ class Status : AppCompatActivity() {
             setLocate(language)
         }
     }
-
+    //saving status page
     private fun saveBitMap(
         context: Context,
         drawView: View

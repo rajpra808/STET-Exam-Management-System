@@ -20,6 +20,8 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class ResetPassword :AppCompatActivity(){
+    //reset password
+
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class ResetPassword :AppCompatActivity(){
             page_reset_confirm_pass.visibility=View.INVISIBLE
             page_reset_pass.visibility=View.INVISIBLE
             reset_password.visibility=View.INVISIBLE
+            //show password
             val call: Call<Password> = retrofitInterface.showpassword(phone)
 
             call!!.enqueue(object : Callback<Password> {
@@ -98,7 +101,7 @@ class ResetPassword :AppCompatActivity(){
                 map["phone"] = phone
                 map["password"]=page_reset_Edtpass.text.toString()
                 val call: Call<Void?>? = retrofitInterface.resetpassword(map)
-
+                //set new password
                 call!!.enqueue(object : Callback<Void?> {
                     override fun onResponse(
                         call: Call<Void?>?,
@@ -111,6 +114,11 @@ class ResetPassword :AppCompatActivity(){
                                     this@ResetPassword, getString(R.string.passwordreset),
                                     Toast.LENGTH_LONG
                                 ).show()
+                                page_reset_Edtconfirmpass.visibility=View.INVISIBLE
+                                page_reset_Edtpass.visibility=View.INVISIBLE
+                                page_reset_confirm_pass.visibility=View.INVISIBLE
+                                page_reset_pass.visibility=View.INVISIBLE
+                                reset_password.background=getDrawable(R.drawable.button_shape2)
                             } else if (response.code() == 404) {
                                 Toast.makeText(
                                     this@ResetPassword, getString(R.string.phonenotfound),
@@ -162,7 +170,7 @@ class ResetPassword :AppCompatActivity(){
             .check()
         return x
     }
-
+    //valid password
     private fun isValidPassword(editText: EditText): Int {
         var x = 0
         editText.text.toString().validator()

@@ -10,6 +10,7 @@ import com.example.stet.R
 import java.util.*
 
 class SixthActivity : AppCompatActivity() {
+    //eligibility criteria
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()

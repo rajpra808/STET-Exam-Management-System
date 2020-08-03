@@ -28,6 +28,7 @@ import java.util.*
 
 
 class fourth : AppCompatActivity() {
+    //for storing personal details
     private lateinit var gender: String
     private lateinit var husbandorfather: String
     private val BASE_URL = "https://stet2020.herokuapp.com/"
@@ -40,17 +41,21 @@ class fourth : AppCompatActivity() {
         loadLocate()
         page_4_progressBar.progress = 100
         page_4_enter_phn_no_1.text = intent.getStringExtra("phone")
+        //to get user_cookie
+
         val sharedPreferencesx = getSharedPreferences(
             "Settings",
             Context.MODE_PRIVATE
         )
+        //retrofit builder
         val retrofitx: Retrofit = Retrofit.Builder()
             .baseUrl("https://stet2020.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        //retrofit instance
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
+        //check session callback
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
 
         callx!!.enqueue(object : Callback<Void?> {
@@ -59,7 +64,7 @@ class fourth : AppCompatActivity() {
                 response: Response<Void?>
             ) {
                 if (response.code() == 201) {
-
+                    //session expired
                     val myEditx = sharedPreferencesx.edit()
                     myEditx.putBoolean("login", false).apply()
                     myEditx.putString("phone", "").apply()
@@ -71,7 +76,7 @@ class fourth : AppCompatActivity() {
                     val i = Intent(this@fourth, MainActivity::class.java)
                     startActivity(i)
                 } else if (response.code() == 200) {
-
+                    //session valid
                     ses=1
                 } else {
                     Toast.makeText(
@@ -99,7 +104,7 @@ class fourth : AppCompatActivity() {
             i.putExtra("phone", page_4_enter_phn_no_1.text.toString())
             startActivity(i)
         }
-
+        //for date picker dob
         page_4_calender.setOnClickListener {
             val datePickerDialog: DatePickerDialog
 
@@ -136,6 +141,7 @@ class fourth : AppCompatActivity() {
             Context.MODE_PRIVATE
         )
         val cookie:String?=sharedPreferences.getString("user_cookie","")
+        // fetching signup details  from db
         val call1: Call<Important?>? = cookie?.let { retrofitInterface.getDetails(it,map) }
         call1!!.enqueue(object : Callback<Important?> {
             override fun onResponse(
@@ -176,6 +182,7 @@ class fourth : AppCompatActivity() {
         progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress2.isIndeterminate = true
         progress2.show()
+        //for fetching personal info from db
         val call2: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it,map2) }
         call2!!.enqueue(object : Callback<Personal?> {
             override fun onResponse(
@@ -314,6 +321,7 @@ class fourth : AppCompatActivity() {
                 val cookie:String?=sharedPreferences.getString("user_cookie","")
                 val call: Call<Void?>? =
                     cookie?.let { it1 -> retrofitInterface.executeDetail(it1,Personal) }
+                //for storing personal details in db
                 call!!.enqueue(object : Callback<Void?> {
                     override fun onResponse(
                         call: Call<Void?>?,
@@ -361,7 +369,7 @@ class fourth : AppCompatActivity() {
 
         }
     }
-
+    // checking additional address
     private fun additional(
         page4EnterPostalAddressDistrict2: EditText,
         page4EnterPostalAddress2: EditText,
@@ -389,7 +397,7 @@ class fourth : AppCompatActivity() {
         return x
 
     }
-
+    //valid dob or not
     private fun validDOB(editText: EditText): Int {
         var x = 0
         editText.text.toString().validator()
@@ -405,7 +413,7 @@ class fourth : AppCompatActivity() {
             .check()
         return x
     }
-
+    //valid spinner
     private fun validSpinner(Spinner1: Spinner): Int {
         var x = 0
         if (Spinner1.selectedItem.toString().trim() == "Select") {
@@ -415,7 +423,7 @@ class fourth : AppCompatActivity() {
 
         return x
     }
-
+    //valid address
     private fun validAddress(editText: EditText): Int {
         var x = 0
         editText.text.toString().validator()
@@ -431,8 +439,7 @@ class fourth : AppCompatActivity() {
             .check()
         return x
     }
-
-
+    //valid gender
     private fun validGender(
         radioButton1: RadioButton,
         radioButton2: RadioButton,

@@ -18,6 +18,7 @@ class FAQS : AppCompatActivity() {
         setContentView(R.layout.faqs)
         val phone: String = intent.getStringExtra("phone")
         loadLocate()
+        //on touch ques1 ans1 will appear.
         faq_q1.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> faq_a1.visibility = View.VISIBLE
@@ -54,6 +55,7 @@ class FAQS : AppCompatActivity() {
 
 
     }
+    //locate for language
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
         val config = Configuration()

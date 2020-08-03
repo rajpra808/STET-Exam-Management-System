@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class Register : AppCompatActivity() {
+    //for register page
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var a=0
     var b=0
@@ -33,7 +34,7 @@ class Register : AppCompatActivity() {
         progress.setMessage(getString(R.string.loading))
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress.isIndeterminate = true
-        progress.show()
+        progress.dismiss()
         val phone: String = intent.getStringExtra("phone")
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -56,7 +57,7 @@ class Register : AppCompatActivity() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        //check session
         var retrofitInterfacex: RetrofitInterface = retrofitx.create(RetrofitInterface::class.java)
         val cookiex:String?=sharedPreferencesx.getString("user_cookie","")
         val callx: Call<Void?>? = cookiex?.let { retrofitInterfacex.executeLogout(it) }
@@ -102,7 +103,7 @@ class Register : AppCompatActivity() {
             }
 
         })
-        
+
             val call1: Call<Personal?>? = cookie?.let { retrofitInterface.getPersonal(it, map) }
             call1!!.enqueue(object : Callback<Personal?> {
                 override fun onResponse(
@@ -138,7 +139,7 @@ class Register : AppCompatActivity() {
             })
             val map2: HashMap<String?, String?> = HashMap()
             map2["Phone"] = phone
-
+            //get education
             val call2: Call<Education?>? = retrofitInterface.getEducation(cookie, map2)
             call2!!.enqueue(object : Callback<Education?> {
                 override fun onResponse(
@@ -158,7 +159,7 @@ class Register : AppCompatActivity() {
 
                     } else {
 
-                        progress.dismiss()
+
                     }
 
                 }
@@ -174,7 +175,7 @@ class Register : AppCompatActivity() {
                     ).show()
                 }
             })
-
+            //get payment
             val call3: Call<Payment> = retrofitInterface.getpayment(cookie, phone)
             call3!!.enqueue(object : Callback<Payment> {
                 override fun onResponse(
@@ -188,13 +189,13 @@ class Register : AppCompatActivity() {
                         if (result != null) {
                             register_payment.background = getDrawable(R.drawable.button_shape2)
                             c = 1
-                            progress.dismiss()
+
                         }
 
 
                     } else {
 
-                        progress.dismiss()
+
                     }
 
                 }
@@ -210,7 +211,7 @@ class Register : AppCompatActivity() {
                     ).show()
                 }
             })
-            progress.dismiss()
+
             if (sharedPreferences.getString("documents", "") == phone) {
                 register_documents.background = getDrawable(R.drawable.button_shape2)
                 d = 1
@@ -250,7 +251,7 @@ class Register : AppCompatActivity() {
                 i.putExtra("phone", phone)
                 startActivity(i)
             }
-        
+
     }
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)

@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.homepage.*
 import java.util.*
 
 class Home1 : AppCompatActivity() {
+
+    //Homepage of app
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
@@ -70,6 +72,8 @@ class Home1 : AppCompatActivity() {
 
 
     }
+
+    //choose language
     private fun showChangeLang() {
 
         val listItems = arrayOf("English","हिन्दी","नेपाली")
@@ -107,7 +111,7 @@ class Home1 : AppCompatActivity() {
 
         mDialog.show()
     }
-
+    //set locate
     private fun setLocate(Lang: String) {
         val locale = Locale(Lang)
         val config = Configuration()
@@ -119,6 +123,7 @@ class Home1 : AppCompatActivity() {
         editor.putString("My_Lang", Lang)
         editor.apply()
     }
+    //load locate
     private fun loadLocate() {
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
         val language = sharedPreferences.getString("My_Lang", "")

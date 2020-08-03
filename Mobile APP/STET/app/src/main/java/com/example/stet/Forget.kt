@@ -22,6 +22,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class Forget : AppCompatActivity() {
+    //for forget password
+
     private var mAuth: FirebaseAuth? = null
     var codeSent: String? = null
     var P = 0
@@ -33,13 +35,13 @@ class Forget : AppCompatActivity() {
         loadLocate()
         page_forget_sendotp.setOnClickListener {
             if(validNumber(page_forget_phn_et,10)==0) {
-                sendVerificationCode(page_forget_phn_et.text.toString())
+                sendVerificationCode(page_forget_phn_et.text.toString())    //send otp
             }
         }
         page_forget_verify.setOnClickListener {
                 Toast.makeText(this@Forget,getString(R.string.verifying),Toast.LENGTH_LONG).show()
 
-                    verifySignInCode()
+                    verifySignInCode()    //verify code
 
 
         }
@@ -53,14 +55,14 @@ class Forget : AppCompatActivity() {
 
 
     }
-
+    //verify code function
     private fun verifySignInCode() {
         val code: String = page_forget_enter_otp.text.toString()
         Log.d("code", "$code   $codeSent")
         val credential = PhoneAuthProvider.getCredential(codeSent!!, code)
         signInWithPhoneAuthCredential(credential)
     }
-
+    //signin to check code
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mAuth?.signInWithCredential(credential)
             ?.addOnCompleteListener(
@@ -90,7 +92,7 @@ class Forget : AppCompatActivity() {
                 }
             }
     }
-
+    //send otp code
     private fun sendVerificationCode(phn: String) {
 
         val phone = "+91$phn"
@@ -109,7 +111,7 @@ class Forget : AppCompatActivity() {
         )
 
     }
-
+    //otp callback
     private var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks =
         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -136,6 +138,7 @@ class Forget : AppCompatActivity() {
                 ).show()
             }
         }
+    //check valid phone number
     private fun validNumber(editText: EditText, d: Int): Int {
         var x = 0
         editText.text.toString().validator()

@@ -21,9 +21,7 @@ import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
-
-
-    //private val BASE_URL = "http://192.168.43.114:3000"
+    //this is for login activity
     private val BASE_URL = "https://stet2020.herokuapp.com/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                 map["phone"] = page_1_phn_et.text.toString()
                 map["password"] = page_1_Edtpass.text.toString()
-
+                //callback for login
                 val call: Call<Void?>? = retrofitInterface.executeLogin(map)
 
                 call!!.enqueue(object : Callback<Void?> {
@@ -132,7 +130,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
     }
-
+    //on back to home
+    override fun onBackPressed() {
+       val i=Intent(this,Home1::class.java)
+        startActivity(i);
+    }
 
     private fun validNumber(editText: EditText, d: Int): Int {
         var x = 0

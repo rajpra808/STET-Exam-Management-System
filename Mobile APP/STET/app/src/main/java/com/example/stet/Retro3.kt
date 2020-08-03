@@ -9,6 +9,9 @@ import retrofit2.http.*
 
 
 interface Retro3 {
+
+    //upload documents
+
     @Multipart
     @POST("/upload_aadhar")
     fun postImageaadhar(@Part image: MultipartBody.Part?, @Part("upload") name: RequestBody?): Call<ResponseBody?>?
@@ -47,14 +50,22 @@ interface Retro3 {
     @POST("/documents")
     fun documents(@Body map: HashMap<String?, String?>?): Call<Void?>?
 
+    //remove documents
+
     @GET("/remove/{filename}/{coll}")
     fun removefile(@Path("filename") filename: String, @Path("coll") coll: String):Call<Void?>?
+
+    //get image
 
     @GET("/image/{filename}/{coll}")
     fun imagefile(@Path("filename") filename: String, @Path("coll") coll: String):Call<Image?>?
 
+    //download admit card
+
     @GET("/download/{filename}/{coll}")
     fun downloadfile(@Path("filename") filename: String, @Path("coll") coll: String):Call<Image?>?
+
+    //check for documents
 
     @GET("/available/{filename}/{coll}")
     fun getfile(@Path("filename") filename: String, @Path("coll") coll: String):Call<Void?>?
