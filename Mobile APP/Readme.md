@@ -8,18 +8,17 @@
 - Software contains three option for uploading documents:
 - Select and Upload from phone storage.	
 - Click and upload from phone camera.
-- Digilocker.
+
 # Brief Description (Technical) : 
 - Kotlin , XML for frontend android development.
 - Nodejs for backend android development.
 - MongoDB for Database.
 - Razorpay api for payment.
 - Firebase for phone and email authentication.
-- Digilocker api for document upload through digilocker.
 
 
 # Dependencies : 
-- Retrofit dependencies for http callback to server.
+- Retrofit dependencies for callback to server.
   ```
   	"com.squareup.retrofit2:retrofit:2.3.0"
   	"com.squareup.retrofit2:adapter-rxjava2:2.3.0"
@@ -59,11 +58,10 @@
 	- Final OTP verification is compulsary.
 
 # User-Id and Password for testing purpose:
-	phone:"9986612132" password:"Rk#123"
+	phone:"6387012615" password:"Abc@123"
 
 # APIs: 
 - Razorpay api for payment through razorpay.
 - Aadhar api for aadhar verification.
 - Google Firebase api for phone number and email authentication.
 - Nexmo api for sending sms.
-- Digilocker api for document upload through digilocker.
