@@ -12,7 +12,7 @@
 
 ## How To Run the Code  
   ### In test mode : 
-     The application is run in the local environment.
+     The application is runnnig in the local environment.
      Run npm start in the client folder
      Run node server.js in the root folder
   ### In production mode : 
