@@ -32,33 +32,30 @@
   This demo shows how the session management is working on our app.
   The session limit can be assigned at server side. 
 ```
-
+## SSL TLS proof.mp4
 ```
-"SSL TLS proof.mp4" :
-This video shows the trafic captured between server and mobile app. The data is secured and can not be seen by any un-authorized person.
+This video shows the trafic captured between server and mobile app.
+The data is secured and can not be seen by any un-authorized person.
 ```
-
+## STET-app.apk
 ```
-"STET-app.apk" :
-  This is the current working mobile app. It can be isntalled easily. For testing purpose, you do not need to verify the aadhar and make payment. 
+  This is the current working mobile app. It can be isntalled easily. 
+  For testing purpose, you do not need to verify the aadhar and make payment. 
 ```
-
+## Web APP demo.mp4 
 ```
-"Web APP demo.mp4" : 
   This is the demo of the web application. 
 ```
-
+## Speed Test
 ```
-"Website speed test by google'sPageSpeed Insights.pdf" and "Website speed test by GTmetrix.pdf" shows the performance results of our site. 
+  Website speed test by google'sPageSpeed Insights.pdf" and "Website speed test by GTmetrix.pdf" shows the performance results of our site. 
 ```
-
+## Round 1-evaluation.pdf
 ```
-"Round 1-evaluation.pdf" :
   These are the slides for round 1 evoluation 
 ```
-
+##  Round 2-evaluation.pdf
 ```
-  "Round 2-evaluation.pdf" :
     Slides of round 2 evoluation
 ```
 
