@@ -27,6 +27,7 @@
    ```
 - Firebase dependencies for authentication.
   ```
+  	Connect Firebase authenication.
 	"com.google.firebase:firebase-auth:19.3.2"
   ```
 
