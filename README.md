@@ -1,8 +1,11 @@
-# SG436_404-Found_Team5
+# STET Examination Management System
+##### SG436_404 Found_Team5 for SIH 2020
 This repository is for SIH2020 for the problem statement SG436 
 
----
 
+
+
+---
 ## Team Leader :
 ```
   Rajendra Prajapat
