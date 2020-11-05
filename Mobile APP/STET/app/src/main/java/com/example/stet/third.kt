@@ -24,7 +24,6 @@ import java.util.*
 class third : AppCompatActivity() {
     //containing menu bar
     lateinit var Phone: String
-    //private val BASE_URL = "http://192.168.43.114:3000"
     private val BASE_URL = "https://stet2020.herokuapp.com/"
     var t=0
     var x=0
