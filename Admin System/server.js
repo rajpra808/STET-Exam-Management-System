@@ -23,12 +23,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-const url = "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/"
+const url = "MONGOURI"
 
 const back_url = "http://localhost:" + PORT;
 console.log(back_url);
 
-const conn = mongoose.createConnection("mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/test?retryWrites=true&w=majority");
+const conn = mongoose.createConnection("MONGOURItest?retryWrites=true&w=majority");
 
 // Init gfs
 let gfs;

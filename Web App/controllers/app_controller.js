@@ -10,7 +10,7 @@ const GridFsStorage = require("multer-gridfs-storage");
 const multer = require("../node_modules/multer");
 const crypto = require("crypto");
 const url =
-  "mongodb+srv://mobile_app:test@stet-osuvn.mongodb.net/Mongodb?retryWrites=true&w=majority";
+  "MONGOURI?retryWrites=true&w=majority";
 const mongoClient = require("mongodb").MongoClient;
 
 // Global Variables

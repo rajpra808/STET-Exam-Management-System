@@ -5,12 +5,12 @@ import { API_URL } from "../config";
 const token = 123456789;
 
 function sendCode(phno) {
-  fetch("https://aadhar-backend.herokuapp.com/otp/" + token, {
+  fetch("OTP URI" + token, {
     method: "post",
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify({ messengerId: "8192836451", phoneNumber: phno }),
+    body: JSON.stringify({ messengerId: "msgID", phoneNumber: phno }),
   })
     .then(function (res) {
       console.log(res);
@@ -22,7 +22,7 @@ function sendCode(phno) {
 }
 
 function phone(username) {
-  fetch("https://aadhar-backend.herokuapp.com/users/" + username, {
+  fetch("URI/users/" + username, {
     method: "get",
     headers: {
       "Content-type": "application/json",
@@ -39,7 +39,7 @@ function phone(username) {
 }
 function send(num) {
   const number = num;
-  fetch("https://aadhar-backend.herokuapp.com/users/authenticate", {
+  fetch("URI/users/authenticate", {
     method: "post",
     headers: {
       "Content-type": "application/json",

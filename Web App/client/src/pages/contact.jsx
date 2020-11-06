@@ -12,7 +12,7 @@ class Contact extends Component {
             <h2>Contact Us</h2>
           </div>
           <br />
-          <p>Contact Number : 987654321</p>
+          <p>Contact Number : </p>
           <p>Email-id : stet@gmail.com</p>
           <p>Website : stet.co.in</p>
         </div>

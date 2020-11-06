@@ -3,7 +3,7 @@ import React, { Component } from "react";
 const token = 123456789;
 
 function send(number) {
-  fetch("https://aadhar-backend.herokuapp.com/otp/" + token + "/" + number, {
+  fetch("Aadhar API server URI/otp/" + token + "/" + number, {
     method: "get",
     headers: {
       "Content-type": "application/json",
