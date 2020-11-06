@@ -20,7 +20,7 @@ Login Page             |  Exam Application Page
 
 ### Payment 
 
-<img src="Final_Output_demo_Videos/screenshots/payment.png" alt="" title="Payment Page>
+![](Final_Output_demo_Videos/screenshots/payment.png)
 
 ### Chatbot
 page1             |  page2
