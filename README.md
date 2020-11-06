@@ -6,33 +6,29 @@ The Project includes-
 ### Admin Dashboard
 Main Page             |  Controls Page
 :-------------------------:|:-------------------------:
-![](Final_Output_demo_Videos/adminDashboardScreenshot1.png)  |  ![](Final_Output_demo_Videos/adminDashboardScreenshot2.png)
+![](Final_Output_demo_Videos/screenshots/adminDashboardScreenshot1.png)  |  ![](Final_Output_demo_Videos/screenshots/adminDashboardScreenshot2.png)
 
 ### Mobile Application 
 Home Page             |  Exam Application Page
 :-------------------------:|:-------------------------:
-![](Final_Output_demo_Videos/mobile1.png)  |  ![](Final_Output_demo_Videos/mobile2.png)
+![](Final_Output_demo_Videos/screenshots/mobile1.png)  |  ![](Final_Output_demo_Videos/screenshots/mobile2.png)
 
 ### Web Application
 Login Page             |  Exam Application Page
 :-------------------------:|:-------------------------:
-![](Final_Output_demo_Videos/webapp1.png)  |  ![](Final_Output_demo_Videos/webapp2.png)
+![](Final_Output_demo_Videos/screenshots/webapp1.png)  |  ![](Final_Output_demo_Videos/screenshots/webapp2.png)
 
 ### Payment 
-<img src="Final_Output_demo_Videos/payment.jpg" alt="" title="Payment Page>
+
+<img src="Final_Output_demo_Videos/screenshots/payment.png" alt="" title="Payment Page>
 
 ### Chatbot
 page1             |  page2
 :-------------------------:|:-------------------------:
-![](Final_Output_demo_Videos/chatbot1.png)  |  ![](Final_Output_demo_Videos/chatbot2.png)
+![](Final_Output_demo_Videos/screenshots/chatbot1.png)  |  ![](Final_Output_demo_Videos/screenshots/chatbot2.png)
 
 ### Progressive Feature
-<img src="Final_Output_demo_Videos/progressive.png" alt="" title="Progressive APP">
-
-
-
-
-
+<img src="Final_Output_demo_Videos/screenshots/progressive.png" alt="" title="Progressive APP">
 
 ---
 
