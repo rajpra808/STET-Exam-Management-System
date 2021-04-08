@@ -46,23 +46,23 @@ mongoClient.connect(myurl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             const query = { Email_id: newUser.Email_id }
             collection.findOne(query, (err, result) => {
                 if (result == null) {
-                    var randomNumber = Math.random().toString();
-                    randomNumber = randomNumber.substring(2, randomNumber.length);
-                    const user = {
-                        "cookieName": result.Phone_no+"_"+randomNumber,
-                        "from": Date.now(),
-                        'to': 900000 + Date.now()
-                    }
-                    myDb.collection('Session').insertOne(user, function (err, resu) {
-                        if (err)
-                            return err;
-                        else
-                            console.log(user);
-                    })
-                    res.cookie('cookieName', result.Phone_no+"_"+randomNumber, { maxAge: 900000, httpOnly: true });
                     collection.insertOne(newUser, (err, result) => {
+                        var randomNumber = Math.random().toString();
+                        randomNumber = randomNumber.substring(2, randomNumber.length);
+                        const user = {
+                            "cookieName": result.Phone_no+"_"+randomNumber,
+                            "from": Date.now(),
+                            'to': 900000 + Date.now()
+                        }
+                        myDb.collection('Session').insertOne(user, function (err, resu) {
+                            if (err)
+                                return err;
+                            else
+                                console.log(user);
+                        })
+                        res.cookie('cookieName', result.Phone_no+"_"+randomNumber, { maxAge: 900000, httpOnly: true });
                         res.status(200).send()
-                        res.end(err)
+                        
                     })
                 }
                 else {
